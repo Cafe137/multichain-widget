@@ -8,13 +8,14 @@
     },
     "license": "ISC",
     "dependencies": {
+        "cafe-utility": "^32.2.0",
         "react": "^19.1.1",
         "react-dom": "^19.1.1"
     },
     "devDependencies": {
-        "typescript": "^5.9.2",
         "@types/react": "^19.1.9",
         "@types/react-dom": "^19.1.7",
+        "typescript": "^5.9.2",
         "vite": "^7.0.6"
     }
 }
