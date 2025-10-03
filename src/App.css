@@ -1,0 +1,32 @@
+.page {
+    width: 600px;
+    margin: 0 auto;
+}
+
+.multichain__wrapper {
+    background-color: burlywood;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.multichain__row {
+    display: flex;
+    gap: 16px;
+}
+
+.multichain__column--full {
+    flex: 1;
+}
+
+.multichain__column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.multichain__text {
+    margin: 0;
+}
