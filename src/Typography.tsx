@@ -1,9 +1,20 @@
 import { ReactNode } from 'react'
+import { MultichainTheme } from './Theme'
 
 interface Props {
+    theme: MultichainTheme
     children: ReactNode
 }
 
-export function Typography({ children }: Props) {
-    return <p className="multichain__text">{children}</p>
+export function Typography({ theme, children }: Props) {
+    return (
+        <p
+            style={{
+                color: theme.textColor
+            }}
+            className="multichain__text"
+        >
+            {children}
+        </p>
+    )
 }

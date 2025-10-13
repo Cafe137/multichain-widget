@@ -1,7 +1,10 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { Dispatch, SetStateAction } from 'react'
 import { useAccount } from 'wagmi'
+import { Button } from './Button'
+import { NumberInput } from './NumberInput'
 import { SwapData } from './SwapData'
+import { TextInput } from './TextInput'
 import { MultichainTheme } from './Theme'
 import { Typography } from './Typography'
 import { prefix } from './Utility'
@@ -25,54 +28,53 @@ export function Tab1({ theme, setTab, swapData, setSwapData }: Props) {
 
     return (
         <div className="page">
-            <div className="multichain__wrapper">
-                <Typography>Initial node funding</Typography>
-                <Typography>
+            <div
+                className="multichain__wrapper"
+                style={{ borderRadius: theme.borderRadius, backgroundColor: theme.backgroundColor }}
+            >
+                <Typography theme={theme}>Initial node funding</Typography>
+                <Typography theme={theme}>
                     Your Bee node needs initial funding to start. You'll receive xDAI for gas fees and xBZZ tokens to
                     upload and for bandwidth costs.
                 </Typography>
-                <label>Target Address</label>
-                <input
-                    type="text"
+                <Typography theme={theme}>Target Address</Typography>
+                <TextInput
+                    theme={theme}
                     placeholder="0x..."
                     value={swapData.targetAddress}
-                    onChange={e => setSwapData(x => ({ ...x, targetAddress: e.target.value }))}
+                    onChange={e => setSwapData(x => ({ ...x, targetAddress: e }))}
                 />
                 <div className="multichain__row">
                     <div className="multichain__column multichain__column--full">
-                        <label>xDAI Amount</label>
-                        <input
-                            type="number"
+                        <Typography theme={theme}>xDAI Amount</Typography>
+                        <NumberInput
+                            theme={theme}
                             placeholder="0.0"
                             step={0.1}
                             max={10}
                             min={0}
                             value={swapData.nativeAmount}
-                            onChange={e => setSwapData(x => ({ ...x, nativeAmount: Number(e.target.value) }))}
+                            onChange={e => setSwapData(x => ({ ...x, nativeAmount: e }))}
                         />
                     </div>
                     <div className="multichain__column multichain__column--full">
-                        <label>xBZZ Amount</label>
-                        <input
-                            type="number"
+                        <Typography theme={theme}>xBZZ Amount</Typography>
+                        <NumberInput
+                            theme={theme}
                             step={0.1}
                             max={1000}
                             min={0}
                             value={swapData.bzzAmount}
-                            onChange={e => setSwapData(x => ({ ...x, bzzAmount: Number(e.target.value) }))}
+                            onChange={e => setSwapData(x => ({ ...x, bzzAmount: Number(e) }))}
                         />
                     </div>
                 </div>
                 <div className="multichain__row">
                     <ConnectButton />
                 </div>
-                <button
-                    className="multichain__button"
-                    onClick={onConnect}
-                    disabled={!address || !swapData.targetAddress}
-                >
+                <Button theme={theme} onClick={onConnect} disabled={!address || !swapData.targetAddress}>
                     {address ? 'Continue' : 'Connect Wallet'}
-                </button>
+                </Button>
             </div>
         </div>
     )

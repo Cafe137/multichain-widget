@@ -4,8 +4,11 @@ import { FixedPointNumber } from 'cafe-utility'
 import { useState } from 'react'
 import { privateKeyToAccount } from 'viem/accounts'
 import { useBalance, useWalletClient } from 'wagmi'
+import { Button } from './Button'
+import { Select } from './Select'
 import { fetchSushi } from './sushi/SushiRequest'
 import { SwapData } from './SwapData'
+import { TextInput } from './TextInput'
 import { MultichainTheme } from './Theme'
 import { Typography } from './Typography'
 import { prefix } from './Utility'
@@ -115,59 +118,60 @@ export function Tab2({ theme, setTab, swapData }: Props) {
 
     return (
         <div className="page">
-            <div className="multichain__wrapper">
-                <button className="multichain__button multichain__button--secondary" onClick={onBack}>
+            <div
+                className="multichain__wrapper"
+                style={{ borderRadius: theme.borderRadius, backgroundColor: theme.backgroundColor }}
+            >
+                <Button secondary theme={theme} onClick={onBack}>
                     Cancel
-                </button>
-                <label>Source Address</label>
-                <input readOnly value={swapData.sourceAddress} />
-                <label>Target Address</label>
-                <input readOnly value={swapData.targetAddress} />
-                <label>Source Chain</label>
-                <select
-                    value={sourceChain}
+                </Button>
+                <Typography theme={theme}>Source Address</Typography>
+                <TextInput theme={theme} readOnly value={swapData.sourceAddress} />
+                <Typography theme={theme}>Target Address</Typography>
+                <TextInput theme={theme} readOnly value={swapData.targetAddress} />
+                <Typography theme={theme}>Source Chain</Typography>
+                <Select
+                    theme={theme}
                     onChange={e => {
-                        setSourceChain(Number(e.target.value))
+                        setSourceChain(Number(e))
                         setSourceToken('0x0000000000000000000000000000000000000000')
                     }}
-                >
-                    {(chains || []).map(chain => (
-                        <option key={chain.id} value={chain.id}>
-                            {chain.displayName}
-                        </option>
-                    ))}
-                </select>
-                <label>Source Token</label>
-                <select value={sourceToken} onChange={e => setSourceToken(e.target.value)}>
-                    {(data || []).map(token => (
-                        <option key={token.address} value={token.address}>
-                            {token.symbol} ({token.name})
-                        </option>
-                    ))}
-                </select>
-                <Typography>
+                    value={sourceChain.toString()}
+                    options={(chains || []).map(chain => ({
+                        value: chain.id.toString(),
+                        label: chain.displayName
+                    }))}
+                />
+                <Typography theme={theme}>Source Token</Typography>
+                <Select
+                    theme={theme}
+                    onChange={e => setSourceToken(e)}
+                    value={sourceToken}
+                    options={(data || [])
+                        .filter(x => x.address)
+                        .map(x => ({ value: x.address!, label: `${x.symbol} (${x.name})` }))}
+                />
+                <Typography theme={theme}>
                     1 {sourceTokenDisplayName} = ${selectedTokenPriceResponse?.price}
                 </Typography>
-                <Typography>
+                <Typography theme={theme}>
                     You will swap {amountNeeded} {sourceTokenDisplayName} from {sourceChainDisplayName} to fund:
                 </Typography>
-                <ul>
-                    <li>
-                        {swapData.nativeAmount} xDAI (~${swapData.nativeAmount})
-                    </li>
-                    <li>
-                        {swapData.bzzAmount} xBZZ (~${bzzUsdValue.toFixed(2)})
-                    </li>
-                    <li>
-                        <strong>Total: ~${(swapData.nativeAmount + bzzUsdValue).toFixed(2)}</strong>
-                    </li>
-                </ul>
-                <Typography>
+                <Typography theme={theme}>
+                    {swapData.nativeAmount} xDAI (~${swapData.nativeAmount})
+                </Typography>
+                <Typography theme={theme}>
+                    {swapData.bzzAmount} xBZZ (~${bzzUsdValue.toFixed(2)})
+                </Typography>
+                <Typography theme={theme}>
+                    <strong>Total: ~${(swapData.nativeAmount + bzzUsdValue).toFixed(2)}</strong>
+                </Typography>
+                <Typography theme={theme}>
                     {isLoading ? 'Quote loading...' : quote ? 'Quote available' : 'Quote NOT available'}
                 </Typography>
-                <button className="multichain__button" onClick={onSwap}>
+                <Button theme={theme} onClick={onSwap}>
                     Fund Node Wallet
-                </button>
+                </Button>
             </div>
         </div>
     )

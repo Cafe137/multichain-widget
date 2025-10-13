@@ -1,25 +1,21 @@
 :root {
-    --background: #121212;
-    --foreground: #ffffff;
     --branding: #ff7d00;
     --input-background: #202020;
     --input-border: #333333;
     --input-text: #ffffff;
 }
 
-p,
-ul,
-input,
-select,
-button,
-label {
+.multichain__text,
+.multichain__input,
+.multichain__select,
+.multichain__button {
     font-family: Arial, sans-serif;
     font-size: 14px;
 }
 
-input,
-select,
-button {
+.multichain__input,
+.multichain__select,
+.multichain__button {
     background-color: var(--input-background);
     color: var(--input-text);
     border: 1px solid var(--input-border);
@@ -27,13 +23,13 @@ button {
     box-sizing: border-box;
 }
 
-button {
+.multichain__button {
     background-color: var(--branding);
     border: none;
     cursor: pointer;
 }
 
-button:disabled {
+.multichain__button:disabled {
     background-color: var(--input-border);
     cursor: not-allowed;
 }
@@ -44,8 +40,6 @@ button:disabled {
 }
 
 .multichain__wrapper {
-    background-color: var(--background);
-    color: var(--foreground);
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -74,5 +68,4 @@ button:disabled {
 
 .multichain__button--secondary {
     background-color: var(--input-border);
-    color: var(--foreground);
 }
