@@ -1,14 +1,41 @@
-import { useState } from 'react'
+import { darkTheme, getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit'
+import { convertViemChainToRelayChain, createClient, MAINNET_RELAY_API } from '@relayprotocol/relay-sdk'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Objects } from 'cafe-utility'
+import { arbitrum, base, gnosis, mainnet, optimism, polygon } from 'viem/chains'
+import { WagmiProvider } from 'wagmi'
 import './App.css'
-import { Tab1 } from './Tab1'
-import { Tab2 } from './Tab2'
+import { Router } from './Router'
+import { getDefaultMultichainTheme, MultichainTheme } from './Theme'
 
-export function App() {
-    const [tab, setTab] = useState<1 | 2>(1)
+const config = getDefaultConfig({
+    appName: 'Multichain Library',
+    projectId: '5119e426ef93d637395e119c5169ad79',
+    chains: [mainnet, polygon, optimism, arbitrum, base, gnosis],
+    ssr: false
+})
 
-    if (tab === 1) {
-        return <Tab1 setTab={setTab} />
-    }
+const queryClient = new QueryClient()
 
-    return <Tab2 setTab={setTab} />
+interface Props {
+    theme?: MultichainTheme
+}
+
+createClient({
+    baseApiUrl: MAINNET_RELAY_API,
+    chains: [convertViemChainToRelayChain(mainnet)]
+})
+
+export function App({ theme }: Props) {
+    const mergedTheme = Objects.deepMerge2(getDefaultMultichainTheme(), theme || {})
+
+    return (
+        <WagmiProvider config={config}>
+            <QueryClientProvider client={queryClient}>
+                <RainbowKitProvider theme={darkTheme()}>
+                    <Router theme={mergedTheme} />
+                </RainbowKitProvider>
+            </QueryClientProvider>
+        </WagmiProvider>
+    )
 }

@@ -1,10 +1,51 @@
+:root {
+    --background: #121212;
+    --foreground: #ffffff;
+    --branding: #ff7d00;
+    --input-background: #202020;
+    --input-border: #333333;
+    --input-text: #ffffff;
+}
+
+p,
+ul,
+input,
+select,
+button,
+label {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+input,
+select,
+button {
+    background-color: var(--input-background);
+    color: var(--input-text);
+    border: 1px solid var(--input-border);
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: var(--branding);
+    border: none;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: var(--input-border);
+    cursor: not-allowed;
+}
+
 .page {
     width: 600px;
     margin: 0 auto;
 }
 
 .multichain__wrapper {
-    background-color: burlywood;
+    background-color: var(--background);
+    color: var(--foreground);
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -29,4 +70,9 @@
 
 .multichain__text {
     margin: 0;
+}
+
+.multichain__button--secondary {
+    background-color: var(--input-border);
+    color: var(--foreground);
 }

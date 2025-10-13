@@ -1,43 +1,133 @@
+import { useQuote, useRelayChains, useTokenList, useTokenPrice } from '@relayprotocol/relay-kit-hooks'
+import { getClient } from '@relayprotocol/relay-sdk'
+import { FixedPointNumber } from 'cafe-utility'
+import { useState } from 'react'
+import { useWalletClient } from 'wagmi'
+import { SwapData } from './SwapData'
+import { MultichainTheme } from './Theme'
 import { Typography } from './Typography'
 
 interface Props {
+    theme: MultichainTheme
     setTab: (tab: 1 | 2) => void
+    swapData: SwapData
 }
 
-export function Tab2({ setTab }: Props) {
-    function onSwap() {
+export function Tab2({ theme, setTab, swapData }: Props) {
+    const [sourceChain, setSourceChain] = useState(1)
+    const [sourceToken, setSourceToken] = useState('0x0000000000000000000000000000000000000000')
+
+    const relayClient = getClient()
+    const walletClient = useWalletClient()
+
+    const { chains } = useRelayChains()
+    const { data } = useTokenList('https://api.relay.link', { chainIds: [sourceChain] })
+
+    const sourceTokenObject = (data || []).find(x => x.address === sourceToken)
+
+    const { data: bzzPriceResponse } = useTokenPrice('https://api.relay.link', {
+        address: '0xdbf3ea6f5bee45c02255b2c26a16f300502f68da',
+        chainId: 100
+    })
+    const { data: selectedTokenPriceResponse } = useTokenPrice('https://api.relay.link', {
+        address: sourceToken,
+        chainId: sourceChain
+    })
+
+    const bzzPrice = bzzPriceResponse?.price || 0.11
+    const bzzUsdValue = swapData.bzzAmount * bzzPrice
+    const totalUsdValue = bzzUsdValue + swapData.nativeAmount
+    const amountNeeded = totalUsdValue / (selectedTokenPriceResponse?.price || 1)
+    const amount = FixedPointNumber.fromDecimalString(
+        amountNeeded.toString(),
+        sourceTokenObject?.decimals || 18
+    ).toString()
+
+    const {
+        data: quote,
+        executeQuote,
+        isLoading
+    } = useQuote(relayClient ?? undefined, walletClient.data, {
+        user: swapData.sourceAddress,
+        recipient: swapData.targetAddress,
+        originChainId: sourceChain,
+        destinationChainId: 100,
+        originCurrency: sourceToken,
+        destinationCurrency: '0x0000000000000000000000000000000000000000',
+        tradeType: 'EXACT_INPUT',
+        amount
+    })
+
+    console.log(quote, executeQuote)
+
+    const sourceChainDisplayName = (chains || []).find(x => x.id === sourceChain)?.displayName || 'N/A'
+    const sourceTokenDisplayName = (data || []).find(x => x.address === sourceToken)?.symbol || 'N/A'
+
+    function onBack() {
         setTab(1)
+    }
+
+    function onSwap() {
+        if (quote && executeQuote) {
+            executeQuote(console.log)
+        }
     }
 
     return (
         <div className="page">
             <div className="multichain__wrapper">
+                <button className="multichain__button multichain__button--secondary" onClick={onBack}>
+                    Cancel
+                </button>
                 <label>Source Address</label>
-                <input readOnly value="0x1234...abcd" />
+                <input readOnly value={swapData.sourceAddress} />
+                <label>Target Address</label>
+                <input readOnly value={swapData.targetAddress} />
                 <label>Source Chain</label>
-                <select>
-                    <option>Gnosis Chain</option>
-                    <option>Ethereum</option>
-                    <option>Polygon</option>
+                <select
+                    value={sourceChain}
+                    onChange={e => {
+                        setSourceChain(Number(e.target.value))
+                        setSourceToken('0x0000000000000000000000000000000000000000')
+                    }}
+                >
+                    {(chains || []).map(chain => (
+                        <option key={chain.id} value={chain.id}>
+                            {chain.displayName}
+                        </option>
+                    ))}
                 </select>
                 <label>Source Token</label>
-                <select>
-                    <option>xDAI</option>
-                    <option>ETH</option>
-                    <option>MATIC</option>
+                <select value={sourceToken} onChange={e => setSourceToken(e.target.value)}>
+                    {(data || []).map(token => (
+                        <option key={token.address} value={token.address}>
+                            {token.symbol} ({token.name})
+                        </option>
+                    ))}
                 </select>
-                <Typography>Transaction summary</Typography>
-                <Typography>You will swap ETH from Ethereum to fund:</Typography>
+                <Typography>
+                    1 {sourceTokenDisplayName} = ${selectedTokenPriceResponse?.price}
+                </Typography>
+                <Typography>
+                    You will swap {amountNeeded} {sourceTokenDisplayName} from {sourceChainDisplayName} to fund:
+                </Typography>
                 <ul>
-                    <li>0.5 xDAI (~$0.5)</li>
-                    <li>0.5 xBZZ (~$0.1)</li>
                     <li>
-                        <strong>Total: ~$0.6</strong>
+                        {swapData.nativeAmount} xDAI (~${swapData.nativeAmount})
+                    </li>
+                    <li>
+                        {swapData.bzzAmount} xBZZ (~${bzzUsdValue.toFixed(2)})
+                    </li>
+                    <li>
+                        <strong>Total: ~${(swapData.nativeAmount + bzzUsdValue).toFixed(2)}</strong>
                     </li>
                 </ul>
-                <label>Target Address</label>
-                <input readOnly value="0x1234...abcd" />
-                <button onClick={onSwap}>Fund Node Wallet</button>
+                <Typography>
+                    {isLoading ? 'Quote loading...' : quote ? 'Quote available' : 'Quote NOT available'}
+                </Typography>
+                <button className="multichain__button" onClick={onSwap}>
+                    Fund Node Wallet
+                </button>
             </div>
         </div>
     )
