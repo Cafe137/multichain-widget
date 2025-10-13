@@ -2,10 +2,13 @@ import { useQuote, useRelayChains, useTokenList, useTokenPrice } from '@relaypro
 import { getClient } from '@relayprotocol/relay-sdk'
 import { FixedPointNumber } from 'cafe-utility'
 import { useState } from 'react'
-import { useWalletClient } from 'wagmi'
+import { privateKeyToAccount } from 'viem/accounts'
+import { useBalance, useWalletClient } from 'wagmi'
+import { fetchSushi } from './sushi/SushiRequest'
 import { SwapData } from './SwapData'
 import { MultichainTheme } from './Theme'
 import { Typography } from './Typography'
+import { prefix } from './Utility'
 
 interface Props {
     theme: MultichainTheme
@@ -33,6 +36,10 @@ export function Tab2({ theme, setTab, swapData }: Props) {
         address: sourceToken,
         chainId: sourceChain
     })
+    const { data: balanceResponse } = useBalance({
+        address: prefix(swapData.temporaryAddress),
+        chainId: 100
+    })
 
     const bzzPrice = bzzPriceResponse?.price || 0.11
     const bzzUsdValue = swapData.bzzAmount * bzzPrice
@@ -49,7 +56,7 @@ export function Tab2({ theme, setTab, swapData }: Props) {
         isLoading
     } = useQuote(relayClient ?? undefined, walletClient.data, {
         user: swapData.sourceAddress,
-        recipient: swapData.targetAddress,
+        recipient: swapData.temporaryAddress,
         originChainId: sourceChain,
         destinationChainId: 100,
         originCurrency: sourceToken,
@@ -57,8 +64,6 @@ export function Tab2({ theme, setTab, swapData }: Props) {
         tradeType: 'EXACT_INPUT',
         amount
     })
-
-    console.log(quote, executeQuote)
 
     const sourceChainDisplayName = (chains || []).find(x => x.id === sourceChain)?.displayName || 'N/A'
     const sourceTokenDisplayName = (data || []).find(x => x.address === sourceToken)?.symbol || 'N/A'
@@ -68,8 +73,43 @@ export function Tab2({ theme, setTab, swapData }: Props) {
     }
 
     function onSwap() {
-        if (quote && executeQuote) {
-            executeQuote(console.log)
+        if (!balanceResponse) {
+            alert('Balance not loaded')
+            return
+        }
+        alert(`Your temporary wallet has a balance of ${balanceResponse.value} ${balanceResponse.symbol}`)
+        if (balanceResponse.value > 10000000n) {
+            alert('Your temporary wallet has enough funds already!')
+            if (!confirm('Do you want to trade and send to the destination address?')) {
+                return
+            }
+            const amount = FixedPointNumber.fromDecimalString((bzzPrice * swapData.bzzAmount).toString(), 18)
+            alert(`Swapping ${amount.toDecimalString()} xDAI for ${swapData.bzzAmount} xBZZ`)
+            fetchSushi(amount.toString(), swapData.temporaryAddress, swapData.targetAddress).then(response => {
+                const account = privateKeyToAccount(swapData.sessionKey)
+                account
+                    .signTransaction({
+                        chain: 100,
+                        chainId: 100,
+                        account: swapData.temporaryAddress,
+                        gas: BigInt(response.tx.gas),
+                        gasPrice: BigInt(response.tx.gasPrice),
+                        type: 'legacy',
+                        to: response.tx.to,
+                        value: BigInt(response.tx.value),
+                        data: response.tx.data
+                    })
+                    .then(signedTx => {
+                        walletClient.data?.sendRawTransaction({ serializedTransaction: signedTx }).then(console.log)
+                    })
+            })
+        } else {
+            if (!confirm('Do you want to proceed with the swap?')) {
+                return
+            }
+            if (quote && executeQuote) {
+                executeQuote(console.log)
+            }
         }
     }
 

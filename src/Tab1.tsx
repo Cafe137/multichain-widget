@@ -4,6 +4,7 @@ import { useAccount } from 'wagmi'
 import { SwapData } from './SwapData'
 import { MultichainTheme } from './Theme'
 import { Typography } from './Typography'
+import { prefix } from './Utility'
 
 interface Props {
     theme: MultichainTheme
@@ -17,7 +18,7 @@ export function Tab1({ theme, setTab, swapData, setSwapData }: Props) {
 
     function onConnect() {
         if (address && swapData.targetAddress) {
-            setSwapData(x => ({ ...x, sourceAddress: address }))
+            setSwapData(x => ({ ...x, sourceAddress: prefix(address) }))
             setTab(2)
         }
     }
