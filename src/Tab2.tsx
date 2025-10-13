@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { privateKeyToAccount } from 'viem/accounts'
 import { useBalance, useWalletClient } from 'wagmi'
 import { Button } from './Button'
+import { LabelSpacing } from './LabelSpacing'
 import { Select } from './Select'
 import { fetchSushi } from './sushi/SushiRequest'
 import { SwapData } from './SwapData'
@@ -125,32 +126,40 @@ export function Tab2({ theme, setTab, swapData }: Props) {
                 <Button secondary theme={theme} onClick={onBack}>
                     Cancel
                 </Button>
-                <Typography theme={theme}>Source Address</Typography>
-                <TextInput theme={theme} readOnly value={swapData.sourceAddress} />
-                <Typography theme={theme}>Target Address</Typography>
-                <TextInput theme={theme} readOnly value={swapData.targetAddress} />
-                <Typography theme={theme}>Source Chain</Typography>
-                <Select
-                    theme={theme}
-                    onChange={e => {
-                        setSourceChain(Number(e))
-                        setSourceToken('0x0000000000000000000000000000000000000000')
-                    }}
-                    value={sourceChain.toString()}
-                    options={(chains || []).map(chain => ({
-                        value: chain.id.toString(),
-                        label: chain.displayName
-                    }))}
-                />
-                <Typography theme={theme}>Source Token</Typography>
-                <Select
-                    theme={theme}
-                    onChange={e => setSourceToken(e)}
-                    value={sourceToken}
-                    options={(data || [])
-                        .filter(x => x.address)
-                        .map(x => ({ value: x.address!, label: `${x.symbol} (${x.name})` }))}
-                />
+                <LabelSpacing theme={theme}>
+                    <Typography theme={theme}>Source Address</Typography>
+                    <TextInput theme={theme} readOnly value={swapData.sourceAddress} />
+                </LabelSpacing>
+                <LabelSpacing theme={theme}>
+                    <Typography theme={theme}>Target Address</Typography>
+                    <TextInput theme={theme} readOnly value={swapData.targetAddress} />
+                </LabelSpacing>
+                <LabelSpacing theme={theme}>
+                    <Typography theme={theme}>Source Chain</Typography>
+                    <Select
+                        theme={theme}
+                        onChange={e => {
+                            setSourceChain(Number(e))
+                            setSourceToken('0x0000000000000000000000000000000000000000')
+                        }}
+                        value={sourceChain.toString()}
+                        options={(chains || []).map(chain => ({
+                            value: chain.id.toString(),
+                            label: chain.displayName
+                        }))}
+                    />
+                </LabelSpacing>
+                <LabelSpacing theme={theme}>
+                    <Typography theme={theme}>Source Token</Typography>
+                    <Select
+                        theme={theme}
+                        onChange={e => setSourceToken(e)}
+                        value={sourceToken}
+                        options={(data || [])
+                            .filter(x => x.address)
+                            .map(x => ({ value: x.address!, label: `${x.symbol} (${x.name})` }))}
+                    />
+                </LabelSpacing>
                 <Typography theme={theme}>
                     1 {sourceTokenDisplayName} = ${selectedTokenPriceResponse?.price}
                 </Typography>
@@ -170,7 +179,7 @@ export function Tab2({ theme, setTab, swapData }: Props) {
                     {isLoading ? 'Quote loading...' : quote ? 'Quote available' : 'Quote NOT available'}
                 </Typography>
                 <Button theme={theme} onClick={onSwap}>
-                    Fund Node Wallet
+                    Begin Funding
                 </Button>
             </div>
         </div>

@@ -8,12 +8,7 @@ interface Props {
 
 export function Typography({ theme, children }: Props) {
     return (
-        <p
-            style={{
-                color: theme.textColor
-            }}
-            className="multichain__text"
-        >
+        <p style={{ color: theme.textColor }} className="multichain__text">
             {children}
         </p>
     )

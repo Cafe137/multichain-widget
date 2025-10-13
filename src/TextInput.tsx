@@ -15,9 +15,18 @@ export function TextInput({ theme, value, onChange, placeholder, readOnly }: Pro
             placeholder={placeholder}
             value={value}
             onChange={onChange ? e => onChange(e.target.value) : undefined}
-            style={{ borderRadius: theme.borderRadius }}
             readOnly={readOnly}
             className="multichain__input"
+            style={{
+                paddingTop: theme.inputVerticalPadding,
+                paddingBottom: theme.inputVerticalPadding,
+                paddingLeft: theme.inputHorizontalPadding,
+                paddingRight: theme.inputHorizontalPadding,
+                borderRadius: theme.borderRadius,
+                backgroundColor: theme.inputBackgroundColor,
+                borderColor: theme.inputBorderColor,
+                color: theme.inputTextColor
+            }}
         />
     )
 }

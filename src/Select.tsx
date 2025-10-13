@@ -17,8 +17,17 @@ export function Select({ theme, options, value, onChange }: Props) {
         <select
             value={value}
             onChange={e => onChange(e.target.value)}
-            style={{ borderRadius: theme.borderRadius }}
             className="multichain__select"
+            style={{
+                paddingTop: theme.inputVerticalPadding,
+                paddingBottom: theme.inputVerticalPadding,
+                paddingLeft: theme.inputHorizontalPadding,
+                paddingRight: theme.inputHorizontalPadding,
+                borderRadius: theme.borderRadius,
+                backgroundColor: theme.inputBackgroundColor,
+                borderColor: theme.inputBorderColor,
+                color: theme.inputTextColor
+            }}
         >
             {options.map(option => (
                 <option key={option.value} value={option.value}>

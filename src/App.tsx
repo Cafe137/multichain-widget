@@ -1,12 +1,13 @@
-import { darkTheme, getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit'
-import { convertViemChainToRelayChain, createClient, MAINNET_RELAY_API } from '@relayprotocol/relay-sdk'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { Objects } from 'cafe-utility'
-import { arbitrum, base, gnosis, mainnet, optimism, polygon } from 'viem/chains'
-import { WagmiProvider } from 'wagmi'
-import './App.css'
-import { Router } from './Router'
-import { getDefaultMultichainTheme, MultichainTheme } from './Theme'
+import { darkTheme, getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import '@rainbow-me/rainbowkit/styles.css';
+import { convertViemChainToRelayChain, createClient, MAINNET_RELAY_API } from '@relayprotocol/relay-sdk';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Objects } from 'cafe-utility';
+import { arbitrum, base, gnosis, mainnet, optimism, polygon } from 'viem/chains';
+import { WagmiProvider } from 'wagmi';
+import './App.css';
+import { Router } from './Router';
+import { getDefaultMultichainTheme, MultichainTheme } from './Theme';
 
 const config = getDefaultConfig({
     appName: 'Multichain Library',
@@ -18,7 +19,7 @@ const config = getDefaultConfig({
 const queryClient = new QueryClient()
 
 interface Props {
-    theme?: MultichainTheme
+    theme?: Partial<MultichainTheme>
 }
 
 createClient({

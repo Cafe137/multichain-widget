@@ -20,8 +20,17 @@ export function NumberInput({ theme, value, onChange, min, max, step, placeholde
             placeholder={placeholder}
             value={value}
             onChange={e => onChange(Number(e.target.value))}
-            style={{ borderRadius: theme.borderRadius }}
             className="multichain__input"
+            style={{
+                paddingTop: theme.inputVerticalPadding,
+                paddingBottom: theme.inputVerticalPadding,
+                paddingLeft: theme.inputHorizontalPadding,
+                paddingRight: theme.inputHorizontalPadding,
+                borderRadius: theme.borderRadius,
+                backgroundColor: theme.inputBackgroundColor,
+                borderColor: theme.inputBorderColor,
+                color: theme.inputTextColor
+            }}
         />
     )
 }

@@ -10,18 +10,22 @@ interface Props {
 }
 
 export function Button({ theme, onClick, disabled, children, secondary }: Props) {
-    const classList = ['multichain__button']
-
-    if (secondary) {
-        classList.push('multichain__button--secondary')
-    }
-
     return (
         <button
-            className={classList.join(' ')}
-            style={{ borderRadius: theme.borderRadius }}
+            className="multichain__button"
             onClick={onClick}
             disabled={disabled}
+            style={{
+                paddingTop: theme.buttonVerticalPadding,
+                paddingBottom: theme.buttonVerticalPadding,
+                paddingLeft: theme.buttonHorizontalPadding,
+                paddingRight: theme.buttonHorizontalPadding,
+                borderRadius: theme.borderRadius,
+                backgroundColor: secondary ? theme.buttonSecondaryBackgroundColor : theme.buttonBackgroundColor,
+                color: secondary ? theme.buttonSecondaryTextColor : theme.buttonTextColor,
+                opacity: disabled ? 0.6 : 1,
+                cursor: disabled ? 'not-allowed' : 'pointer'
+            }}
         >
             {children}
         </button>
