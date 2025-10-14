@@ -1,6 +1,7 @@
 import { createWalletClient, http } from 'viem'
 import { privateKeyToAccount } from 'viem/accounts'
 import { gnosis } from 'viem/chains'
+import { getGnosisTransactionCount } from './GnosisTransactionCount'
 import { getSushiSwapQuote } from './SushiSwap'
 
 interface AutoOptions {
@@ -49,7 +50,8 @@ export async function swapOnGnosisCustom(options: CustomOptions) {
             type: 'legacy',
             to: options.to,
             value: BigInt(options.value),
-            data: options.data
+            data: options.data,
+            nonce: await getGnosisTransactionCount(options.originAddress)
         })
         .then(signedTx => client.sendRawTransaction({ serializedTransaction: signedTx }))
 }

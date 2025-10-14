@@ -1,4 +1,5 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { Types } from 'cafe-utility'
 import { Dispatch, SetStateAction } from 'react'
 import { useAccount } from 'wagmi'
 import { Button } from './Button'
@@ -8,7 +9,6 @@ import { NumberInput } from './NumberInput'
 import { SwapData } from './SwapData'
 import { TextInput } from './TextInput'
 import { Typography } from './Typography'
-import { prefix } from './Utility'
 
 interface Props {
     theme: MultichainTheme
@@ -22,7 +22,7 @@ export function Tab1({ theme, setTab, swapData, setSwapData }: Props) {
 
     function onConnect() {
         if (address && swapData.targetAddress) {
-            setSwapData(x => ({ ...x, sourceAddress: prefix(address) }))
+            setSwapData(x => ({ ...x, sourceAddress: Types.asHexString(address) }))
             setTab(2)
         }
     }
@@ -35,31 +35,31 @@ export function Tab1({ theme, setTab, swapData, setSwapData }: Props) {
             >
                 <div className="multichain__row">
                     <svg width="80" height="80" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="256" cy="256" r="200" fill="#0074D9" stroke="#0074D9" stroke-width="20" />
-                        <circle cx="256" cy="160" r="20" fill="white" stroke="white" stroke-width="20" />
+                        <circle cx="256" cy="256" r="200" fill="#0074D9" stroke="#0074D9" strokeWidth="20" />
+                        <circle cx="256" cy="160" r="20" fill="white" stroke="white" strokeWidth="20" />
                         <path
                             d="M 221 226 l 30 0 l 0 30 l -30 0 z"
                             stroke="white"
-                            stroke-width="20"
+                            strokeWidth="20"
                             fill="white"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                         />
                         <path
                             d="M 241 226 l 30 0 l 0 130 l -30 0 z"
                             stroke="white"
-                            stroke-width="20"
+                            strokeWidth="20"
                             fill="white"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                         />
                         <path
                             d="M 271 326 l 30 0 l 0 30 l -30 0 z"
                             stroke="white"
-                            stroke-width="20"
+                            strokeWidth="20"
                             fill="white"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                         />
                     </svg>
                     <Typography theme={theme}>

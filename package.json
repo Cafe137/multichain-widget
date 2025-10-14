@@ -12,7 +12,7 @@
         "@relayprotocol/relay-kit-hooks": "^2.0.6",
         "@relayprotocol/relay-sdk": "^3.0.0",
         "@tanstack/react-query": "^5.90.2",
-        "cafe-utility": "^32.2.0",
+        "cafe-utility": "^33.0.0",
         "react": "^19.2.0",
         "react-dom": "^19.2.0",
         "viem": "^2.38.1",

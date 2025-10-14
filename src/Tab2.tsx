@@ -1,6 +1,6 @@
 import { useQuote, useRelayChains, useTokenList } from '@relayprotocol/relay-kit-hooks'
 import { getClient } from '@relayprotocol/relay-sdk'
-import { Arrays, Dates, FixedPointNumber, System } from 'cafe-utility'
+import { Arrays, Dates, FixedPointNumber, System, Types } from 'cafe-utility'
 import { useEffect, useState } from 'react'
 import { useWalletClient } from 'wagmi'
 import { Button } from './Button'
@@ -11,10 +11,11 @@ import { Select } from './Select'
 import { SwapData } from './SwapData'
 import { TextInput } from './TextInput'
 import { Typography } from './Typography'
-import { prefix } from './Utility'
-import { fetchGnosisNativeBalance } from './library/GnosisNativeBalance'
+import { getGnosisBzzBalance } from './library/GnosisBzzBalance'
+import { getGnosisNativeBalance } from './library/GnosisNativeBalance'
+import { transferGnosisNative } from './library/GnosisNativeTransfer'
 import { swapOnGnosisAuto } from './library/GnosisSwap'
-import { fetchGnosisBzzTokenPrice, fetchTokenPrice } from './library/TokenPrice'
+import { getGnosisBzzTokenPrice, getTokenPrice } from './library/TokenPrice'
 
 interface Props {
     theme: MultichainTheme
@@ -27,11 +28,14 @@ export function Tab2({ theme, hooks, setTab, swapData }: Props) {
     // user input
     const [sourceChain, setSourceChain] = useState(1)
     const [sourceToken, setSourceToken] = useState('0x0000000000000000000000000000000000000000')
-    // computed
+    // network
     const [bzzPrice, setBzzPrice] = useState<number | null>(null)
     const [temporaryWalletNativeBalance, setTemporaryWalletNativeBalance] = useState<FixedPointNumber | null>(null)
+    const [destinationWalletBzzBalance, setDestinationWalletBzzBalance] = useState<FixedPointNumber | null>(null)
     const [selectedTokenUsdPrice, setSelectedTokenUsdPrice] = useState<number | null>(null)
+    // computed
     const [selectedTokenAmountNeeded, setSelectedTokenAmountNeeded] = useState<FixedPointNumber | null>(null)
+
     // hooks
     const relayClient = getClient()
     const walletClient = useWalletClient()
@@ -54,21 +58,28 @@ export function Tab2({ theme, hooks, setTab, swapData }: Props) {
         amount: selectedTokenAmountNeeded?.toString() || '0'
     })
 
-    // watch bzz price and dai balance
+    // watch bzz price, temp. dai balance and dest. bzz balance
     useEffect(() => {
         return Arrays.multicall([
             System.runAndSetInterval(() => {
-                fetchGnosisBzzTokenPrice()
+                getGnosisBzzTokenPrice()
                     .then(price => setBzzPrice(price))
                     .catch(error => {
                         console.error('Error fetching BZZ price:', error)
                     })
             }, Dates.seconds(30)),
             System.runAndSetInterval(() => {
-                fetchGnosisNativeBalance(swapData.temporaryAddress)
+                getGnosisNativeBalance(swapData.temporaryAddress)
                     .then(balance => setTemporaryWalletNativeBalance(balance))
                     .catch(error => {
                         console.error('Error fetching temporary wallet native balance:', error)
+                    })
+            }, Dates.seconds(30)),
+            System.runAndSetInterval(() => {
+                getGnosisBzzBalance(swapData.targetAddress)
+                    .then(balance => setDestinationWalletBzzBalance(balance))
+                    .catch(error => {
+                        console.error('Error fetching destination wallet BZZ balance:', error)
                     })
             }, Dates.seconds(30))
         ])
@@ -80,7 +91,7 @@ export function Tab2({ theme, hooks, setTab, swapData }: Props) {
             return
         }
         return System.runAndSetInterval(() => {
-            fetchTokenPrice(sourceToken as `0x${string}`, sourceChain)
+            getTokenPrice(sourceToken as `0x${string}`, sourceChain)
                 .then(price => setSelectedTokenUsdPrice(price))
                 .catch(error => {
                     console.error('Error fetching selected token price:', error)
@@ -126,28 +137,46 @@ export function Tab2({ theme, hooks, setTab, swapData }: Props) {
             console.error('Temporary wallet native balance not loaded yet')
             return
         }
-        const nativeBalanceNeeded = FixedPointNumber.fromDecimalString(swapData.nativeAmount + bzzUsdValue, 18)
-        if (temporaryWalletNativeBalance.compare(nativeBalanceNeeded) > -1) {
-            alert('Your temporary wallet has enough funds already!')
-            if (!confirm('Do you want to trade and send to the destination address?')) {
+        if (!destinationWalletBzzBalance) {
+            console.error('Destination wallet BZZ balance not loaded yet')
+            return
+        }
+        if (destinationWalletBzzBalance.compare(FixedPointNumber.fromDecimalString('1', 16)) > -1) {
+            alert('The destination address already has 1 or more BZZ, ready to transfer DAI.')
+            if (!confirm('Do you want to transfer DAI to the destination address now?')) {
                 return
             }
-            const amount = FixedPointNumber.fromDecimalString((bzzPrice * swapData.bzzAmount).toString(), 18)
-            alert(`Swapping ${amount.toDecimalString()} xDAI for ${swapData.bzzAmount} xBZZ`)
-            swapOnGnosisAuto({
-                amount: amount.toString(),
+            transferGnosisNative({
                 originPrivateKey: swapData.sessionKey,
                 originAddress: swapData.temporaryAddress,
-                to: prefix(swapData.targetAddress)
-            }).catch(error => hooks.onFatalError({ step: 'sushi', error }))
+                to: Types.asHexString(swapData.targetAddress),
+                amount: temporaryWalletNativeBalance.subtract(FixedPointNumber.fromDecimalString('0.01', 18)).toString()
+            }).catch(error => hooks.onFatalError({ step: 'transfer', error }))
+            return
         } else {
-            if (!confirm('Do you want to proceed with the swap?')) {
-                return
-            }
-            if (quote && executeQuote) {
-                executeQuote(console.log)?.catch(error => {
-                    hooks.onFatalError({ step: 'relay', error })
-                })
+            const nativeBalanceNeeded = FixedPointNumber.fromDecimalString(swapData.nativeAmount + bzzUsdValue, 18)
+            if (temporaryWalletNativeBalance.compare(nativeBalanceNeeded) > -1) {
+                alert('Your temporary wallet has enough funds already!')
+                if (!confirm('Do you want to trade and send to the destination address?')) {
+                    return
+                }
+                const amount = FixedPointNumber.fromDecimalString((bzzPrice * swapData.bzzAmount).toString(), 18)
+                alert(`Swapping ${amount.toDecimalString()} xDAI for ${swapData.bzzAmount} xBZZ`)
+                swapOnGnosisAuto({
+                    amount: amount.toString(),
+                    originPrivateKey: swapData.sessionKey,
+                    originAddress: swapData.temporaryAddress,
+                    to: Types.asHexString(swapData.targetAddress)
+                }).catch(error => hooks.onFatalError({ step: 'sushi', error }))
+            } else {
+                if (!confirm('Do you want to proceed with the Relay swap?')) {
+                    return
+                }
+                if (quote && executeQuote) {
+                    executeQuote(console.log)?.catch(error => {
+                        hooks.onFatalError({ step: 'relay', error })
+                    })
+                }
             }
         }
     }
@@ -217,6 +246,12 @@ export function Tab2({ theme, hooks, setTab, swapData }: Props) {
                 </Typography>
                 <Typography theme={theme}>
                     <strong>Total: ~${totalUsdValue}</strong>
+                </Typography>
+                <Typography theme={theme}>
+                    Your temporary wallet has {temporaryWalletNativeBalance?.toDecimalString() || '...'} xDAI
+                </Typography>
+                <Typography theme={theme}>
+                    Your destination wallet has {destinationWalletBzzBalance?.toDecimalString() || '...'} xBZZ
                 </Typography>
                 <Typography theme={theme}>
                     {isLoading

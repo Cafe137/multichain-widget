@@ -1,11 +1,10 @@
-import { Binary, Elliptic, Strings } from 'cafe-utility'
+import { Binary, Elliptic, Strings, Types } from 'cafe-utility'
 import { useState } from 'react'
 import { MultichainHooks } from './MultichainHooks'
 import { MultichainTheme } from './MultichainTheme'
 import { SwapData } from './SwapData'
 import { Tab1 } from './Tab1'
 import { Tab2 } from './Tab2'
-import { prefix } from './Utility'
 
 const LOCAL_STORAGE_KEY = 'multichain-session-key'
 
@@ -17,7 +16,7 @@ interface Props {
 export function Router({ theme, hooks }: Props) {
     const url = new URL(window.location.href)
     const destination = url.searchParams.get('destination')
-    const sessionKey = prefix(localStorage.getItem(LOCAL_STORAGE_KEY) || Strings.randomHex(64))
+    const sessionKey = Types.asHexString(localStorage.getItem(LOCAL_STORAGE_KEY) || Strings.randomHex(64))
     if (localStorage.getItem(LOCAL_STORAGE_KEY) !== sessionKey) {
         localStorage.setItem(LOCAL_STORAGE_KEY, sessionKey)
         localStorage.setItem(`${LOCAL_STORAGE_KEY}_${Date.now()}`, sessionKey)
@@ -27,9 +26,9 @@ export function Router({ theme, hooks }: Props) {
         bzzAmount: 3,
         nativeAmount: 0.2,
         sourceAddress: '',
-        targetAddress: destination ? prefix(destination) : '',
+        targetAddress: destination ? Types.asHexString(destination) : '',
         sessionKey,
-        temporaryAddress: prefix(
+        temporaryAddress: Types.asHexString(
             Binary.uint8ArrayToHex(
                 Elliptic.publicKeyToAddress(
                     Elliptic.privateKeyToPublicKey(Binary.uint256ToNumber(Binary.hexToUint8Array(sessionKey), 'BE'))
