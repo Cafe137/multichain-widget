@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { MultichainTheme } from './Theme'
+import { MultichainTheme } from './MultichainTheme'
 
 interface Props {
     theme: MultichainTheme

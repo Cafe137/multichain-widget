@@ -1,4 +1,4 @@
-import { MultichainTheme } from './Theme'
+import { MultichainTheme } from './MultichainTheme'
 
 interface Option {
     label: string

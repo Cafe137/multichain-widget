@@ -6,21 +6,23 @@ import { privateKeyToAccount } from 'viem/accounts'
 import { useBalance, useWalletClient } from 'wagmi'
 import { Button } from './Button'
 import { LabelSpacing } from './LabelSpacing'
+import { MultichainHooks } from './MultichainHooks'
+import { MultichainTheme } from './MultichainTheme'
 import { Select } from './Select'
 import { fetchSushi } from './sushi/SushiRequest'
 import { SwapData } from './SwapData'
 import { TextInput } from './TextInput'
-import { MultichainTheme } from './Theme'
 import { Typography } from './Typography'
 import { prefix } from './Utility'
 
 interface Props {
     theme: MultichainTheme
+    hooks: MultichainHooks
     setTab: (tab: 1 | 2) => void
     swapData: SwapData
 }
 
-export function Tab2({ theme, setTab, swapData }: Props) {
+export function Tab2({ theme, hooks, setTab, swapData }: Props) {
     const [sourceChain, setSourceChain] = useState(1)
     const [sourceToken, setSourceToken] = useState('0x0000000000000000000000000000000000000000')
 
@@ -89,30 +91,35 @@ export function Tab2({ theme, setTab, swapData }: Props) {
             }
             const amount = FixedPointNumber.fromDecimalString((bzzPrice * swapData.bzzAmount).toString(), 18)
             alert(`Swapping ${amount.toDecimalString()} xDAI for ${swapData.bzzAmount} xBZZ`)
-            fetchSushi(amount.toString(), swapData.temporaryAddress, swapData.targetAddress).then(response => {
-                const account = privateKeyToAccount(swapData.sessionKey)
-                account
-                    .signTransaction({
-                        chain: 100,
-                        chainId: 100,
-                        account: swapData.temporaryAddress,
-                        gas: BigInt(response.tx.gas),
-                        gasPrice: BigInt(response.tx.gasPrice),
-                        type: 'legacy',
-                        to: response.tx.to,
-                        value: BigInt(response.tx.value),
-                        data: response.tx.data
-                    })
-                    .then(signedTx => {
-                        walletClient.data?.sendRawTransaction({ serializedTransaction: signedTx }).then(console.log)
-                    })
-            })
+            fetchSushi(amount.toString(), swapData.temporaryAddress, swapData.targetAddress)
+                .then(response => {
+                    const account = privateKeyToAccount(swapData.sessionKey)
+                    account
+                        .signTransaction({
+                            chain: 100,
+                            chainId: 100,
+                            account: swapData.temporaryAddress,
+                            gas: BigInt(response.tx.gas),
+                            gasPrice: BigInt(response.tx.gasPrice),
+                            type: 'legacy',
+                            to: response.tx.to,
+                            value: BigInt(response.tx.value),
+                            data: response.tx.data
+                        })
+                        .then(signedTx => {
+                            walletClient.data?.sendRawTransaction({ serializedTransaction: signedTx }).then(console.log)
+                        })
+                        .catch(error => hooks.onFatalError({ step: 'sushi-transaction', error }))
+                })
+                .catch(error => hooks.onFatalError({ step: 'sushi-request', error }))
         } else {
             if (!confirm('Do you want to proceed with the swap?')) {
                 return
             }
             if (quote && executeQuote) {
-                executeQuote(console.log)
+                executeQuote(console.log)?.catch(error => {
+                    hooks.onFatalError({ step: 'relay', error })
+                })
             }
         }
     }
