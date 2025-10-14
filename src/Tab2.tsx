@@ -1,19 +1,20 @@
-import { useQuote, useRelayChains, useTokenList, useTokenPrice } from '@relayprotocol/relay-kit-hooks'
+import { useQuote, useRelayChains, useTokenList } from '@relayprotocol/relay-kit-hooks'
 import { getClient } from '@relayprotocol/relay-sdk'
-import { FixedPointNumber } from 'cafe-utility'
-import { useState } from 'react'
-import { privateKeyToAccount } from 'viem/accounts'
-import { useBalance, useWalletClient } from 'wagmi'
+import { Arrays, Dates, FixedPointNumber, System } from 'cafe-utility'
+import { useEffect, useState } from 'react'
+import { useWalletClient } from 'wagmi'
 import { Button } from './Button'
 import { LabelSpacing } from './LabelSpacing'
 import { MultichainHooks } from './MultichainHooks'
 import { MultichainTheme } from './MultichainTheme'
 import { Select } from './Select'
-import { fetchSushi } from './sushi/SushiRequest'
 import { SwapData } from './SwapData'
 import { TextInput } from './TextInput'
 import { Typography } from './Typography'
 import { prefix } from './Utility'
+import { fetchGnosisNativeBalance } from './library/GnosisNativeBalance'
+import { swapOnGnosisAuto } from './library/GnosisSwap'
+import { fetchGnosisBzzTokenPrice, fetchTokenPrice } from './library/TokenPrice'
 
 interface Props {
     theme: MultichainTheme
@@ -23,39 +24,21 @@ interface Props {
 }
 
 export function Tab2({ theme, hooks, setTab, swapData }: Props) {
+    // user input
     const [sourceChain, setSourceChain] = useState(1)
     const [sourceToken, setSourceToken] = useState('0x0000000000000000000000000000000000000000')
-
+    // computed
+    const [bzzPrice, setBzzPrice] = useState<number | null>(null)
+    const [temporaryWalletNativeBalance, setTemporaryWalletNativeBalance] = useState<FixedPointNumber | null>(null)
+    const [selectedTokenUsdPrice, setSelectedTokenUsdPrice] = useState<number | null>(null)
+    const [selectedTokenAmountNeeded, setSelectedTokenAmountNeeded] = useState<FixedPointNumber | null>(null)
+    // hooks
     const relayClient = getClient()
     const walletClient = useWalletClient()
-
     const { chains } = useRelayChains()
     const { data } = useTokenList('https://api.relay.link', { chainIds: [sourceChain] })
 
-    const sourceTokenObject = (data || []).find(x => x.address === sourceToken)
-
-    const { data: bzzPriceResponse } = useTokenPrice('https://api.relay.link', {
-        address: '0xdbf3ea6f5bee45c02255b2c26a16f300502f68da',
-        chainId: 100
-    })
-    const { data: selectedTokenPriceResponse } = useTokenPrice('https://api.relay.link', {
-        address: sourceToken,
-        chainId: sourceChain
-    })
-    const { data: balanceResponse } = useBalance({
-        address: prefix(swapData.temporaryAddress),
-        chainId: 100
-    })
-
-    const bzzPrice = bzzPriceResponse?.price || 0.11
-    const bzzUsdValue = swapData.bzzAmount * bzzPrice
-    const totalUsdValue = bzzUsdValue + swapData.nativeAmount
-    const amountNeeded = totalUsdValue / (selectedTokenPriceResponse?.price || 1)
-    const amount = FixedPointNumber.fromDecimalString(
-        amountNeeded.toString(),
-        sourceTokenObject?.decimals || 18
-    ).toString()
-
+    // relay quote hook
     const {
         data: quote,
         executeQuote,
@@ -68,9 +51,65 @@ export function Tab2({ theme, hooks, setTab, swapData }: Props) {
         originCurrency: sourceToken,
         destinationCurrency: '0x0000000000000000000000000000000000000000',
         tradeType: 'EXACT_INPUT',
-        amount
+        amount: selectedTokenAmountNeeded?.toString() || '0'
     })
 
+    // watch bzz price and dai balance
+    useEffect(() => {
+        return Arrays.multicall([
+            System.runAndSetInterval(() => {
+                fetchGnosisBzzTokenPrice()
+                    .then(price => setBzzPrice(price))
+                    .catch(error => {
+                        console.error('Error fetching BZZ price:', error)
+                    })
+            }, Dates.seconds(30)),
+            System.runAndSetInterval(() => {
+                fetchGnosisNativeBalance(swapData.temporaryAddress)
+                    .then(balance => setTemporaryWalletNativeBalance(balance))
+                    .catch(error => {
+                        console.error('Error fetching temporary wallet native balance:', error)
+                    })
+            }, Dates.seconds(30))
+        ])
+    }, [])
+
+    // watch selected token price
+    useEffect(() => {
+        if (!sourceToken) {
+            return
+        }
+        return System.runAndSetInterval(() => {
+            fetchTokenPrice(sourceToken as `0x${string}`, sourceChain)
+                .then(price => setSelectedTokenUsdPrice(price))
+                .catch(error => {
+                    console.error('Error fetching selected token price:', error)
+                })
+        }, Dates.seconds(30))
+    }, [sourceToken])
+
+    // calculate amount needed of the selected token
+    useEffect(() => {
+        if (!bzzPrice || !selectedTokenUsdPrice || !sourceToken) {
+            return
+        }
+        const sourceTokenObject = (data || []).find(x => x.address === sourceToken)
+        if (!sourceTokenObject) {
+            console.error('Selected token not found in token list')
+            return
+        }
+        if (!sourceTokenObject.decimals) {
+            console.error('Selected token decimals not found')
+            return
+        }
+        const bzzUsdValue = swapData.bzzAmount * bzzPrice
+        const totalUsdValue = bzzUsdValue + swapData.nativeAmount
+        const amountNeeded = totalUsdValue / selectedTokenUsdPrice
+        const amount = FixedPointNumber.fromDecimalString(amountNeeded.toString(), sourceTokenObject.decimals)
+        setSelectedTokenAmountNeeded(amount)
+    }, [bzzPrice, sourceToken, selectedTokenUsdPrice])
+
+    // computed chain and token display names
     const sourceChainDisplayName = (chains || []).find(x => x.id === sourceChain)?.displayName || 'N/A'
     const sourceTokenDisplayName = (data || []).find(x => x.address === sourceToken)?.symbol || 'N/A'
 
@@ -78,40 +117,29 @@ export function Tab2({ theme, hooks, setTab, swapData }: Props) {
         setTab(1)
     }
 
-    function onSwap() {
-        if (!balanceResponse) {
-            alert('Balance not loaded')
+    async function onSwap() {
+        if (!bzzPrice) {
+            console.error('BZZ price not loaded yet')
             return
         }
-        alert(`Your temporary wallet has a balance of ${balanceResponse.value} ${balanceResponse.symbol}`)
-        if (balanceResponse.value > 10000000n) {
+        if (!temporaryWalletNativeBalance) {
+            console.error('Temporary wallet native balance not loaded yet')
+            return
+        }
+        const nativeBalanceNeeded = FixedPointNumber.fromDecimalString(swapData.nativeAmount + bzzUsdValue, 18)
+        if (temporaryWalletNativeBalance.compare(nativeBalanceNeeded) > -1) {
             alert('Your temporary wallet has enough funds already!')
             if (!confirm('Do you want to trade and send to the destination address?')) {
                 return
             }
             const amount = FixedPointNumber.fromDecimalString((bzzPrice * swapData.bzzAmount).toString(), 18)
             alert(`Swapping ${amount.toDecimalString()} xDAI for ${swapData.bzzAmount} xBZZ`)
-            fetchSushi(amount.toString(), swapData.temporaryAddress, swapData.targetAddress)
-                .then(response => {
-                    const account = privateKeyToAccount(swapData.sessionKey)
-                    account
-                        .signTransaction({
-                            chain: 100,
-                            chainId: 100,
-                            account: swapData.temporaryAddress,
-                            gas: BigInt(response.tx.gas),
-                            gasPrice: BigInt(response.tx.gasPrice),
-                            type: 'legacy',
-                            to: response.tx.to,
-                            value: BigInt(response.tx.value),
-                            data: response.tx.data
-                        })
-                        .then(signedTx => {
-                            walletClient.data?.sendRawTransaction({ serializedTransaction: signedTx }).then(console.log)
-                        })
-                        .catch(error => hooks.onFatalError({ step: 'sushi-transaction', error }))
-                })
-                .catch(error => hooks.onFatalError({ step: 'sushi-request', error }))
+            swapOnGnosisAuto({
+                amount: amount.toString(),
+                originPrivateKey: swapData.sessionKey,
+                originAddress: swapData.temporaryAddress,
+                to: prefix(swapData.targetAddress)
+            }).catch(error => hooks.onFatalError({ step: 'sushi', error }))
         } else {
             if (!confirm('Do you want to proceed with the swap?')) {
                 return
@@ -123,6 +151,9 @@ export function Tab2({ theme, hooks, setTab, swapData }: Props) {
             }
         }
     }
+
+    const bzzUsdValue = bzzPrice ? (swapData.bzzAmount * bzzPrice).toFixed(2) : '0'
+    const totalUsdValue = bzzPrice ? (swapData.nativeAmount + swapData.bzzAmount * bzzPrice).toFixed(2) : '0'
 
     return (
         <div className="page">
@@ -167,23 +198,32 @@ export function Tab2({ theme, hooks, setTab, swapData }: Props) {
                             .map(x => ({ value: x.address!, label: `${x.symbol} (${x.name})` }))}
                     />
                 </LabelSpacing>
+                {selectedTokenUsdPrice !== null ? (
+                    <Typography theme={theme}>
+                        1 {sourceTokenDisplayName} = ${selectedTokenUsdPrice}
+                    </Typography>
+                ) : (
+                    <Typography theme={theme}>Loading {sourceTokenDisplayName} price...</Typography>
+                )}
                 <Typography theme={theme}>
-                    1 {sourceTokenDisplayName} = ${selectedTokenPriceResponse?.price}
-                </Typography>
-                <Typography theme={theme}>
-                    You will swap {amountNeeded} {sourceTokenDisplayName} from {sourceChainDisplayName} to fund:
+                    You will swap {selectedTokenAmountNeeded?.toDecimalString()} {sourceTokenDisplayName} from{' '}
+                    {sourceChainDisplayName} to fund:
                 </Typography>
                 <Typography theme={theme}>
                     {swapData.nativeAmount} xDAI (~${swapData.nativeAmount})
                 </Typography>
                 <Typography theme={theme}>
-                    {swapData.bzzAmount} xBZZ (~${bzzUsdValue.toFixed(2)})
+                    {swapData.bzzAmount} xBZZ (~${bzzUsdValue})
                 </Typography>
                 <Typography theme={theme}>
-                    <strong>Total: ~${(swapData.nativeAmount + bzzUsdValue).toFixed(2)}</strong>
+                    <strong>Total: ~${totalUsdValue}</strong>
                 </Typography>
                 <Typography theme={theme}>
-                    {isLoading ? 'Quote loading...' : quote ? 'Quote available' : 'Quote NOT available'}
+                    {isLoading
+                        ? 'Quote loading...'
+                        : quote
+                        ? 'Quote available'
+                        : 'Quote NOT available, amount too small, too large, or insufficient liquidity'}
                 </Typography>
                 <Button theme={theme} onClick={onSwap}>
                     Begin Funding

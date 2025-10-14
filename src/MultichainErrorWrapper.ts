@@ -1,4 +1,4 @@
 export interface MultichainErrorWrapper {
-    step: 'relay' | 'sushi-request' | 'sushi-transaction' | 'transfer'
+    step: 'relay' | 'sushi' | 'transfer'
     error: Error
 }
