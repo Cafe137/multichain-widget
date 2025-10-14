@@ -11,6 +11,7 @@ import { Select } from './Select'
 import { SwapData } from './SwapData'
 import { TextInput } from './TextInput'
 import { Typography } from './Typography'
+import { Constants } from './library/Constants'
 import { getGnosisBzzBalance } from './library/GnosisBzzBalance'
 import { getGnosisNativeBalance } from './library/GnosisNativeBalance'
 import { transferGnosisNative } from './library/GnosisNativeTransfer'
@@ -51,9 +52,9 @@ export function Tab2({ theme, hooks, setTab, swapData }: Props) {
         user: swapData.sourceAddress,
         recipient: swapData.temporaryAddress,
         originChainId: sourceChain,
-        destinationChainId: 100,
+        destinationChainId: Constants.gnosisChainId,
         originCurrency: sourceToken,
-        destinationCurrency: '0x0000000000000000000000000000000000000000',
+        destinationCurrency: Constants.nullAddress, // xDAI
         tradeType: 'EXACT_INPUT',
         amount: selectedTokenAmountNeeded?.toString() || '0'
     })

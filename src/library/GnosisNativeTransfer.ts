@@ -2,7 +2,9 @@ import { Numbers } from 'cafe-utility'
 import { createWalletClient, http } from 'viem'
 import { privateKeyToAccount } from 'viem/accounts'
 import { gnosis } from 'viem/chains'
+import { Constants } from './Constants'
 import { getGnosisTransactionCount } from './GnosisTransactionCount'
+import { Settings } from './Settings'
 
 interface Options {
     amount: string | bigint
@@ -15,12 +17,12 @@ export async function transferGnosisNative(options: Options): Promise<`0x${strin
     const account = privateKeyToAccount(options.originPrivateKey)
     const client = createWalletClient({
         chain: gnosis,
-        transport: http('https://rpc.gnosischain.com/')
+        transport: http(Settings.gnosisJsonRpc)
     })
     return account
         .signTransaction({
-            chain: 100,
-            chainId: 100,
+            chain: Constants.gnosisChainId,
+            chainId: Constants.gnosisChainId,
             account: options.originAddress,
             gas: BigInt(21000),
             gasPrice: BigInt(Numbers.make('1 gwei')),

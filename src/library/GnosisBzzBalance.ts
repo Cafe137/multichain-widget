@@ -1,4 +1,6 @@
-import { Dates, FixedPointNumber, Types } from 'cafe-utility'
+import { FixedPointNumber, Types } from 'cafe-utility'
+import { Constants } from './Constants'
+import { Settings } from './Settings'
 
 export async function getGnosisBzzBalance(address: string): Promise<FixedPointNumber> {
     address = address.toLowerCase()
@@ -11,18 +13,18 @@ export async function getGnosisBzzBalance(address: string): Promise<FixedPointNu
         method: 'eth_call',
         params: [
             {
-                from: '0x0000000000000000000000000000000000000000',
+                from: Constants.nullAddress,
                 data: `0x70a08231000000000000000000000000${address}`,
-                to: '0xdbf3ea6f5bee45c02255b2c26a16f300502f68da'
+                to: Constants.bzzGnosisAddress
             },
             'latest'
         ]
     }
-    const response = await fetch('https://rpc.gnosischain.com/', {
+    const response = await fetch(Settings.gnosisJsonRpc, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
-        signal: AbortSignal.timeout(Dates.seconds(10))
+        signal: AbortSignal.timeout(Settings.fetchTimeout)
     })
     const data = await response.json()
     const object = Types.asObject(data)

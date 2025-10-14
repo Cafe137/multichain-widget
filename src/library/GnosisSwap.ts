@@ -1,7 +1,9 @@
 import { createWalletClient, http } from 'viem'
 import { privateKeyToAccount } from 'viem/accounts'
 import { gnosis } from 'viem/chains'
+import { Constants } from './Constants'
 import { getGnosisTransactionCount } from './GnosisTransactionCount'
+import { Settings } from './Settings'
 import { getSushiSwapQuote } from './SushiSwap'
 
 interface AutoOptions {
@@ -36,14 +38,11 @@ interface CustomOptions {
 
 export async function swapOnGnosisCustom(options: CustomOptions) {
     const account = privateKeyToAccount(options.originPrivateKey)
-    const client = createWalletClient({
-        chain: gnosis,
-        transport: http('https://rpc.gnosischain.com/')
-    })
+    const client = createWalletClient({ chain: gnosis, transport: http(Settings.gnosisJsonRpc) })
     return account
         .signTransaction({
-            chain: 100,
-            chainId: 100,
+            chain: Constants.gnosisChainId,
+            chainId: Constants.gnosisChainId,
             account: options.originAddress,
             gas: BigInt(options.gas),
             gasPrice: BigInt(options.gasPrice),

@@ -1,4 +1,5 @@
-import { Dates, Types } from 'cafe-utility'
+import { Types } from 'cafe-utility'
+import { Settings } from './Settings'
 
 export async function getGnosisTransactionCount(address: string): Promise<number> {
     address = address.toLowerCase()
@@ -11,11 +12,11 @@ export async function getGnosisTransactionCount(address: string): Promise<number
         method: 'eth_getTransactionCount',
         params: [`0x${address}`, 'latest']
     }
-    const response = await fetch('https://rpc.gnosischain.com/', {
+    const response = await fetch(Settings.gnosisJsonRpc, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
-        signal: AbortSignal.timeout(Dates.seconds(10))
+        signal: AbortSignal.timeout(Settings.fetchTimeout)
     })
     const data = await response.json()
     const object = Types.asObject(data)
