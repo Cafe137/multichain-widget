@@ -18,7 +18,7 @@ We use SushiSwap contracts and its API to swap xDAI to xBZZ.
 
 ## Theme
 
-Most styles can be overwritten by passing a `theme` prop to the `App` component.
+Most styles can be overwritten by passing a `theme` prop to the `MultichainWidget` component.
 
 ## Temporary wallet persistence
 
@@ -26,17 +26,21 @@ A backup of every generated private key is stored in `localStorage` with a times
 
 ## Recoverability
 
-In `Tab2.tsx`, the `onSwap` function attempts to detect the current step and continue from there.
+It is OK if the flow errors out or the user navigates away. The app can detect which steps have been completed and resume from there.
 
 ## Reactivity
 
-Hooks can be set by passing `hooks` prop to the `App` component. Currently supported hooks are:
+Hooks can be set by passing `hooks` prop to the `MultichainWidget` component. Currently supported hooks are:
 
 -   `beforeTransactionStart`
 -   `onFatalError`
 -   `onCompletion`
 
 # Known issues
+
+## Absolute amounts
+
+The specified xBZZ amount is absolute, not relative. For example, if the user already has 90 xBZZ, they would have to specify 100 xBZZ to receive 10 more.
 
 ## No quote available on Relay
 
@@ -52,6 +56,22 @@ This can happen when Gnosis experiences a sudden spike in gas prices.
 
 The end user will not receive any quotes if they attempt to use xDAI as the source token. This is because in this case, we attempt to get a quote from xDAI to xDAI.
 
-## Separate library
+## Add slippage and fee considerations
 
-The `library` folder should be published as a separate package.
+The resulting xBZZ and xDAI and currently lower than expected due to fees and slippage. This can never be fully eliminated, and for the MVP a fixed 5% buffer is recommended.
+
+## Network check
+
+The app currently does not check if the user is on the correct network. This leads to failed transactions.
+
+## JSON-RPC provider array
+
+Allow passing an array of JSON-RPC providers to increase reliability.
+
+## Retriable requests
+
+Some requests can fail due to temporary JSON-RPC issues. These should be retried a few times before giving up.
+
+## Gas spike handling
+
+There is an error which is easy to detect: `Details: FeeTooLow, EffectivePriorityFeePerGas too low 0 < 1, BaseFee: 2783571`. This should be handled by retrying the transaction with a higher gas price.
