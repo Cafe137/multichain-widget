@@ -77,3 +77,7 @@ There is an error which is easy to detect: `Details: FeeTooLow, EffectivePriorit
 ## React version dependency
 
 It seems that the app only works with React 18+. This may not be compatible with Bee Dashboard using React 17 (due to Material UI 4 dependency). It would be best to upgrade Bee Dashboard to React 18 and Material UI 5. React 18 is already 4 years old.
+
+## Implement other intents
+
+Only the "initial funding" intent is implemented. Other intents should be implemented as well, e.g. "get funds for postage batch", "free funding", etc.
