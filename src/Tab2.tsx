@@ -284,108 +284,102 @@ export function Tab2({ theme, hooks, setTab, swapData, library }: Props) {
     }
 
     return (
-        <div className="page">
-            <div
-                className="multichain__wrapper"
-                style={{ borderRadius: theme.borderRadius, backgroundColor: theme.backgroundColor }}
-            >
-                <Button secondary theme={theme} onClick={onBack} disabled={status !== 'pending' && status !== 'failed'}>
-                    Cancel
-                </Button>
-                <LabelSpacing theme={theme}>
-                    <Typography theme={theme}>Source Address</Typography>
-                    <TextInput theme={theme} readOnly value={swapData.sourceAddress} />
-                </LabelSpacing>
-                <LabelSpacing theme={theme}>
-                    <Typography theme={theme}>Target Address</Typography>
-                    <TextInput theme={theme} readOnly value={swapData.targetAddress} />
-                </LabelSpacing>
-                {status !== 'pending' ? <ProgressTracker theme={theme} progress={stepStatuses} /> : null}
-                {status === 'pending' && nextStep === 'relay' ? (
-                    <>
-                        <LabelSpacing theme={theme}>
-                            <Typography theme={theme}>Source Chain</Typography>
-                            <Select
-                                theme={theme}
-                                onChange={e => {
-                                    setSourceChain(Number(e))
-                                    setSourceToken('0x0000000000000000000000000000000000000000')
-                                }}
-                                value={sourceChain.toString()}
-                                options={(chains || []).map(chain => ({
-                                    value: chain.id.toString(),
-                                    label: chain.displayName
-                                }))}
-                            />
-                        </LabelSpacing>
-                        <LabelSpacing theme={theme}>
-                            <Typography theme={theme}>Source Token</Typography>
-                            <Select
-                                theme={theme}
-                                onChange={e => setSourceToken(e)}
-                                value={sourceToken}
-                                options={(data || [])
-                                    .filter(x => x.address)
-                                    .map(x => ({ value: x.address!, label: `${x.symbol} (${x.name})` }))}
-                            />
-                            {selectedTokenUsdPrice !== null ? (
-                                <Typography theme={theme} small>
-                                    1 {sourceTokenDisplayName} = ${selectedTokenUsdPrice}
-                                </Typography>
-                            ) : (
-                                <Typography theme={theme}>Loading {sourceTokenDisplayName} price...</Typography>
-                            )}
-                        </LabelSpacing>
-                        <Typography theme={theme}>
-                            You will swap {selectedTokenAmountNeeded?.toDecimalString()} (~${totalUsdValue}){' '}
-                            {sourceTokenDisplayName} from {sourceChainDisplayName} to fund:
-                        </Typography>
-                        <div className="multichain__row">
-                            <div className="multichain__column multichain__column--full">
-                                <TextInput
-                                    theme={theme}
-                                    value={`${swapData.nativeAmount.toFixed(2)} xDAI (~$${swapData.nativeAmount.toFixed(
-                                        2
-                                    )})`}
-                                    readOnly
-                                />
-                            </div>
-                            <div className="multichain__column multichain__column--full">
-                                <TextInput
-                                    theme={theme}
-                                    value={`${
-                                        remainingBzzAmount ? remainingBzzAmount.toDecimalString() : '...'
-                                    } xBZZ (~$${(remainingBzzUsdValue || 0).toFixed(2)})`}
-                                    readOnly
-                                />
-                            </div>
-                        </div>
-                    </>
-                ) : null}
-
-                <Typography theme={theme} small>
-                    Your temporary wallet has {temporaryWalletNativeBalance?.toDecimalString() || '...'} xDAI
-                </Typography>
-                <Typography theme={theme} small>
-                    Your destination wallet has {destinationWalletBzzBalance?.toDecimalString() || '...'} xBZZ
-                </Typography>
-                {status === 'pending' && nextStep === 'relay' ? (
+        <div
+            className="multichain__wrapper"
+            style={{ borderRadius: theme.borderRadius, backgroundColor: theme.backgroundColor }}
+        >
+            <Button secondary theme={theme} onClick={onBack} disabled={status !== 'pending' && status !== 'failed'}>
+                Cancel
+            </Button>
+            <LabelSpacing theme={theme}>
+                <Typography theme={theme}>Source Address</Typography>
+                <TextInput theme={theme} readOnly value={swapData.sourceAddress} />
+            </LabelSpacing>
+            <LabelSpacing theme={theme}>
+                <Typography theme={theme}>Target Address</Typography>
+                <TextInput theme={theme} readOnly value={swapData.targetAddress} />
+            </LabelSpacing>
+            {status !== 'pending' ? <ProgressTracker theme={theme} progress={stepStatuses} /> : null}
+            {status === 'pending' && nextStep === 'relay' ? (
+                <>
+                    <LabelSpacing theme={theme}>
+                        <Typography theme={theme}>Source Chain</Typography>
+                        <Select
+                            theme={theme}
+                            onChange={e => {
+                                setSourceChain(Number(e))
+                                setSourceToken('0x0000000000000000000000000000000000000000')
+                            }}
+                            value={sourceChain.toString()}
+                            options={(chains || []).map(chain => ({
+                                value: chain.id.toString(),
+                                label: chain.displayName
+                            }))}
+                        />
+                    </LabelSpacing>
+                    <LabelSpacing theme={theme}>
+                        <Typography theme={theme}>Source Token</Typography>
+                        <Select
+                            theme={theme}
+                            onChange={e => setSourceToken(e)}
+                            value={sourceToken}
+                            options={(data || [])
+                                .filter(x => x.address)
+                                .map(x => ({ value: x.address!, label: `${x.symbol} (${x.name})` }))}
+                        />
+                        {selectedTokenUsdPrice !== null ? (
+                            <Typography theme={theme} small>
+                                1 {sourceTokenDisplayName} = ${selectedTokenUsdPrice}
+                            </Typography>
+                        ) : (
+                            <Typography theme={theme}>Loading {sourceTokenDisplayName} price...</Typography>
+                        )}
+                    </LabelSpacing>
                     <Typography theme={theme}>
-                        {isLoading
-                            ? 'Quote loading...'
-                            : quote
-                            ? 'Quote available'
-                            : 'Quote NOT available, amount too small, too large, or insufficient liquidity'}
+                        You will swap {selectedTokenAmountNeeded?.toDecimalString()} (~${totalUsdValue}){' '}
+                        {sourceTokenDisplayName} from {sourceChainDisplayName} to fund:
                     </Typography>
-                ) : null}
-                <Button
-                    theme={theme}
-                    onClick={onSwap}
-                    disabled={status !== 'pending' || (nextStep === 'relay' && !quote)}
-                >
-                    Fund
-                </Button>
-            </div>
+                    <div className="multichain__row">
+                        <div className="multichain__column multichain__column--full">
+                            <TextInput
+                                theme={theme}
+                                value={`${swapData.nativeAmount.toFixed(2)} xDAI (~$${swapData.nativeAmount.toFixed(
+                                    2
+                                )})`}
+                                readOnly
+                            />
+                        </div>
+                        <div className="multichain__column multichain__column--full">
+                            <TextInput
+                                theme={theme}
+                                value={`${remainingBzzAmount ? remainingBzzAmount.toDecimalString() : '...'} xBZZ (~$${(
+                                    remainingBzzUsdValue || 0
+                                ).toFixed(2)})`}
+                                readOnly
+                            />
+                        </div>
+                    </div>
+                </>
+            ) : null}
+
+            <Typography theme={theme} small>
+                Your temporary wallet has {temporaryWalletNativeBalance?.toDecimalString() || '...'} xDAI
+            </Typography>
+            <Typography theme={theme} small>
+                Your destination wallet has {destinationWalletBzzBalance?.toDecimalString() || '...'} xBZZ
+            </Typography>
+            {status === 'pending' && nextStep === 'relay' ? (
+                <Typography theme={theme}>
+                    {isLoading
+                        ? 'Quote loading...'
+                        : quote
+                        ? 'Quote available'
+                        : 'Quote NOT available, amount too small, too large, or insufficient liquidity'}
+                </Typography>
+            ) : null}
+            <Button theme={theme} onClick={onSwap} disabled={status !== 'pending' || (nextStep === 'relay' && !quote)}>
+                Fund
+            </Button>
         </div>
     )
 }

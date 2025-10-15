@@ -6,9 +6,9 @@ import { MultichainLibrary, MultichainLibrarySettings } from '@upcoming/multicha
 import { Objects } from 'cafe-utility'
 import { arbitrum, base, gnosis, mainnet, optimism, polygon } from 'viem/chains'
 import { WagmiProvider } from 'wagmi'
-import './App.css'
 import { getDefaultHooks, MultichainHooks } from './MultichainHooks'
 import { getDefaultMultichainTheme, MultichainTheme } from './MultichainTheme'
+import './MultichainWidget.css'
 import { Router } from './Router'
 
 const config = getDefaultConfig({
@@ -31,7 +31,7 @@ createClient({
     chains: [convertViemChainToRelayChain(mainnet)]
 })
 
-export function App({ theme, hooks, settings }: Props) {
+export function MultichainWidget({ theme, hooks, settings }: Props) {
     const mergedTheme = Objects.deepMerge2(getDefaultMultichainTheme(), theme || {})
     const mergedHooks = Objects.deepMerge2(getDefaultHooks(), hooks || {})
     const library = new MultichainLibrary(settings)
