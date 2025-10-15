@@ -1,0 +1,3533 @@
+react-dom-client.development.js:28004 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+client.ts:115 RelaySDK automatically generated a source based on the url, we recommend providing a source when initializing the sdk. Refer to our docs for steps on how to do this: https://docs.relay.link/references/sdk/getting-started#configuration
+RelayClient @ client.ts:115
+lit-html.ts:233 Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.
+issueWarning @ lit-html.ts:233
+cca-lite.coinbase.com/amp:1  Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+cca-lite.coinbase.com/metrics:1  Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+VM141:1 Analytics SDK: TypeError: Failed to fetch
+    at _t (<anonymous>:1:64025)
+    at <anonymous>:1:68106 Object
+onError @ VM141:1
+api.relay.link/quote:1  Failed to load resource: the server responded with a status of 400 ()
+?destination=0x43E94…5024eDE4889c6e2cA:1 Uncaught (in promise) AxiosError
+cca-lite.coinbase.com/metrics:1  Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+VM141:1 Analytics SDK: TypeError: Failed to fetch
+    at _t (<anonymous>:1:64025)
+    at <anonymous>:1:68106 Object
+onError @ VM141:1
+cca-lite.coinbase.com/amp:1  Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+api.relay.link/quote:1  Failed to load resource: the server responded with a status of 400 ()
+?destination=0x43E94…5024eDE4889c6e2cA:1 Uncaught (in promise) AxiosError
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+inpage.js:1 MetaMask - RPC Error: MetaMask Tx Signature: User denied transaction signature. {code: 4001, message: 'MetaMask Tx Signature: User denied transaction signature.', data: {…}, stack: '{\n  "code": 4001,\n  "message": "MetaMask Tx Signat…ihfbeogaeaoehlefnkodbefgpgknn/common-1.js:3:79085'}
+(anonymous) @ inpage.js:1
+(anonymous) @ inpage.js:1
+p @ inpage.js:1
+f @ inpage.js:1
+await in f
+l @ inpage.js:1
+handle @ inpage.js:1
+_rpcRequest @ inpage.js:1
+(anonymous) @ inpage.js:1
+request @ inpage.js:1
+(anonymous) @ wrapExtensionProvider.ts:87
+(anonymous) @ metamask-sdk-LV4SURWQ.js?v=ace80674:6325
+c @ metamask-sdk-LV4SURWQ.js?v=ace80674:6304
+(anonymous) @ wrapExtensionProvider.ts:36
+withRetry.delay.count.count @ buildRequest.ts:150
+attemptRetry @ withRetry.ts:44
+(anonymous) @ withRetry.ts:55
+withRetry @ withRetry.ts:34
+withDedupe.enabled @ buildRequest.ts:147
+withDedupe @ withDedupe.ts:16
+(anonymous) @ buildRequest.ts:145
+sendTransaction @ sendTransaction.ts:251
+await in sendTransaction
+sendTransaction @ wallet.ts:1163
+handleSendTransactionStep @ viemWallet.ts:91
+sendTransactionSafely @ transaction.ts:98
+await in sendTransactionSafely
+handleTransactionStepItem @ transactionStep.ts:72
+(anonymous) @ index.ts:317
+(anonymous) @ index.ts:362
+(anonymous) @ index.ts:309
+executeSteps @ index.ts:308
+(anonymous) @ execute.ts:78
+execute @ execute.ts:77
+(anonymous) @ useQuote.ts:114
+onSwap @ Tab2.tsx:193
+executeDispatch @ react-dom-client.development.js:19116
+runWithFiberInDEV @ react-dom-client.development.js:871
+processDispatchQueue @ react-dom-client.development.js:19166
+(anonymous) @ react-dom-client.development.js:19767
+batchedUpdates$1 @ react-dom-client.development.js:3255
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:19320
+dispatchEvent @ react-dom-client.development.js:23585
+dispatchDiscreteEvent @ react-dom-client.development.js:23553
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+MultichainHooks.ts:15 A fatal error occurred during the multichain transaction: {step: 'relay', error: TransactionExecutionError: User rejected the request.
+
+Request Arguments:
+  chain:                 …}
+onFatalError @ MultichainHooks.ts:15
+onSwap @ Tab2.tsx:198
+await in onSwap
+executeDispatch @ react-dom-client.development.js:19116
+runWithFiberInDEV @ react-dom-client.development.js:871
+processDispatchQueue @ react-dom-client.development.js:19166
+(anonymous) @ react-dom-client.development.js:19767
+batchedUpdates$1 @ react-dom-client.development.js:3255
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:19320
+dispatchEvent @ react-dom-client.development.js:23585
+dispatchDiscreteEvent @ react-dom-client.development.js:23553
+Tab2.tsx:282 Uncaught (in promise) TransactionExecutionError: User rejected the request.
+
+Request Arguments:
+  chain:                 Ethereum (id: 1)
+  from:                  0x573137Ce2861daD3F5b25446a350b87F2A800912
+  to:                    0xa5f565650890fba1824ee0f21ebbbf660a179934
+  value:                 0.000134076830950408 ETH
+  data:                  0x32ed2e4d5cedee103ef4318dbd83f86e8b9e9ff1dfc7fc1ead4d3e8861408e6e
+  gas:                   43370
+  maxFeePerGas:          1.589929268 gwei
+  maxPriorityFeePerGas:  1.087025049 gwei
+
+Details: MetaMask Tx Signature: User denied transaction signature.
+Version: viem@2.38.1
+    at getTransactionError (getTransactionError.ts:44:10)
+    at sendTransaction (sendTransaction.ts:355:11)
+    at async Object.handleSendTransactionStep (viemWallet.ts:91:14)
+    at async sendTransactionSafely (transaction.ts:98:14)
+    at async handleTransactionStepItem (transactionStep.ts:72:3)
+    at async index.ts:317:19
+    at async index.ts:368:15Caused by: UserRejectedRequestError: User rejected the request.
+
+Details: MetaMask Tx Signature: User denied transaction signature.
+Version: viem@2.38.1
+    at withRetry.delay.count.count (buildRequest.ts:197:25)
+    at async attemptRetry (withRetry.ts:44:22)
+getTransactionError @ getTransactionError.ts:44
+sendTransaction @ sendTransaction.ts:355
+await in sendTransaction
+sendTransaction @ wallet.ts:1163
+handleSendTransactionStep @ viemWallet.ts:91
+sendTransactionSafely @ transaction.ts:98
+await in sendTransactionSafely
+handleTransactionStepItem @ transactionStep.ts:72
+(anonymous) @ index.ts:317
+(anonymous) @ index.ts:362
+(anonymous) @ index.ts:309
+executeSteps @ index.ts:308
+(anonymous) @ execute.ts:78
+execute @ execute.ts:77
+(anonymous) @ useQuote.ts:114
+onSwap @ Tab2.tsx:193
+executeDispatch @ react-dom-client.development.js:19116
+runWithFiberInDEV @ react-dom-client.development.js:871
+processDispatchQueue @ react-dom-client.development.js:19166
+(anonymous) @ react-dom-client.development.js:19767
+batchedUpdates$1 @ react-dom-client.development.js:3255
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:19320
+dispatchEvent @ react-dom-client.development.js:23585
+dispatchDiscreteEvent @ react-dom-client.development.js:23553
+Navigated to http://localhost:5173/?destination=0x43E942d82F72ff8185D9fC15024eDE4889c6e2cA
+react-dom-client.development.js:28004 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+client.ts:115 RelaySDK automatically generated a source based on the url, we recommend providing a source when initializing the sdk. Refer to our docs for steps on how to do this: https://docs.relay.link/references/sdk/getting-started#configuration
+RelayClient @ client.ts:115
+createClient @ client.ts:206
+(anonymous) @ App.tsx:27
+lit-html.ts:233 Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.
+issueWarning @ lit-html.ts:233
+(anonymous) @ lit-html.ts:239
+VM284:1  POST https://cca-lite.coinbase.com/amp net::ERR_BLOCKED_BY_CLIENT
+_t @ VM284:1
+Mt @ VM284:1
+(anonymous) @ VM284:1
+setTimeout
+Pt @ VM284:1
+(anonymous) @ VM284:1
+gn @ VM284:1
+(anonymous) @ VM284:1
+await in (anonymous)
+yn @ VM284:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+VM284:1  POST https://cca-lite.coinbase.com/metrics net::ERR_BLOCKED_BY_CLIENT
+_t @ VM284:1
+(anonymous) @ VM284:1
+requestIdleCallback
+yt @ VM284:1
+Qt @ VM284:1
+(anonymous) @ VM284:1
+setTimeout
+ht @ VM284:1
+Ht @ VM284:1
+analyticsTracker @ VM284:1
+u @ VM284:1
+requestIdleCallback
+N @ VM284:1
+R @ VM284:1
+e @ VM284:1
+(anonymous) @ VM284:1
+yn @ VM284:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+VM284:1 Analytics SDK: TypeError: Failed to fetch
+    at _t (<anonymous>:1:64025)
+    at <anonymous>:1:68106 {context: 'AnalyticsSDKApiError'}
+onError @ VM284:1
+(anonymous) @ VM284:1
+Promise.catch
+_t @ VM284:1
+(anonymous) @ VM284:1
+requestIdleCallback
+yt @ VM284:1
+Qt @ VM284:1
+(anonymous) @ VM284:1
+setTimeout
+ht @ VM284:1
+Ht @ VM284:1
+analyticsTracker @ VM284:1
+u @ VM284:1
+requestIdleCallback
+N @ VM284:1
+R @ VM284:1
+e @ VM284:1
+(anonymous) @ VM284:1
+yn @ VM284:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+Navigated to http://localhost:5173/?destination=0x43E942d82F72ff8185D9fC15024eDE4889c6e2cA
+react-dom-client.development.js:28004 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+client.ts:115 RelaySDK automatically generated a source based on the url, we recommend providing a source when initializing the sdk. Refer to our docs for steps on how to do this: https://docs.relay.link/references/sdk/getting-started#configuration
+RelayClient @ client.ts:115
+createClient @ client.ts:206
+(anonymous) @ App.tsx:27
+lit-html.ts:233 Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.
+issueWarning @ lit-html.ts:233
+(anonymous) @ lit-html.ts:239
+VM414:1  POST https://cca-lite.coinbase.com/amp net::ERR_BLOCKED_BY_CLIENT
+_t @ VM414:1
+Mt @ VM414:1
+(anonymous) @ VM414:1
+setTimeout
+Pt @ VM414:1
+(anonymous) @ VM414:1
+gn @ VM414:1
+(anonymous) @ VM414:1
+await in (anonymous)
+yn @ VM414:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+VM414:1  POST https://cca-lite.coinbase.com/metrics net::ERR_BLOCKED_BY_CLIENT
+_t @ VM414:1
+(anonymous) @ VM414:1
+requestIdleCallback
+yt @ VM414:1
+Qt @ VM414:1
+(anonymous) @ VM414:1
+setTimeout
+ht @ VM414:1
+Ht @ VM414:1
+analyticsTracker @ VM414:1
+u @ VM414:1
+requestIdleCallback
+N @ VM414:1
+R @ VM414:1
+e @ VM414:1
+(anonymous) @ VM414:1
+yn @ VM414:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+VM414:1 Analytics SDK: TypeError: Failed to fetch
+    at _t (<anonymous>:1:64025)
+    at <anonymous>:1:68106 {context: 'AnalyticsSDKApiError'}
+onError @ VM414:1
+(anonymous) @ VM414:1
+Promise.catch
+_t @ VM414:1
+(anonymous) @ VM414:1
+requestIdleCallback
+yt @ VM414:1
+Qt @ VM414:1
+(anonymous) @ VM414:1
+setTimeout
+ht @ VM414:1
+Ht @ VM414:1
+analyticsTracker @ VM414:1
+u @ VM414:1
+requestIdleCallback
+N @ VM414:1
+R @ VM414:1
+e @ VM414:1
+(anonymous) @ VM414:1
+yn @ VM414:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+Navigated to http://localhost:5173/?destination=0x43E942d82F72ff8185D9fC15024eDE4889c6e2cA
+react-dom-client.development.js:28004 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+client.ts:115 RelaySDK automatically generated a source based on the url, we recommend providing a source when initializing the sdk. Refer to our docs for steps on how to do this: https://docs.relay.link/references/sdk/getting-started#configuration
+RelayClient @ client.ts:115
+createClient @ client.ts:206
+(anonymous) @ App.tsx:27
+lit-html.ts:233 Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.
+issueWarning @ lit-html.ts:233
+(anonymous) @ lit-html.ts:239
+Navigated to http://localhost:5173/?destination=0x43E942d82F72ff8185D9fC15024eDE4889c6e2cA
+react-dom-client.development.js:28004 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+client.ts:115 RelaySDK automatically generated a source based on the url, we recommend providing a source when initializing the sdk. Refer to our docs for steps on how to do this: https://docs.relay.link/references/sdk/getting-started#configuration
+RelayClient @ client.ts:115
+createClient @ client.ts:206
+(anonymous) @ App.tsx:27
+lit-html.ts:233 Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.
+issueWarning @ lit-html.ts:233
+(anonymous) @ lit-html.ts:239
+Navigated to http://localhost:5173/?destination=0x43E942d82F72ff8185D9fC15024eDE4889c6e2cA
+react-dom-client.development.js:28004 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+client.ts:115 RelaySDK automatically generated a source based on the url, we recommend providing a source when initializing the sdk. Refer to our docs for steps on how to do this: https://docs.relay.link/references/sdk/getting-started#configuration
+RelayClient @ client.ts:115
+createClient @ client.ts:206
+(anonymous) @ App.tsx:27
+lit-html.ts:233 Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.
+issueWarning @ lit-html.ts:233
+(anonymous) @ lit-html.ts:239
+VM827:1  POST https://cca-lite.coinbase.com/amp net::ERR_BLOCKED_BY_CLIENT
+_t @ VM827:1
+Mt @ VM827:1
+(anonymous) @ VM827:1
+setTimeout
+Pt @ VM827:1
+(anonymous) @ VM827:1
+gn @ VM827:1
+(anonymous) @ VM827:1
+await in (anonymous)
+yn @ VM827:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+VM827:1  POST https://cca-lite.coinbase.com/metrics net::ERR_BLOCKED_BY_CLIENT
+_t @ VM827:1
+(anonymous) @ VM827:1
+requestIdleCallback
+yt @ VM827:1
+Qt @ VM827:1
+(anonymous) @ VM827:1
+setTimeout
+ht @ VM827:1
+Ht @ VM827:1
+analyticsTracker @ VM827:1
+u @ VM827:1
+requestIdleCallback
+N @ VM827:1
+R @ VM827:1
+e @ VM827:1
+(anonymous) @ VM827:1
+yn @ VM827:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+VM827:1 Analytics SDK: TypeError: Failed to fetch
+    at _t (<anonymous>:1:64025)
+    at <anonymous>:1:68106 {context: 'AnalyticsSDKApiError'}
+onError @ VM827:1
+(anonymous) @ VM827:1
+Promise.catch
+_t @ VM827:1
+(anonymous) @ VM827:1
+requestIdleCallback
+yt @ VM827:1
+Qt @ VM827:1
+(anonymous) @ VM827:1
+setTimeout
+ht @ VM827:1
+Ht @ VM827:1
+analyticsTracker @ VM827:1
+u @ VM827:1
+requestIdleCallback
+N @ VM827:1
+R @ VM827:1
+e @ VM827:1
+(anonymous) @ VM827:1
+yn @ VM827:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+Navigated to http://localhost:5173/?destination=0x43E942d82F72ff8185D9fC15024eDE4889c6e2cA
+react-dom-client.development.js:28004 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+client.ts:115 RelaySDK automatically generated a source based on the url, we recommend providing a source when initializing the sdk. Refer to our docs for steps on how to do this: https://docs.relay.link/references/sdk/getting-started#configuration
+RelayClient @ client.ts:115
+createClient @ client.ts:206
+(anonymous) @ App.tsx:27
+lit-html.ts:233 Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.
+issueWarning @ lit-html.ts:233
+(anonymous) @ lit-html.ts:239
+VM973:1  POST https://cca-lite.coinbase.com/amp net::ERR_BLOCKED_BY_CLIENT
+_t @ VM973:1
+Mt @ VM973:1
+(anonymous) @ VM973:1
+setTimeout
+Pt @ VM973:1
+(anonymous) @ VM973:1
+gn @ VM973:1
+(anonymous) @ VM973:1
+await in (anonymous)
+yn @ VM973:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+VM973:1  POST https://cca-lite.coinbase.com/metrics net::ERR_BLOCKED_BY_CLIENT
+_t @ VM973:1
+(anonymous) @ VM973:1
+requestIdleCallback
+yt @ VM973:1
+Qt @ VM973:1
+(anonymous) @ VM973:1
+setTimeout
+ht @ VM973:1
+Ht @ VM973:1
+analyticsTracker @ VM973:1
+u @ VM973:1
+requestIdleCallback
+N @ VM973:1
+R @ VM973:1
+e @ VM973:1
+(anonymous) @ VM973:1
+yn @ VM973:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+VM973:1 Analytics SDK: TypeError: Failed to fetch
+    at _t (<anonymous>:1:64025)
+    at <anonymous>:1:68106 {context: 'AnalyticsSDKApiError'}
+onError @ VM973:1
+(anonymous) @ VM973:1
+Promise.catch
+_t @ VM973:1
+(anonymous) @ VM973:1
+requestIdleCallback
+yt @ VM973:1
+Qt @ VM973:1
+(anonymous) @ VM973:1
+setTimeout
+ht @ VM973:1
+Ht @ VM973:1
+analyticsTracker @ VM973:1
+u @ VM973:1
+requestIdleCallback
+N @ VM973:1
+R @ VM973:1
+e @ VM973:1
+(anonymous) @ VM973:1
+yn @ VM973:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+Navigated to http://localhost:5173/?destination=0x43E942d82F72ff8185D9fC15024eDE4889c6e2cA
+react-dom-client.development.js:28004 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+client.ts:115 RelaySDK automatically generated a source based on the url, we recommend providing a source when initializing the sdk. Refer to our docs for steps on how to do this: https://docs.relay.link/references/sdk/getting-started#configuration
+RelayClient @ client.ts:115
+createClient @ client.ts:206
+(anonymous) @ App.tsx:27
+lit-html.ts:233 Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.
+issueWarning @ lit-html.ts:233
+(anonymous) @ lit-html.ts:239
+VM1102:1  POST https://cca-lite.coinbase.com/amp net::ERR_BLOCKED_BY_CLIENT
+_t @ VM1102:1
+Mt @ VM1102:1
+(anonymous) @ VM1102:1
+setTimeout
+Pt @ VM1102:1
+(anonymous) @ VM1102:1
+gn @ VM1102:1
+(anonymous) @ VM1102:1
+await in (anonymous)
+yn @ VM1102:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+VM1102:1  POST https://cca-lite.coinbase.com/metrics net::ERR_BLOCKED_BY_CLIENT
+_t @ VM1102:1
+(anonymous) @ VM1102:1
+requestIdleCallback
+yt @ VM1102:1
+Qt @ VM1102:1
+(anonymous) @ VM1102:1
+setTimeout
+ht @ VM1102:1
+Ht @ VM1102:1
+analyticsTracker @ VM1102:1
+u @ VM1102:1
+requestIdleCallback
+N @ VM1102:1
+R @ VM1102:1
+e @ VM1102:1
+(anonymous) @ VM1102:1
+yn @ VM1102:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+VM1102:1 Analytics SDK: TypeError: Failed to fetch
+    at _t (<anonymous>:1:64025)
+    at <anonymous>:1:68106 {context: 'AnalyticsSDKApiError'}
+onError @ VM1102:1
+(anonymous) @ VM1102:1
+Promise.catch
+_t @ VM1102:1
+(anonymous) @ VM1102:1
+requestIdleCallback
+yt @ VM1102:1
+Qt @ VM1102:1
+(anonymous) @ VM1102:1
+setTimeout
+ht @ VM1102:1
+Ht @ VM1102:1
+analyticsTracker @ VM1102:1
+u @ VM1102:1
+requestIdleCallback
+N @ VM1102:1
+R @ VM1102:1
+e @ VM1102:1
+(anonymous) @ VM1102:1
+yn @ VM1102:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+Navigated to http://localhost:5173/?destination=0x43E942d82F72ff8185D9fC15024eDE4889c6e2cA
+react-dom-client.development.js:28004 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+client.ts:115 RelaySDK automatically generated a source based on the url, we recommend providing a source when initializing the sdk. Refer to our docs for steps on how to do this: https://docs.relay.link/references/sdk/getting-started#configuration
+RelayClient @ client.ts:115
+createClient @ client.ts:206
+(anonymous) @ App.tsx:27
+lit-html.ts:233 Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.
+issueWarning @ lit-html.ts:233
+(anonymous) @ lit-html.ts:239
+VM1240:1  POST https://cca-lite.coinbase.com/amp net::ERR_BLOCKED_BY_CLIENT
+_t @ VM1240:1
+Mt @ VM1240:1
+(anonymous) @ VM1240:1
+setTimeout
+Pt @ VM1240:1
+(anonymous) @ VM1240:1
+gn @ VM1240:1
+(anonymous) @ VM1240:1
+await in (anonymous)
+yn @ VM1240:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+VM1240:1  POST https://cca-lite.coinbase.com/metrics net::ERR_BLOCKED_BY_CLIENT
+_t @ VM1240:1
+(anonymous) @ VM1240:1
+requestIdleCallback
+yt @ VM1240:1
+Qt @ VM1240:1
+(anonymous) @ VM1240:1
+setTimeout
+ht @ VM1240:1
+Ht @ VM1240:1
+analyticsTracker @ VM1240:1
+u @ VM1240:1
+requestIdleCallback
+N @ VM1240:1
+R @ VM1240:1
+e @ VM1240:1
+(anonymous) @ VM1240:1
+yn @ VM1240:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+VM1240:1 Analytics SDK: TypeError: Failed to fetch
+    at _t (<anonymous>:1:64025)
+    at <anonymous>:1:68106 {context: 'AnalyticsSDKApiError'}
+onError @ VM1240:1
+(anonymous) @ VM1240:1
+Promise.catch
+_t @ VM1240:1
+(anonymous) @ VM1240:1
+requestIdleCallback
+yt @ VM1240:1
+Qt @ VM1240:1
+(anonymous) @ VM1240:1
+setTimeout
+ht @ VM1240:1
+Ht @ VM1240:1
+analyticsTracker @ VM1240:1
+u @ VM1240:1
+requestIdleCallback
+N @ VM1240:1
+R @ VM1240:1
+e @ VM1240:1
+(anonymous) @ VM1240:1
+yn @ VM1240:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+xhr.js:198  POST https://api.relay.link/quote 400 (Bad Request)
+dispatchXhrRequest @ xhr.js:198
+xhr @ xhr.js:15
+dispatchRequest @ dispatchRequest.js:51
+_request @ Axios.js:185
+request @ Axios.js:40
+httpMethod @ Axios.js:224
+wrap @ bind.js:5
+axiosPostFetcher @ fetcher.ts:21
+(anonymous) @ useQuote.ts:40
+queryQuote @ useQuote.ts:38
+queryFn @ useQuote.ts:79
+fetchFn @ query.ts:475
+run @ retryer.ts:155
+start @ retryer.ts:221
+fetch @ query.ts:547
+#executeFetch @ queryObserver.ts:341
+onSubscribe @ queryObserver.ts:101
+subscribe @ subscribable.ts:11
+(anonymous) @ useBaseQuery.ts:100
+subscribeToStore @ react-dom-client.development.js:8244
+react_stack_bottom_frame @ react-dom-client.development.js:25989
+runWithFiberInDEV @ react-dom-client.development.js:871
+commitHookEffectListMount @ react-dom-client.development.js:13249
+commitHookPassiveMountEffects @ react-dom-client.development.js:13336
+commitPassiveMountOnFiber @ react-dom-client.development.js:15484
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15519
+flushPassiveEffects @ react-dom-client.development.js:18432
+flushPendingEffects @ react-dom-client.development.js:18358
+flushSpawnedWork @ react-dom-client.development.js:18323
+commitRoot @ react-dom-client.development.js:17955
+commitRootWhenReady @ react-dom-client.development.js:16824
+performWorkOnRoot @ react-dom-client.development.js:16722
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Tab2>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Router @ Router.tsx:45
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Router>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:40
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+settle.js:19 Uncaught (in promise) AxiosError {message: 'Request failed with status code 400', name: 'AxiosError', code: 'ERR_BAD_REQUEST', config: {…}, request: XMLHttpRequest, …}
+settle @ settle.js:19
+onloadend @ xhr.js:59
+XMLHttpRequest.send
+dispatchXhrRequest @ xhr.js:198
+xhr @ xhr.js:15
+dispatchRequest @ dispatchRequest.js:51
+_request @ Axios.js:185
+request @ Axios.js:40
+httpMethod @ Axios.js:224
+wrap @ bind.js:5
+axiosPostFetcher @ fetcher.ts:21
+(anonymous) @ useQuote.ts:40
+queryQuote @ useQuote.ts:38
+queryFn @ useQuote.ts:79
+fetchFn @ query.ts:475
+run @ retryer.ts:155
+start @ retryer.ts:221
+fetch @ query.ts:547
+#executeFetch @ queryObserver.ts:341
+onSubscribe @ queryObserver.ts:101
+subscribe @ subscribable.ts:11
+(anonymous) @ useBaseQuery.ts:100
+subscribeToStore @ react-dom-client.development.js:8244
+react_stack_bottom_frame @ react-dom-client.development.js:25989
+runWithFiberInDEV @ react-dom-client.development.js:871
+commitHookEffectListMount @ react-dom-client.development.js:13249
+commitHookPassiveMountEffects @ react-dom-client.development.js:13336
+commitPassiveMountOnFiber @ react-dom-client.development.js:15484
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15519
+flushPassiveEffects @ react-dom-client.development.js:18432
+flushPendingEffects @ react-dom-client.development.js:18358
+flushSpawnedWork @ react-dom-client.development.js:18323
+commitRoot @ react-dom-client.development.js:17955
+commitRootWhenReady @ react-dom-client.development.js:16824
+performWorkOnRoot @ react-dom-client.development.js:16722
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Tab2>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Router @ Router.tsx:45
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Router>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:40
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+VM1240:1  POST https://cca-lite.coinbase.com/metrics net::ERR_BLOCKED_BY_CLIENT
+_t @ VM1240:1
+(anonymous) @ VM1240:1
+requestIdleCallback
+yt @ VM1240:1
+Qt @ VM1240:1
+(anonymous) @ VM1240:1
+setTimeout
+ht @ VM1240:1
+Ht @ VM1240:1
+analyticsTracker @ VM1240:1
+u @ VM1240:1
+requestIdleCallback
+N @ VM1240:1
+q @ VM1240:1
+(anonymous) @ VM1240:1
+setTimeout
+q @ VM1240:1
+(anonymous) @ VM1240:1
+(anonymous) @ VM1240:1
+(anonymous) @ VM1240:1
+o @ VM1240:1
+s @ VM1240:1
+(anonymous) @ VM1240:1
+Promise.then
+(anonymous) @ VM1240:1
+VM1240:1 Analytics SDK: TypeError: Failed to fetch
+    at _t (<anonymous>:1:64025)
+    at <anonymous>:1:68106 {context: 'AnalyticsSDKApiError'}
+onError @ VM1240:1
+(anonymous) @ VM1240:1
+Promise.catch
+_t @ VM1240:1
+(anonymous) @ VM1240:1
+requestIdleCallback
+yt @ VM1240:1
+Qt @ VM1240:1
+(anonymous) @ VM1240:1
+setTimeout
+ht @ VM1240:1
+Ht @ VM1240:1
+analyticsTracker @ VM1240:1
+u @ VM1240:1
+requestIdleCallback
+N @ VM1240:1
+q @ VM1240:1
+(anonymous) @ VM1240:1
+setTimeout
+q @ VM1240:1
+(anonymous) @ VM1240:1
+(anonymous) @ VM1240:1
+(anonymous) @ VM1240:1
+o @ VM1240:1
+s @ VM1240:1
+(anonymous) @ VM1240:1
+Promise.then
+(anonymous) @ VM1240:1
+VM1240:1  POST https://cca-lite.coinbase.com/amp net::ERR_BLOCKED_BY_CLIENT
+_t @ VM1240:1
+Mt @ VM1240:1
+(anonymous) @ VM1240:1
+setTimeout
+Pt @ VM1240:1
+(anonymous) @ VM1240:1
+requestIdleCallback
+yt @ VM1240:1
+$t @ VM1240:1
+analyticsTracker @ VM1240:1
+u @ VM1240:1
+requestIdleCallback
+N @ VM1240:1
+q @ VM1240:1
+(anonymous) @ VM1240:1
+setTimeout
+q @ VM1240:1
+(anonymous) @ VM1240:1
+(anonymous) @ VM1240:1
+(anonymous) @ VM1240:1
+o @ VM1240:1
+s @ VM1240:1
+(anonymous) @ VM1240:1
+Promise.then
+(anonymous) @ VM1240:1
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+MultichainHooks.ts:15 A fatal error occurred during the multichain transaction: {step: 'relay', error: Error: Transaction failed: Refunded
+    at validate (http://localhost:5173/node_modules/.vite/deps/…}
+onFatalError @ MultichainHooks.ts:15
+onSwap @ Tab2.tsx:198
+await in onSwap
+executeDispatch @ react-dom-client.development.js:19116
+runWithFiberInDEV @ react-dom-client.development.js:871
+processDispatchQueue @ react-dom-client.development.js:19166
+(anonymous) @ react-dom-client.development.js:19767
+batchedUpdates$1 @ react-dom-client.development.js:3255
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:19320
+dispatchEvent @ react-dom-client.development.js:23585
+dispatchDiscreteEvent @ react-dom-client.development.js:23553
+<button>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Button @ Button.tsx:14
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Button>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Tab2 @ Tab2.tsx:379
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Tab2>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Router @ Router.tsx:45
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Router>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:40
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+Tab2.tsx:282 Uncaught (in promise) Error: Transaction failed: Refunded
+    at validate (transaction.ts:169:13)
+    at pollForConfirmation (transaction.ts:324:19)
+    at async sendTransactionSafely (transaction.ts:486:5)
+    at async handleTransactionStepItem (transactionStep.ts:72:3)
+    at async index.ts:317:19
+    at async index.ts:368:15
+validate @ transaction.ts:169
+pollForConfirmation @ transaction.ts:324
+await in pollForConfirmation
+sendTransactionSafely @ transaction.ts:484
+await in sendTransactionSafely
+handleTransactionStepItem @ transactionStep.ts:72
+(anonymous) @ index.ts:317
+(anonymous) @ index.ts:362
+(anonymous) @ index.ts:309
+executeSteps @ index.ts:308
+(anonymous) @ execute.ts:78
+execute @ execute.ts:77
+(anonymous) @ useQuote.ts:114
+onSwap @ Tab2.tsx:193
+executeDispatch @ react-dom-client.development.js:19116
+runWithFiberInDEV @ react-dom-client.development.js:871
+processDispatchQueue @ react-dom-client.development.js:19166
+(anonymous) @ react-dom-client.development.js:19767
+batchedUpdates$1 @ react-dom-client.development.js:3255
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:19320
+dispatchEvent @ react-dom-client.development.js:23585
+dispatchDiscreteEvent @ react-dom-client.development.js:23553
+<button>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Button @ Button.tsx:14
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Button>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Tab2 @ Tab2.tsx:379
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Tab2>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Router @ Router.tsx:45
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Router>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:40
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+Navigated to http://localhost:5173/?destination=0x43E942d82F72ff8185D9fC15024eDE4889c6e2cA
+react-dom-client.development.js:28004 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+client.ts:115 RelaySDK automatically generated a source based on the url, we recommend providing a source when initializing the sdk. Refer to our docs for steps on how to do this: https://docs.relay.link/references/sdk/getting-started#configuration
+RelayClient @ client.ts:115
+createClient @ client.ts:206
+(anonymous) @ App.tsx:27
+lit-html.ts:233 Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.
+issueWarning @ lit-html.ts:233
+(anonymous) @ lit-html.ts:239
+xhr.js:198  POST https://api.relay.link/quote 400 (Bad Request)
+dispatchXhrRequest @ xhr.js:198
+xhr @ xhr.js:15
+dispatchRequest @ dispatchRequest.js:51
+_request @ Axios.js:185
+request @ Axios.js:40
+httpMethod @ Axios.js:224
+wrap @ bind.js:5
+axiosPostFetcher @ fetcher.ts:21
+(anonymous) @ useQuote.ts:40
+queryQuote @ useQuote.ts:38
+queryFn @ useQuote.ts:79
+fetchFn @ query.ts:475
+run @ retryer.ts:155
+start @ retryer.ts:221
+fetch @ query.ts:547
+#executeFetch @ queryObserver.ts:341
+onSubscribe @ queryObserver.ts:101
+subscribe @ subscribable.ts:11
+(anonymous) @ useBaseQuery.ts:100
+subscribeToStore @ react-dom-client.development.js:8244
+react_stack_bottom_frame @ react-dom-client.development.js:25989
+runWithFiberInDEV @ react-dom-client.development.js:871
+commitHookEffectListMount @ react-dom-client.development.js:13249
+commitHookPassiveMountEffects @ react-dom-client.development.js:13336
+commitPassiveMountOnFiber @ react-dom-client.development.js:15484
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15519
+flushPassiveEffects @ react-dom-client.development.js:18432
+flushPendingEffects @ react-dom-client.development.js:18358
+flushSpawnedWork @ react-dom-client.development.js:18323
+commitRoot @ react-dom-client.development.js:17955
+commitRootWhenReady @ react-dom-client.development.js:16824
+performWorkOnRoot @ react-dom-client.development.js:16722
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Tab2>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Router @ Router.tsx:45
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Router>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:40
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+settle.js:19 Uncaught (in promise) AxiosError {message: 'Request failed with status code 400', name: 'AxiosError', code: 'ERR_BAD_REQUEST', config: {…}, request: XMLHttpRequest, …}
+settle @ settle.js:19
+onloadend @ xhr.js:59
+XMLHttpRequest.send
+dispatchXhrRequest @ xhr.js:198
+xhr @ xhr.js:15
+dispatchRequest @ dispatchRequest.js:51
+_request @ Axios.js:185
+request @ Axios.js:40
+httpMethod @ Axios.js:224
+wrap @ bind.js:5
+axiosPostFetcher @ fetcher.ts:21
+(anonymous) @ useQuote.ts:40
+queryQuote @ useQuote.ts:38
+queryFn @ useQuote.ts:79
+fetchFn @ query.ts:475
+run @ retryer.ts:155
+start @ retryer.ts:221
+fetch @ query.ts:547
+#executeFetch @ queryObserver.ts:341
+onSubscribe @ queryObserver.ts:101
+subscribe @ subscribable.ts:11
+(anonymous) @ useBaseQuery.ts:100
+subscribeToStore @ react-dom-client.development.js:8244
+react_stack_bottom_frame @ react-dom-client.development.js:25989
+runWithFiberInDEV @ react-dom-client.development.js:871
+commitHookEffectListMount @ react-dom-client.development.js:13249
+commitHookPassiveMountEffects @ react-dom-client.development.js:13336
+commitPassiveMountOnFiber @ react-dom-client.development.js:15484
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15519
+flushPassiveEffects @ react-dom-client.development.js:18432
+flushPendingEffects @ react-dom-client.development.js:18358
+flushSpawnedWork @ react-dom-client.development.js:18323
+commitRoot @ react-dom-client.development.js:17955
+commitRootWhenReady @ react-dom-client.development.js:16824
+performWorkOnRoot @ react-dom-client.development.js:16722
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Tab2>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Router @ Router.tsx:45
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Router>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:40
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+VM1404:1  POST https://cca-lite.coinbase.com/amp net::ERR_BLOCKED_BY_CLIENT
+_t @ VM1404:1
+Mt @ VM1404:1
+(anonymous) @ VM1404:1
+setTimeout
+Pt @ VM1404:1
+(anonymous) @ VM1404:1
+gn @ VM1404:1
+(anonymous) @ VM1404:1
+await in (anonymous)
+yn @ VM1404:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+VM1404:1  POST https://cca-lite.coinbase.com/metrics net::ERR_BLOCKED_BY_CLIENT
+_t @ VM1404:1
+(anonymous) @ VM1404:1
+requestIdleCallback
+yt @ VM1404:1
+Qt @ VM1404:1
+(anonymous) @ VM1404:1
+setTimeout
+ht @ VM1404:1
+Ht @ VM1404:1
+analyticsTracker @ VM1404:1
+u @ VM1404:1
+requestIdleCallback
+N @ VM1404:1
+R @ VM1404:1
+e @ VM1404:1
+(anonymous) @ VM1404:1
+yn @ VM1404:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+VM1404:1 Analytics SDK: TypeError: Failed to fetch
+    at _t (<anonymous>:1:64025)
+    at <anonymous>:1:68106 {context: 'AnalyticsSDKApiError'}
+onError @ VM1404:1
+(anonymous) @ VM1404:1
+Promise.catch
+_t @ VM1404:1
+(anonymous) @ VM1404:1
+requestIdleCallback
+yt @ VM1404:1
+Qt @ VM1404:1
+(anonymous) @ VM1404:1
+setTimeout
+ht @ VM1404:1
+Ht @ VM1404:1
+analyticsTracker @ VM1404:1
+u @ VM1404:1
+requestIdleCallback
+N @ VM1404:1
+R @ VM1404:1
+e @ VM1404:1
+(anonymous) @ VM1404:1
+yn @ VM1404:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+VM1404:1  POST https://cca-lite.coinbase.com/metrics net::ERR_BLOCKED_BY_CLIENT
+_t @ VM1404:1
+(anonymous) @ VM1404:1
+requestIdleCallback
+yt @ VM1404:1
+Qt @ VM1404:1
+(anonymous) @ VM1404:1
+setTimeout
+ht @ VM1404:1
+Ht @ VM1404:1
+analyticsTracker @ VM1404:1
+u @ VM1404:1
+requestIdleCallback
+N @ VM1404:1
+q @ VM1404:1
+(anonymous) @ VM1404:1
+setTimeout
+q @ VM1404:1
+(anonymous) @ VM1404:1
+(anonymous) @ VM1404:1
+(anonymous) @ VM1404:1
+o @ VM1404:1
+s @ VM1404:1
+(anonymous) @ VM1404:1
+Promise.then
+(anonymous) @ VM1404:1
+VM1404:1 Analytics SDK: TypeError: Failed to fetch
+    at _t (<anonymous>:1:64025)
+    at <anonymous>:1:68106 {context: 'AnalyticsSDKApiError'}
+onError @ VM1404:1
+(anonymous) @ VM1404:1
+Promise.catch
+_t @ VM1404:1
+(anonymous) @ VM1404:1
+requestIdleCallback
+yt @ VM1404:1
+Qt @ VM1404:1
+(anonymous) @ VM1404:1
+setTimeout
+ht @ VM1404:1
+Ht @ VM1404:1
+analyticsTracker @ VM1404:1
+u @ VM1404:1
+requestIdleCallback
+N @ VM1404:1
+q @ VM1404:1
+(anonymous) @ VM1404:1
+setTimeout
+q @ VM1404:1
+(anonymous) @ VM1404:1
+(anonymous) @ VM1404:1
+(anonymous) @ VM1404:1
+o @ VM1404:1
+s @ VM1404:1
+(anonymous) @ VM1404:1
+Promise.then
+(anonymous) @ VM1404:1
+VM1404:1  POST https://cca-lite.coinbase.com/amp net::ERR_BLOCKED_BY_CLIENT
+_t @ VM1404:1
+Mt @ VM1404:1
+(anonymous) @ VM1404:1
+setTimeout
+Pt @ VM1404:1
+(anonymous) @ VM1404:1
+requestIdleCallback
+yt @ VM1404:1
+$t @ VM1404:1
+analyticsTracker @ VM1404:1
+u @ VM1404:1
+requestIdleCallback
+N @ VM1404:1
+q @ VM1404:1
+(anonymous) @ VM1404:1
+setTimeout
+q @ VM1404:1
+(anonymous) @ VM1404:1
+(anonymous) @ VM1404:1
+(anonymous) @ VM1404:1
+o @ VM1404:1
+s @ VM1404:1
+(anonymous) @ VM1404:1
+Promise.then
+(anonymous) @ VM1404:1
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: {…}, …}
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: null, …}
+execute.ts:93 {steps: Array(1), fees: {…}, breakdown: undefined, details: {…}, currentStep: null, …}
+MultichainHooks.ts:15 A fatal error occurred during the multichain transaction: {step: 'sushi', error: RpcRequestError: RPC Request failed.
+
+URL: https://xdai.fairdatasociety.org/
+Request body: {"method…}
+onFatalError @ MultichainHooks.ts:15
+onSwap @ Tab2.tsx:235
+await in onSwap
+executeDispatch @ react-dom-client.development.js:19116
+runWithFiberInDEV @ react-dom-client.development.js:871
+processDispatchQueue @ react-dom-client.development.js:19166
+(anonymous) @ react-dom-client.development.js:19767
+batchedUpdates$1 @ react-dom-client.development.js:3255
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:19320
+dispatchEvent @ react-dom-client.development.js:23585
+dispatchDiscreteEvent @ react-dom-client.development.js:23553
+<button>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Button @ Button.tsx:14
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Button>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Tab2 @ Tab2.tsx:379
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Tab2>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Router @ Router.tsx:45
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Router>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:40
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+Tab2.tsx:282 Uncaught (in promise) RpcRequestError: RPC Request failed.
+
+URL: https://xdai.fairdatasociety.org/
+Request body: {"method":"eth_sendRawTransaction","params":["0xf903d20a8327e1618304d3df94ac4c6e212a361c968f1725b4d055b47e63f80b758806a6c2c0f46a7b04b903645f3bd1c8000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee00000000000000000000000000000000000000000000000006a6c2c0f46a7b0400000000000000000000000043e942d82f72ff8185d9fc15024ede4889c6e2ca000000000000000000000000dbf3ea6f5bee45c02255b2c26a16f300502f68da000000000000000000000000000000000000000000000000008df358b3b21df5000000000000000000000000d2b37ade14708bf18904047b1e31f8166d39612b00000000000000000000000000000000000000000000000000000000000000e00000000000000000000000000000000000000000000000000000000000000244ba3f2165000000000000000000000000de7259893af7cdbc9fd806c6ba61d22d581d566700000000000000000000000000000000000000000000000000005b13786e2923000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee00000000000000000000000000000000000000000000000006a6c2c0f46a7b04000000000000000000000000dbf3ea6f5bee45c02255b2c26a16f300502f68da000000000000000000000000000000000000000000000000008f057d70875ac000000000000000000000000043e942d82f72ff8185d9fc15024ede4889c6e2ca00000000000000000000000000000000000000000000000000000000000001400000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c80199e71ef38900030301ffff0201d2b37ade14708bf18904047b1e31f8166d39612be91d153e0b41518a2ce8dd3d7944fa863463a97d01e91d153e0b41518a2ce8dd3d7944fa863463a97d01ffff01f5e270c0d97f88efb023a161b9fcc5d0c7ad0b7000d2b37ade14708bf18904047b1e31f8166d39612b00d4d82bea0e0301ddafbb505ad214d7b80b1f830fccc89b60fb7a8301ffff016f30b7cf40cb423c1d23478a9855701ecf43931e00d2b37ade14708bf18904047b1e31f8166d39612b00ea0e038f05280000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000081eca0f756423b22f56b7a8f796189ed10dd1689fecae4b24a26eed75e315144f91657a049637e7756e0245fa3140c1e6a397a164c9ff6f94332ba5a9d6956dd600dda02"]}
+
+Details: FeeTooLow, EffectivePriorityFeePerGas too low 0 < 1, BaseFee: 2783571
+Version: viem@2.38.1
+    at request (http.ts:157:19)
+    at async withRetry.delay.count.count (buildRequest.ts:150:22)
+    at async attemptRetry (withRetry.ts:44:22)
+request @ http.ts:157
+await in request
+withRetry.delay.count.count @ buildRequest.ts:150
+attemptRetry @ withRetry.ts:44
+(anonymous) @ withRetry.ts:55
+withRetry @ withRetry.ts:34
+withDedupe.enabled @ buildRequest.ts:147
+withDedupe @ withDedupe.ts:16
+(anonymous) @ buildRequest.ts:145
+sendRawTransaction @ sendRawTransaction.ts:46
+sendRawTransaction @ wallet.ts:1161
+(anonymous) @ GnosisSwap.ts:55
+Promise.then
+swapOnGnosisCustom @ GnosisSwap.ts:55
+await in swapOnGnosisCustom
+swapOnGnosisAuto @ GnosisSwap.ts:18
+await in swapOnGnosisAuto
+onSwap @ Tab2.tsx:225
+await in onSwap
+executeDispatch @ react-dom-client.development.js:19116
+runWithFiberInDEV @ react-dom-client.development.js:871
+processDispatchQueue @ react-dom-client.development.js:19166
+(anonymous) @ react-dom-client.development.js:19767
+batchedUpdates$1 @ react-dom-client.development.js:3255
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:19320
+dispatchEvent @ react-dom-client.development.js:23585
+dispatchDiscreteEvent @ react-dom-client.development.js:23553
+<button>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Button @ Button.tsx:14
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Button>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Tab2 @ Tab2.tsx:379
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Tab2>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Router @ Router.tsx:45
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Router>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:40
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+VM1404:1  POST https://cca-lite.coinbase.com/amp net::ERR_BLOCKED_BY_CLIENT
+_t @ VM1404:1
+Mt @ VM1404:1
+(anonymous) @ VM1404:1
+setTimeout
+Pt @ VM1404:1
+(anonymous) @ VM1404:1
+requestIdleCallback
+yt @ VM1404:1
+$t @ VM1404:1
+analyticsTracker @ VM1404:1
+u @ VM1404:1
+N @ VM1404:1
+q @ VM1404:1
+(anonymous) @ VM1404:1
+(anonymous) @ VM1404:1
+s @ VM1404:1
+(anonymous) @ VM1404:1
+(anonymous) @ VM1404:1
+n @ VM1404:1
+VM1404:1  POST https://cca-lite.coinbase.com/metrics net::ERR_BLOCKED_BY_CLIENT
+_t @ VM1404:1
+(anonymous) @ VM1404:1
+requestIdleCallback
+yt @ VM1404:1
+Qt @ VM1404:1
+(anonymous) @ VM1404:1
+setTimeout
+ht @ VM1404:1
+Ht @ VM1404:1
+analyticsTracker @ VM1404:1
+u @ VM1404:1
+N @ VM1404:1
+q @ VM1404:1
+(anonymous) @ VM1404:1
+(anonymous) @ VM1404:1
+s @ VM1404:1
+(anonymous) @ VM1404:1
+(anonymous) @ VM1404:1
+n @ VM1404:1
+VM1404:1 Analytics SDK: TypeError: Failed to fetch
+    at _t (<anonymous>:1:64025)
+    at <anonymous>:1:68106 {context: 'AnalyticsSDKApiError'}
+onError @ VM1404:1
+(anonymous) @ VM1404:1
+Promise.catch
+_t @ VM1404:1
+(anonymous) @ VM1404:1
+requestIdleCallback
+yt @ VM1404:1
+Qt @ VM1404:1
+(anonymous) @ VM1404:1
+setTimeout
+ht @ VM1404:1
+Ht @ VM1404:1
+analyticsTracker @ VM1404:1
+u @ VM1404:1
+N @ VM1404:1
+q @ VM1404:1
+(anonymous) @ VM1404:1
+(anonymous) @ VM1404:1
+s @ VM1404:1
+(anonymous) @ VM1404:1
+(anonymous) @ VM1404:1
+n @ VM1404:1
+MultichainHooks.ts:15 A fatal error occurred during the multichain transaction: {step: 'sushi', error: RpcRequestError: RPC Request failed.
+
+URL: https://xdai.fairdatasociety.org/
+Request body: {"method…}
+onFatalError @ MultichainHooks.ts:15
+onSwap @ Tab2.tsx:235
+await in onSwap
+executeDispatch @ react-dom-client.development.js:19116
+runWithFiberInDEV @ react-dom-client.development.js:871
+processDispatchQueue @ react-dom-client.development.js:19166
+(anonymous) @ react-dom-client.development.js:19767
+batchedUpdates$1 @ react-dom-client.development.js:3255
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:19320
+dispatchEvent @ react-dom-client.development.js:23585
+dispatchDiscreteEvent @ react-dom-client.development.js:23553
+<button>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Button @ Button.tsx:14
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Button>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Tab2 @ Tab2.tsx:379
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Tab2>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Router @ Router.tsx:45
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Router>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:40
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+Tab2.tsx:282 Uncaught (in promise) RpcRequestError: RPC Request failed.
+
+URL: https://xdai.fairdatasociety.org/
+Request body: {"method":"eth_sendRawTransaction","params":["0xf903d20a832d5e8a8304d3df94ac4c6e212a361c968f1725b4d055b47e63f80b758806a6c2c0f46a7b04b903645f3bd1c8000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee00000000000000000000000000000000000000000000000006a6c2c0f46a7b0400000000000000000000000043e942d82f72ff8185d9fc15024ede4889c6e2ca000000000000000000000000dbf3ea6f5bee45c02255b2c26a16f300502f68da000000000000000000000000000000000000000000000000008df358b3b21df5000000000000000000000000d2b37ade14708bf18904047b1e31f8166d39612b00000000000000000000000000000000000000000000000000000000000000e00000000000000000000000000000000000000000000000000000000000000244ba3f2165000000000000000000000000de7259893af7cdbc9fd806c6ba61d22d581d566700000000000000000000000000000000000000000000000000005b13786e2923000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee00000000000000000000000000000000000000000000000006a6c2c0f46a7b04000000000000000000000000dbf3ea6f5bee45c02255b2c26a16f300502f68da000000000000000000000000000000000000000000000000008f057d70875ac000000000000000000000000043e942d82f72ff8185d9fc15024ede4889c6e2ca00000000000000000000000000000000000000000000000000000000000001400000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c80199e71f597d00030301ffff0201d2b37ade14708bf18904047b1e31f8166d39612be91d153e0b41518a2ce8dd3d7944fa863463a97d01e91d153e0b41518a2ce8dd3d7944fa863463a97d01ffff01f5e270c0d97f88efb023a161b9fcc5d0c7ad0b7000d2b37ade14708bf18904047b1e31f8166d39612b00d4d82bea0e0301ddafbb505ad214d7b80b1f830fccc89b60fb7a8301ffff016f30b7cf40cb423c1d23478a9855701ecf43931e00d2b37ade14708bf18904047b1e31f8166d39612b00ea0e038f05280000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000081eca0178c7c9d8c8fd0e05b349f9c69df77a4574b9bc99011217f95fc6d5a124b3993a06d5f189454beb526087dd9f0664bf1d4f41180d0367d1d0f86496b3b3787446e"]}
+
+Details: FeeTooLow, EffectivePriorityFeePerGas too low 0 < 1, BaseFee: 2988535
+Version: viem@2.38.1
+    at request (http.ts:157:19)
+    at async withRetry.delay.count.count (buildRequest.ts:150:22)
+    at async attemptRetry (withRetry.ts:44:22)
+request @ http.ts:157
+await in request
+withRetry.delay.count.count @ buildRequest.ts:150
+attemptRetry @ withRetry.ts:44
+(anonymous) @ withRetry.ts:55
+withRetry @ withRetry.ts:34
+withDedupe.enabled @ buildRequest.ts:147
+withDedupe @ withDedupe.ts:16
+(anonymous) @ buildRequest.ts:145
+sendRawTransaction @ sendRawTransaction.ts:46
+sendRawTransaction @ wallet.ts:1161
+(anonymous) @ GnosisSwap.ts:55
+Promise.then
+swapOnGnosisCustom @ GnosisSwap.ts:55
+await in swapOnGnosisCustom
+swapOnGnosisAuto @ GnosisSwap.ts:18
+await in swapOnGnosisAuto
+onSwap @ Tab2.tsx:225
+await in onSwap
+executeDispatch @ react-dom-client.development.js:19116
+runWithFiberInDEV @ react-dom-client.development.js:871
+processDispatchQueue @ react-dom-client.development.js:19166
+(anonymous) @ react-dom-client.development.js:19767
+batchedUpdates$1 @ react-dom-client.development.js:3255
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:19320
+dispatchEvent @ react-dom-client.development.js:23585
+dispatchDiscreteEvent @ react-dom-client.development.js:23553
+<button>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Button @ Button.tsx:14
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Button>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Tab2 @ Tab2.tsx:379
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Tab2>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Router @ Router.tsx:45
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Router>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:40
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+Navigated to http://localhost:5173/?destination=0x43E942d82F72ff8185D9fC15024eDE4889c6e2cA
+react-dom-client.development.js:28004 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+client.ts:115 RelaySDK automatically generated a source based on the url, we recommend providing a source when initializing the sdk. Refer to our docs for steps on how to do this: https://docs.relay.link/references/sdk/getting-started#configuration
+RelayClient @ client.ts:115
+createClient @ client.ts:206
+(anonymous) @ App.tsx:27
+lit-html.ts:233 Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.
+issueWarning @ lit-html.ts:233
+(anonymous) @ lit-html.ts:239
+VM1549:1  POST https://cca-lite.coinbase.com/amp net::ERR_BLOCKED_BY_CLIENT
+_t @ VM1549:1
+Mt @ VM1549:1
+(anonymous) @ VM1549:1
+setTimeout
+Pt @ VM1549:1
+(anonymous) @ VM1549:1
+gn @ VM1549:1
+(anonymous) @ VM1549:1
+await in (anonymous)
+yn @ VM1549:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+VM1549:1  POST https://cca-lite.coinbase.com/metrics net::ERR_BLOCKED_BY_CLIENT
+_t @ VM1549:1
+(anonymous) @ VM1549:1
+requestIdleCallback
+yt @ VM1549:1
+Qt @ VM1549:1
+(anonymous) @ VM1549:1
+setTimeout
+ht @ VM1549:1
+Ht @ VM1549:1
+analyticsTracker @ VM1549:1
+u @ VM1549:1
+requestIdleCallback
+N @ VM1549:1
+R @ VM1549:1
+e @ VM1549:1
+(anonymous) @ VM1549:1
+yn @ VM1549:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+VM1549:1 Analytics SDK: TypeError: Failed to fetch
+    at _t (<anonymous>:1:64025)
+    at <anonymous>:1:68106 {context: 'AnalyticsSDKApiError'}
+onError @ VM1549:1
+(anonymous) @ VM1549:1
+Promise.catch
+_t @ VM1549:1
+(anonymous) @ VM1549:1
+requestIdleCallback
+yt @ VM1549:1
+Qt @ VM1549:1
+(anonymous) @ VM1549:1
+setTimeout
+ht @ VM1549:1
+Ht @ VM1549:1
+analyticsTracker @ VM1549:1
+u @ VM1549:1
+requestIdleCallback
+N @ VM1549:1
+R @ VM1549:1
+e @ VM1549:1
+(anonymous) @ VM1549:1
+yn @ VM1549:1
+initCCA @ initCCA.ts:34
+(anonymous) @ initCCA.ts:16
+loadTelemetryScript @ initCCA.ts:5
+createCoinbaseWalletSDK @ createCoinbaseWalletSDK.ts:75
+getProvider @ coinbaseWallet.ts:208
+await in getProvider
+reconnect @ reconnect.ts:68
+await in reconnect
+onMount @ hydrate.ts:53
+Hydrate @ hydrate.ts:21
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<Hydrate>
+exports.createElement @ react.development.js:1054
+WagmiProvider @ context.ts:23
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<WagmiProvider>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:37
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+xhr.js:198  POST https://api.relay.link/quote 400 (Bad Request)
+dispatchXhrRequest @ xhr.js:198
+xhr @ xhr.js:15
+dispatchRequest @ dispatchRequest.js:51
+_request @ Axios.js:185
+request @ Axios.js:40
+httpMethod @ Axios.js:224
+wrap @ bind.js:5
+axiosPostFetcher @ fetcher.ts:21
+(anonymous) @ useQuote.ts:40
+queryQuote @ useQuote.ts:38
+queryFn @ useQuote.ts:79
+fetchFn @ query.ts:475
+run @ retryer.ts:155
+start @ retryer.ts:221
+fetch @ query.ts:547
+#executeFetch @ queryObserver.ts:341
+onSubscribe @ queryObserver.ts:101
+subscribe @ subscribable.ts:11
+(anonymous) @ useBaseQuery.ts:100
+subscribeToStore @ react-dom-client.development.js:8244
+react_stack_bottom_frame @ react-dom-client.development.js:25989
+runWithFiberInDEV @ react-dom-client.development.js:871
+commitHookEffectListMount @ react-dom-client.development.js:13249
+commitHookPassiveMountEffects @ react-dom-client.development.js:13336
+commitPassiveMountOnFiber @ react-dom-client.development.js:15484
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15519
+flushPassiveEffects @ react-dom-client.development.js:18432
+flushPendingEffects @ react-dom-client.development.js:18358
+flushSpawnedWork @ react-dom-client.development.js:18323
+commitRoot @ react-dom-client.development.js:17955
+commitRootWhenReady @ react-dom-client.development.js:16824
+performWorkOnRoot @ react-dom-client.development.js:16722
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Tab2>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Router @ Router.tsx:45
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Router>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:40
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+settle.js:19 Uncaught (in promise) AxiosError {message: 'Request failed with status code 400', name: 'AxiosError', code: 'ERR_BAD_REQUEST', config: {…}, request: XMLHttpRequest, …}
+settle @ settle.js:19
+onloadend @ xhr.js:59
+XMLHttpRequest.send
+dispatchXhrRequest @ xhr.js:198
+xhr @ xhr.js:15
+dispatchRequest @ dispatchRequest.js:51
+_request @ Axios.js:185
+request @ Axios.js:40
+httpMethod @ Axios.js:224
+wrap @ bind.js:5
+axiosPostFetcher @ fetcher.ts:21
+(anonymous) @ useQuote.ts:40
+queryQuote @ useQuote.ts:38
+queryFn @ useQuote.ts:79
+fetchFn @ query.ts:475
+run @ retryer.ts:155
+start @ retryer.ts:221
+fetch @ query.ts:547
+#executeFetch @ queryObserver.ts:341
+onSubscribe @ queryObserver.ts:101
+subscribe @ subscribable.ts:11
+(anonymous) @ useBaseQuery.ts:100
+subscribeToStore @ react-dom-client.development.js:8244
+react_stack_bottom_frame @ react-dom-client.development.js:25989
+runWithFiberInDEV @ react-dom-client.development.js:871
+commitHookEffectListMount @ react-dom-client.development.js:13249
+commitHookPassiveMountEffects @ react-dom-client.development.js:13336
+commitPassiveMountOnFiber @ react-dom-client.development.js:15484
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15519
+flushPassiveEffects @ react-dom-client.development.js:18432
+flushPendingEffects @ react-dom-client.development.js:18358
+flushSpawnedWork @ react-dom-client.development.js:18323
+commitRoot @ react-dom-client.development.js:17955
+commitRootWhenReady @ react-dom-client.development.js:16824
+performWorkOnRoot @ react-dom-client.development.js:16722
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Tab2>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+Router @ Router.tsx:45
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performSyncWorkOnRoot @ react-dom-client.development.js:18972
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:18814
+processRootScheduleInMicrotask @ react-dom-client.development.js:18853
+(anonymous) @ react-dom-client.development.js:18991
+<Router>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+App @ App.tsx:40
+react_stack_bottom_frame @ react-dom-client.development.js:25904
+renderWithHooks @ react-dom-client.development.js:7662
+updateFunctionComponent @ react-dom-client.development.js:10166
+beginWork @ react-dom-client.development.js:11778
+runWithFiberInDEV @ react-dom-client.development.js:871
+performUnitOfWork @ react-dom-client.development.js:17641
+workLoopSync @ react-dom-client.development.js:17469
+renderRootSync @ react-dom-client.development.js:17450
+performWorkOnRoot @ react-dom-client.development.js:16504
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:18957
+performWorkUntilDeadline @ scheduler.development.js:45
+<App>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:335
+(anonymous) @ index.tsx:7
+VM1549:1  POST https://cca-lite.coinbase.com/metrics net::ERR_BLOCKED_BY_CLIENT
+_t @ VM1549:1
+(anonymous) @ VM1549:1
+requestIdleCallback
+yt @ VM1549:1
+Qt @ VM1549:1
+(anonymous) @ VM1549:1
+setTimeout
+ht @ VM1549:1
+Ht @ VM1549:1
+analyticsTracker @ VM1549:1
+u @ VM1549:1
+requestIdleCallback
+N @ VM1549:1
+q @ VM1549:1
+(anonymous) @ VM1549:1
+setTimeout
+q @ VM1549:1
+(anonymous) @ VM1549:1
+(anonymous) @ VM1549:1
+(anonymous) @ VM1549:1
+o @ VM1549:1
+s @ VM1549:1
+(anonymous) @ VM1549:1
+Promise.then
+(anonymous) @ VM1549:1
+VM1549:1 Analytics SDK: TypeError: Failed to fetch
+    at _t (<anonymous>:1:64025)
+    at <anonymous>:1:68106 {context: 'AnalyticsSDKApiError'}
+onError @ VM1549:1
+(anonymous) @ VM1549:1
+Promise.catch
+_t @ VM1549:1
+(anonymous) @ VM1549:1
+requestIdleCallback
+yt @ VM1549:1
+Qt @ VM1549:1
+(anonymous) @ VM1549:1
+setTimeout
+ht @ VM1549:1
+Ht @ VM1549:1
+analyticsTracker @ VM1549:1
+u @ VM1549:1
+requestIdleCallback
+N @ VM1549:1
+q @ VM1549:1
+(anonymous) @ VM1549:1
+setTimeout
+q @ VM1549:1
+(anonymous) @ VM1549:1
+(anonymous) @ VM1549:1
+(anonymous) @ VM1549:1
+o @ VM1549:1
+s @ VM1549:1
+(anonymous) @ VM1549:1
+Promise.then
+(anonymous) @ VM1549:1
+VM1549:1  POST https://cca-lite.coinbase.com/amp net::ERR_BLOCKED_BY_CLIENT
+_t @ VM1549:1
+Mt @ VM1549:1
+(anonymous) @ VM1549:1
+setTimeout
+Pt @ VM1549:1
+(anonymous) @ VM1549:1
+requestIdleCallback
+yt @ VM1549:1
+$t @ VM1549:1
+analyticsTracker @ VM1549:1
+u @ VM1549:1
+requestIdleCallback
+N @ VM1549:1
+q @ VM1549:1
+(anonymous) @ VM1549:1
+setTimeout
+q @ VM1549:1
+(anonymous) @ VM1549:1
+(anonymous) @ VM1549:1
+(anonymous) @ VM1549:1
+o @ VM1549:1
+s @ VM1549:1
+(anonymous) @ VM1549:1
+Promise.then
+(anonymous) @ VM1549:1
+MultichainHooks.ts:18 Multichain transaction completed successfully!

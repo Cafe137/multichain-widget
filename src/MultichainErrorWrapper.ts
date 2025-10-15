@@ -1,4 +1,6 @@
+import { MultichainSubstep } from './MultichainStep'
+
 export interface MultichainErrorWrapper {
-    step: 'relay' | 'sushi' | 'transfer'
+    step: MultichainSubstep
     error: any
 }
