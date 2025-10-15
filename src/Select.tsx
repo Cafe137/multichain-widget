@@ -26,7 +26,10 @@ export function Select({ theme, options, value, onChange }: Props) {
                 borderRadius: theme.borderRadius,
                 backgroundColor: theme.inputBackgroundColor,
                 borderColor: theme.inputBorderColor,
-                color: theme.inputTextColor
+                color: theme.inputTextColor,
+                fontFamily: theme.fontFamily,
+                fontSize: theme.fontSize,
+                fontWeight: theme.fontWeight
             }}
         >
             {options.map(option => (

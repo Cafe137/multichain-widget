@@ -11,11 +11,11 @@ export function getDefaultHooks(): MultichainHooks {
         beforeTransactionStart: async (_temporaryPrivateKey: string) => {
             void 0
         },
-        onFatalError: async (_error: MultichainErrorWrapper) => {
-            void 0
+        onFatalError: async (error: MultichainErrorWrapper) => {
+            console.error('A fatal error occurred during the multichain transaction:', error)
         },
         onCompletion: async () => {
-            void 0
+            console.log('Multichain transaction completed successfully!')
         }
     }
 }

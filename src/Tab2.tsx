@@ -5,18 +5,23 @@ import { useEffect, useState } from 'react'
 import { useWalletClient } from 'wagmi'
 import { Button } from './Button'
 import { LabelSpacing } from './LabelSpacing'
-import { MultichainHooks } from './MultichainHooks'
-import { MultichainTheme } from './MultichainTheme'
-import { Select } from './Select'
-import { SwapData } from './SwapData'
-import { TextInput } from './TextInput'
-import { Typography } from './Typography'
 import { Constants } from './library/Constants'
 import { getGnosisBzzBalance } from './library/GnosisBzzBalance'
 import { getGnosisNativeBalance } from './library/GnosisNativeBalance'
 import { transferGnosisNative } from './library/GnosisNativeTransfer'
 import { swapOnGnosisAuto } from './library/GnosisSwap'
 import { getGnosisBzzTokenPrice, getTokenPrice } from './library/TokenPrice'
+import {
+    waitForGnosisBzzBalanceToIncrease,
+    waitForGnosisNativeBalanceToDecrease,
+    waitForGnosisNativeBalanceToIncrease
+} from './library/Waiter'
+import { MultichainHooks } from './MultichainHooks'
+import { MultichainTheme } from './MultichainTheme'
+import { Select } from './Select'
+import { SwapData } from './SwapData'
+import { TextInput } from './TextInput'
+import { Typography } from './Typography'
 
 interface Props {
     theme: MultichainTheme
@@ -26,22 +31,58 @@ interface Props {
 }
 
 export function Tab2({ theme, hooks, setTab, swapData }: Props) {
-    // user input
-    const [sourceChain, setSourceChain] = useState(1)
-    const [sourceToken, setSourceToken] = useState('0x0000000000000000000000000000000000000000')
-    // network
+    // states for user input
+    const [sourceChain, setSourceChain] = useState<number>(Constants.ethereumChainId)
+    const [sourceToken, setSourceToken] = useState<string>(Constants.nullAddress)
+
+    // states for network data
     const [bzzPrice, setBzzPrice] = useState<number | null>(null)
     const [temporaryWalletNativeBalance, setTemporaryWalletNativeBalance] = useState<FixedPointNumber | null>(null)
     const [destinationWalletBzzBalance, setDestinationWalletBzzBalance] = useState<FixedPointNumber | null>(null)
     const [selectedTokenUsdPrice, setSelectedTokenUsdPrice] = useState<number | null>(null)
-    // computed
-    const [selectedTokenAmountNeeded, setSelectedTokenAmountNeeded] = useState<FixedPointNumber | null>(null)
 
-    // hooks
+    // relay hooks
     const relayClient = getClient()
     const walletClient = useWalletClient()
     const { chains } = useRelayChains()
     const { data } = useTokenList('https://api.relay.link', { chainIds: [sourceChain] })
+
+    // computed
+    const sourceChainDisplayName = (chains || []).find(x => x.id === sourceChain)?.displayName || 'N/A'
+    const sourceTokenDisplayName = (data || []).find(x => x.address === sourceToken)?.symbol || 'N/A'
+    const sourceTokenObject = (data || []).find(x => x.address === sourceToken)
+    const wantedBzz = FixedPointNumber.fromDecimalString(swapData.bzzAmount.toString(), 16)
+    let remainingBzzAmount: FixedPointNumber | null = null
+    let remainingBzzUsdValue: number | null = null
+    let selectedTokenAmountNeeded: FixedPointNumber | null = null
+    if (destinationWalletBzzBalance && bzzPrice && selectedTokenUsdPrice && sourceTokenObject?.decimals) {
+        remainingBzzAmount = wantedBzz.subtract(destinationWalletBzzBalance)
+        remainingBzzUsdValue = parseFloat(remainingBzzAmount.toDecimalString()) * bzzPrice
+        const totalRemainingUsdValue = remainingBzzUsdValue + swapData.nativeAmount
+        const amountNeeded = totalRemainingUsdValue / selectedTokenUsdPrice
+        selectedTokenAmountNeeded = FixedPointNumber.fromDecimalString(
+            amountNeeded.toString(),
+            sourceTokenObject.decimals
+        )
+    }
+
+    const totalUsdValue: number | null = remainingBzzUsdValue && swapData.nativeAmount + remainingBzzUsdValue
+
+    // computed for logic only
+    const hasEnoughBzz: boolean | null =
+        destinationWalletBzzBalance && destinationWalletBzzBalance.compare(wantedBzz) > -1
+    const hasRemainingDai: boolean | null =
+        temporaryWalletNativeBalance && temporaryWalletNativeBalance.compare(Constants.daiDustAmount) > -1
+    const nextStep: string | null =
+        hasEnoughBzz === null || hasRemainingDai === null
+            ? null
+            : hasEnoughBzz
+            ? hasRemainingDai
+                ? 'transfer'
+                : 'done'
+            : hasRemainingDai
+            ? 'sushi'
+            : 'relay'
 
     // relay quote hook
     const {
@@ -68,7 +109,7 @@ export function Tab2({ theme, hooks, setTab, swapData }: Props) {
                     .catch(error => {
                         console.error('Error fetching BZZ price:', error)
                     })
-            }, Dates.seconds(30)),
+            }, Dates.minutes(1)),
             System.runAndSetInterval(() => {
                 getGnosisNativeBalance(swapData.temporaryAddress)
                     .then(balance => setTemporaryWalletNativeBalance(balance))
@@ -97,40 +138,16 @@ export function Tab2({ theme, hooks, setTab, swapData }: Props) {
                 .catch(error => {
                     console.error('Error fetching selected token price:', error)
                 })
-        }, Dates.seconds(30))
+        }, Dates.minutes(1))
     }, [sourceToken])
-
-    // calculate amount needed of the selected token
-    useEffect(() => {
-        if (!bzzPrice || !selectedTokenUsdPrice || !sourceToken) {
-            return
-        }
-        const sourceTokenObject = (data || []).find(x => x.address === sourceToken)
-        if (!sourceTokenObject) {
-            console.error('Selected token not found in token list')
-            return
-        }
-        if (!sourceTokenObject.decimals) {
-            console.error('Selected token decimals not found')
-            return
-        }
-        const bzzUsdValue = swapData.bzzAmount * bzzPrice
-        const totalUsdValue = bzzUsdValue + swapData.nativeAmount
-        const amountNeeded = totalUsdValue / selectedTokenUsdPrice
-        const amount = FixedPointNumber.fromDecimalString(amountNeeded.toString(), sourceTokenObject.decimals)
-        setSelectedTokenAmountNeeded(amount)
-    }, [bzzPrice, sourceToken, selectedTokenUsdPrice])
-
-    // computed chain and token display names
-    const sourceChainDisplayName = (chains || []).find(x => x.id === sourceChain)?.displayName || 'N/A'
-    const sourceTokenDisplayName = (data || []).find(x => x.address === sourceToken)?.symbol || 'N/A'
 
     function onBack() {
         setTab(1)
     }
 
+    // main action
     async function onSwap() {
-        if (!bzzPrice) {
+        if (!remainingBzzUsdValue) {
             console.error('BZZ price not loaded yet')
             return
         }
@@ -142,48 +159,128 @@ export function Tab2({ theme, hooks, setTab, swapData }: Props) {
             console.error('Destination wallet BZZ balance not loaded yet')
             return
         }
-        if (destinationWalletBzzBalance.compare(FixedPointNumber.fromDecimalString('1', 16)) > -1) {
-            alert('The destination address already has 1 or more BZZ, ready to transfer DAI.')
-            if (!confirm('Do you want to transfer DAI to the destination address now?')) {
+        // 1. nothing to do, already funded
+        if (nextStep === 'done') {
+            alert('The destination wallet already has enough BZZ, and the temporary wallet has no DAI left.')
+            return
+        }
+        // 2. only xDAI transfer needed, already have enough BZZ
+        if (nextStep === 'transfer') {
+            alert('The destination address already has the wanted amount of BZZ, ready to transfer DAI.')
+            if (!confirm('Continue?')) {
                 return
             }
-            transferGnosisNative({
-                originPrivateKey: swapData.sessionKey,
-                originAddress: swapData.temporaryAddress,
-                to: Types.asHexString(swapData.targetAddress),
-                amount: temporaryWalletNativeBalance.subtract(FixedPointNumber.fromDecimalString('0.01', 18)).toString()
-            }).catch(error => hooks.onFatalError({ step: 'transfer', error }))
+            // send all but dust amount to target
+            try {
+                await transferGnosisNative({
+                    originPrivateKey: swapData.sessionKey,
+                    originAddress: swapData.temporaryAddress,
+                    to: Types.asHexString(swapData.targetAddress),
+                    amount: temporaryWalletNativeBalance.subtract(Constants.daiDustAmount).toString()
+                })
+                await waitForGnosisNativeBalanceToDecrease(
+                    swapData.temporaryAddress,
+                    temporaryWalletNativeBalance.value
+                )
+                await hooks.onCompletion()
+            } catch (error) {
+                await hooks.onFatalError({ step: 'transfer', error })
+                throw error
+            }
             return
-        } else {
-            const nativeBalanceNeeded = FixedPointNumber.fromDecimalString(swapData.nativeAmount + bzzUsdValue, 18)
-            if (temporaryWalletNativeBalance.compare(nativeBalanceNeeded) > -1) {
-                alert('Your temporary wallet has enough funds already!')
-                if (!confirm('Do you want to trade and send to the destination address?')) {
-                    return
-                }
-                const amount = FixedPointNumber.fromDecimalString((bzzPrice * swapData.bzzAmount).toString(), 18)
-                alert(`Swapping ${amount.toDecimalString()} xDAI for ${swapData.bzzAmount} xBZZ`)
-                swapOnGnosisAuto({
+        }
+        // 3. xDAI is on the temporary wallet, but destination needs BZZ
+        if (nextStep === 'sushi') {
+            alert('The destination address needs BZZ, ready to swap on Sushi and transfer DAI.')
+            if (!confirm('Continue?')) {
+                return
+            }
+            try {
+                // 3.1 swap and send to target
+                const amount = FixedPointNumber.fromDecimalString(remainingBzzUsdValue.toString(), 18)
+                const bzzBefore = destinationWalletBzzBalance.value
+                const daiBefore = temporaryWalletNativeBalance.value
+                await swapOnGnosisAuto({
                     amount: amount.toString(),
                     originPrivateKey: swapData.sessionKey,
                     originAddress: swapData.temporaryAddress,
                     to: Types.asHexString(swapData.targetAddress)
-                }).catch(error => hooks.onFatalError({ step: 'sushi', error }))
-            } else {
-                if (!confirm('Do you want to proceed with the Relay swap?')) {
-                    return
-                }
-                if (quote && executeQuote) {
-                    executeQuote(console.log)?.catch(error => {
-                        hooks.onFatalError({ step: 'relay', error })
-                    })
-                }
+                })
+                await waitForGnosisBzzBalanceToIncrease(swapData.targetAddress, bzzBefore)
+                await waitForGnosisNativeBalanceToDecrease(swapData.temporaryAddress, daiBefore)
+            } catch (error) {
+                await hooks.onFatalError({ step: 'sushi', error })
+                throw error
             }
+            try {
+                // 3.2 send all but dust amount to target
+                const daiBefore = await getGnosisNativeBalance(swapData.temporaryAddress)
+                await transferGnosisNative({
+                    originPrivateKey: swapData.sessionKey,
+                    originAddress: swapData.temporaryAddress,
+                    to: Types.asHexString(swapData.targetAddress),
+                    amount: daiBefore.subtract(Constants.daiDustAmount).toString()
+                })
+                await waitForGnosisNativeBalanceToDecrease(swapData.temporaryAddress, daiBefore.value)
+                await hooks.onCompletion()
+            } catch (error) {
+                await hooks.onFatalError({ step: 'transfer', error })
+                throw error
+            }
+            return
+        }
+        // 4. need to do a relay swap and the rest as well
+        alert('The destination address needs BZZ, ready to do a Relay swap, Sushi swap and transfer DAI.')
+        if (!confirm('Continue?')) {
+            return
+        }
+        if (quote && executeQuote) {
+            try {
+                // 4.1 do relay swap
+                const daiBefore = temporaryWalletNativeBalance.value
+                await executeQuote(console.log)
+                await waitForGnosisNativeBalanceToIncrease(swapData.temporaryAddress, daiBefore)
+            } catch (error) {
+                hooks.onFatalError({ step: 'relay', error })
+                throw error
+            }
+            try {
+                // 4.2 swap and send to target
+                const amount = FixedPointNumber.fromDecimalString(remainingBzzUsdValue.toString(), 18)
+                const bzzBefore = destinationWalletBzzBalance.value
+                const daiBefore = (await getGnosisNativeBalance(swapData.temporaryAddress)).value
+                await swapOnGnosisAuto({
+                    amount: amount.toString(),
+                    originPrivateKey: swapData.sessionKey,
+                    originAddress: swapData.temporaryAddress,
+                    to: Types.asHexString(swapData.targetAddress)
+                })
+                await waitForGnosisBzzBalanceToIncrease(swapData.targetAddress, bzzBefore)
+                await waitForGnosisNativeBalanceToDecrease(swapData.temporaryAddress, daiBefore)
+            } catch (error) {
+                await hooks.onFatalError({ step: 'sushi', error })
+                throw error
+            }
+            try {
+                // 4.3 send all but dust amount to target
+                const daiBefore = await getGnosisNativeBalance(swapData.temporaryAddress)
+                await transferGnosisNative({
+                    originPrivateKey: swapData.sessionKey,
+                    originAddress: swapData.temporaryAddress,
+                    to: Types.asHexString(swapData.targetAddress),
+                    amount: daiBefore.subtract(Constants.daiDustAmount).toString()
+                })
+                await waitForGnosisNativeBalanceToDecrease(swapData.temporaryAddress, daiBefore.value)
+                await hooks.onCompletion()
+            } catch (error) {
+                await hooks.onFatalError({ step: 'transfer', error })
+                throw error
+            }
+        } else {
+            alert('Quote not available, cannot continue.')
+            return
         }
     }
-
-    const bzzUsdValue = bzzPrice ? (swapData.bzzAmount * bzzPrice).toFixed(2) : '0'
-    const totalUsdValue = bzzPrice ? (swapData.nativeAmount + swapData.bzzAmount * bzzPrice).toFixed(2) : '0'
 
     return (
         <div className="page">
@@ -202,67 +299,84 @@ export function Tab2({ theme, hooks, setTab, swapData }: Props) {
                     <Typography theme={theme}>Target Address</Typography>
                     <TextInput theme={theme} readOnly value={swapData.targetAddress} />
                 </LabelSpacing>
-                <LabelSpacing theme={theme}>
-                    <Typography theme={theme}>Source Chain</Typography>
-                    <Select
-                        theme={theme}
-                        onChange={e => {
-                            setSourceChain(Number(e))
-                            setSourceToken('0x0000000000000000000000000000000000000000')
-                        }}
-                        value={sourceChain.toString()}
-                        options={(chains || []).map(chain => ({
-                            value: chain.id.toString(),
-                            label: chain.displayName
-                        }))}
-                    />
-                </LabelSpacing>
-                <LabelSpacing theme={theme}>
-                    <Typography theme={theme}>Source Token</Typography>
-                    <Select
-                        theme={theme}
-                        onChange={e => setSourceToken(e)}
-                        value={sourceToken}
-                        options={(data || [])
-                            .filter(x => x.address)
-                            .map(x => ({ value: x.address!, label: `${x.symbol} (${x.name})` }))}
-                    />
-                </LabelSpacing>
-                {selectedTokenUsdPrice !== null ? (
-                    <Typography theme={theme}>
-                        1 {sourceTokenDisplayName} = ${selectedTokenUsdPrice}
-                    </Typography>
-                ) : (
-                    <Typography theme={theme}>Loading {sourceTokenDisplayName} price...</Typography>
+                {nextStep === 'relay' && (
+                    <>
+                        <LabelSpacing theme={theme}>
+                            <Typography theme={theme}>Source Chain</Typography>
+                            <Select
+                                theme={theme}
+                                onChange={e => {
+                                    setSourceChain(Number(e))
+                                    setSourceToken('0x0000000000000000000000000000000000000000')
+                                }}
+                                value={sourceChain.toString()}
+                                options={(chains || []).map(chain => ({
+                                    value: chain.id.toString(),
+                                    label: chain.displayName
+                                }))}
+                            />
+                        </LabelSpacing>
+                        <LabelSpacing theme={theme}>
+                            <Typography theme={theme}>Source Token</Typography>
+                            <Select
+                                theme={theme}
+                                onChange={e => setSourceToken(e)}
+                                value={sourceToken}
+                                options={(data || [])
+                                    .filter(x => x.address)
+                                    .map(x => ({ value: x.address!, label: `${x.symbol} (${x.name})` }))}
+                            />
+                            {selectedTokenUsdPrice !== null ? (
+                                <Typography theme={theme} small>
+                                    1 {sourceTokenDisplayName} = ${selectedTokenUsdPrice}
+                                </Typography>
+                            ) : (
+                                <Typography theme={theme}>Loading {sourceTokenDisplayName} price...</Typography>
+                            )}
+                        </LabelSpacing>
+                        <Typography theme={theme}>
+                            You will swap {selectedTokenAmountNeeded?.toDecimalString()} (~${totalUsdValue}){' '}
+                            {sourceTokenDisplayName} from {sourceChainDisplayName} to fund:
+                        </Typography>
+                        <div className="multichain__row">
+                            <div className="multichain__column multichain__column--full">
+                                <TextInput
+                                    theme={theme}
+                                    value={`${swapData.nativeAmount.toFixed(2)} xDAI (~$${swapData.nativeAmount.toFixed(
+                                        2
+                                    )})`}
+                                    readOnly
+                                />
+                            </div>
+                            <div className="multichain__column multichain__column--full">
+                                <TextInput
+                                    theme={theme}
+                                    value={`${
+                                        remainingBzzAmount ? remainingBzzAmount.toDecimalString() : '...'
+                                    } xBZZ (~$${(remainingBzzUsdValue || 0).toFixed(2)})`}
+                                    readOnly
+                                />
+                            </div>
+                        </div>
+                    </>
                 )}
-                <Typography theme={theme}>
-                    You will swap {selectedTokenAmountNeeded?.toDecimalString()} {sourceTokenDisplayName} from{' '}
-                    {sourceChainDisplayName} to fund:
-                </Typography>
-                <Typography theme={theme}>
-                    {swapData.nativeAmount} xDAI (~${swapData.nativeAmount})
-                </Typography>
-                <Typography theme={theme}>
-                    {swapData.bzzAmount} xBZZ (~${bzzUsdValue})
-                </Typography>
-                <Typography theme={theme}>
-                    <strong>Total: ~${totalUsdValue}</strong>
-                </Typography>
-                <Typography theme={theme}>
+                <Typography theme={theme} small>
                     Your temporary wallet has {temporaryWalletNativeBalance?.toDecimalString() || '...'} xDAI
                 </Typography>
-                <Typography theme={theme}>
+                <Typography theme={theme} small>
                     Your destination wallet has {destinationWalletBzzBalance?.toDecimalString() || '...'} xBZZ
                 </Typography>
-                <Typography theme={theme}>
-                    {isLoading
-                        ? 'Quote loading...'
-                        : quote
-                        ? 'Quote available'
-                        : 'Quote NOT available, amount too small, too large, or insufficient liquidity'}
-                </Typography>
-                <Button theme={theme} onClick={onSwap}>
-                    Begin Funding
+                {nextStep === 'relay' ? (
+                    <Typography theme={theme}>
+                        {isLoading
+                            ? 'Quote loading...'
+                            : quote
+                            ? 'Quote available'
+                            : 'Quote NOT available, amount too small, too large, or insufficient liquidity'}
+                    </Typography>
+                ) : null}
+                <Button theme={theme} onClick={onSwap} disabled={nextStep === 'relay' && !quote}>
+                    Fund
                 </Button>
             </div>
         </div>

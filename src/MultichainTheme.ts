@@ -3,6 +3,11 @@ export interface MultichainTheme {
     borderRadius: string
     backgroundColor: string
     textColor: string
+    fontSize: string
+    fontWeight: number
+    fontFamily: string
+    smallFontSize: string
+    smallFontWeight: number
     // Input styles
     inputBackgroundColor: string
     inputBorderColor: string
@@ -26,6 +31,13 @@ export function getDefaultMultichainTheme(): MultichainTheme {
         borderRadius: '12px',
         backgroundColor: '#121212',
         textColor: '#FFFFFF',
+        fontSize: '16px',
+        fontWeight: 700,
+        fontFamily:
+            "SFRounded, ui-rounded, 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+        smallFontSize: '14px',
+        smallFontWeight: 500,
+
         // Input styles
         inputBackgroundColor: 'rgb(26, 27, 31)',
         inputBorderColor: 'rgb(26, 27, 31)',

@@ -3,14 +3,15 @@ import { MultichainTheme } from './MultichainTheme'
 interface Props {
     theme: MultichainTheme
     value: number
-    onChange: (value: number) => void
+    onChange?: (value: number) => void
     min?: number
     max?: number
     step?: number
     placeholder?: string
+    readOnly?: boolean
 }
 
-export function NumberInput({ theme, value, onChange, min, max, step, placeholder }: Props) {
+export function NumberInput({ theme, value, onChange, min, max, step, placeholder, readOnly }: Props) {
     return (
         <input
             type="number"
@@ -19,7 +20,8 @@ export function NumberInput({ theme, value, onChange, min, max, step, placeholde
             step={step}
             placeholder={placeholder}
             value={value}
-            onChange={e => onChange(Number(e.target.value))}
+            onChange={onChange ? e => onChange(Number(e.target.value)) : undefined}
+            readOnly={readOnly}
             className="multichain__input"
             style={{
                 paddingTop: theme.inputVerticalPadding,
@@ -29,7 +31,10 @@ export function NumberInput({ theme, value, onChange, min, max, step, placeholde
                 borderRadius: theme.borderRadius,
                 backgroundColor: theme.inputBackgroundColor,
                 borderColor: theme.inputBorderColor,
-                color: theme.inputTextColor
+                color: theme.inputTextColor,
+                fontFamily: theme.fontFamily,
+                fontSize: theme.fontSize,
+                fontWeight: theme.fontWeight
             }}
         />
     )

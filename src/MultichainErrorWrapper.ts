@@ -1,4 +1,4 @@
 export interface MultichainErrorWrapper {
     step: 'relay' | 'sushi' | 'transfer'
-    error: Error
+    error: any
 }

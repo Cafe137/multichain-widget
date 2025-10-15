@@ -25,7 +25,10 @@ export function TextInput({ theme, value, onChange, placeholder, readOnly }: Pro
                 borderRadius: theme.borderRadius,
                 backgroundColor: theme.inputBackgroundColor,
                 borderColor: theme.inputBorderColor,
-                color: theme.inputTextColor
+                color: theme.inputTextColor,
+                fontFamily: theme.fontFamily,
+                fontSize: theme.fontSize,
+                fontWeight: theme.fontWeight
             }}
         />
     )

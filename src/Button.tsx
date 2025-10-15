@@ -24,7 +24,10 @@ export function Button({ theme, onClick, disabled, children, secondary }: Props)
                 backgroundColor: secondary ? theme.buttonSecondaryBackgroundColor : theme.buttonBackgroundColor,
                 color: secondary ? theme.buttonSecondaryTextColor : theme.buttonTextColor,
                 opacity: disabled ? 0.6 : 1,
-                cursor: disabled ? 'not-allowed' : 'pointer'
+                cursor: disabled ? 'not-allowed' : 'pointer',
+                fontFamily: theme.fontFamily,
+                fontSize: theme.fontSize,
+                fontWeight: theme.fontWeight
             }}
         >
             {children}
