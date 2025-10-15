@@ -1,6 +1,6 @@
 {
-    "name": "multichain-library",
-    "version": "1.0.0",
+    "name": "@upcoming/multichain-widget",
+    "version": "0.1.0",
     "scripts": {
         "start": "vite",
         "build": "vite build --base=./",
@@ -12,6 +12,7 @@
         "@relayprotocol/relay-kit-hooks": "^2.0.6",
         "@relayprotocol/relay-sdk": "^3.0.0",
         "@tanstack/react-query": "^5.90.2",
+        "@upcoming/multichain-library": "^0.1.1",
         "cafe-utility": "^33.0.0",
         "react": "^19.2.0",
         "react-dom": "^19.2.0",

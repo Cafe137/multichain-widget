@@ -1,21 +1,11 @@
 import { useQuote, useRelayChains, useTokenList } from '@relayprotocol/relay-kit-hooks'
 import { getClient } from '@relayprotocol/relay-sdk'
+import { MultichainLibrary } from '@upcoming/multichain-library'
 import { Arrays, Dates, FixedPointNumber, System, Types } from 'cafe-utility'
 import { useEffect, useState } from 'react'
 import { useWalletClient } from 'wagmi'
 import { Button } from './Button'
 import { LabelSpacing } from './LabelSpacing'
-import { Constants } from './library/Constants'
-import { getGnosisBzzBalance } from './library/GnosisBzzBalance'
-import { getGnosisNativeBalance } from './library/GnosisNativeBalance'
-import { transferGnosisNative } from './library/GnosisNativeTransfer'
-import { swapOnGnosisAuto } from './library/GnosisSwap'
-import { getGnosisBzzTokenPrice, getTokenPrice } from './library/TokenPrice'
-import {
-    waitForGnosisBzzBalanceToIncrease,
-    waitForGnosisNativeBalanceToDecrease,
-    waitForGnosisNativeBalanceToIncrease
-} from './library/Waiter'
 import { MultichainHooks } from './MultichainHooks'
 import { MultichainProgress, MultichainStep } from './MultichainStep'
 import { MultichainTheme } from './MultichainTheme'
@@ -30,12 +20,13 @@ interface Props {
     hooks: MultichainHooks
     setTab: (tab: 1 | 2) => void
     swapData: SwapData
+    library: MultichainLibrary
 }
 
-export function Tab2({ theme, hooks, setTab, swapData }: Props) {
+export function Tab2({ theme, hooks, setTab, swapData, library }: Props) {
     // states for user input
-    const [sourceChain, setSourceChain] = useState<number>(Constants.ethereumChainId)
-    const [sourceToken, setSourceToken] = useState<string>(Constants.nullAddress)
+    const [sourceChain, setSourceChain] = useState<number>(library.constants.ethereumChainId)
+    const [sourceToken, setSourceToken] = useState<string>(library.constants.nullAddress)
 
     // states for network data
     const [bzzPrice, setBzzPrice] = useState<number | null>(null)
@@ -83,7 +74,7 @@ export function Tab2({ theme, hooks, setTab, swapData }: Props) {
     const hasEnoughBzz: boolean | null =
         destinationWalletBzzBalance && destinationWalletBzzBalance.compare(wantedBzz) > -1
     const hasRemainingDai: boolean | null =
-        temporaryWalletNativeBalance && temporaryWalletNativeBalance.compare(Constants.daiDustAmount) > -1
+        temporaryWalletNativeBalance && temporaryWalletNativeBalance.compare(library.constants.daiDustAmount) > -1
     const nextStep: MultichainStep | null =
         hasEnoughBzz === null || hasRemainingDai === null
             ? null
@@ -104,9 +95,9 @@ export function Tab2({ theme, hooks, setTab, swapData }: Props) {
         user: swapData.sourceAddress,
         recipient: swapData.temporaryAddress,
         originChainId: sourceChain,
-        destinationChainId: Constants.gnosisChainId,
+        destinationChainId: library.constants.gnosisChainId,
         originCurrency: sourceToken,
-        destinationCurrency: Constants.nullAddress, // xDAI
+        destinationCurrency: library.constants.nullAddress, // xDAI
         tradeType: 'EXACT_INPUT',
         amount: selectedTokenAmountNeeded?.toString() || '0'
     })
@@ -115,21 +106,24 @@ export function Tab2({ theme, hooks, setTab, swapData }: Props) {
     useEffect(() => {
         return Arrays.multicall([
             System.runAndSetInterval(() => {
-                getGnosisBzzTokenPrice()
+                library
+                    .getGnosisBzzTokenPrice()
                     .then(price => setBzzPrice(price))
                     .catch(error => {
                         console.error('Error fetching BZZ price:', error)
                     })
             }, Dates.minutes(1)),
             System.runAndSetInterval(() => {
-                getGnosisNativeBalance(swapData.temporaryAddress)
+                library
+                    .getGnosisNativeBalance(swapData.temporaryAddress)
                     .then(balance => setTemporaryWalletNativeBalance(balance))
                     .catch(error => {
                         console.error('Error fetching temporary wallet native balance:', error)
                     })
             }, Dates.seconds(30)),
             System.runAndSetInterval(() => {
-                getGnosisBzzBalance(swapData.targetAddress)
+                library
+                    .getGnosisBzzBalance(swapData.targetAddress)
                     .then(balance => setDestinationWalletBzzBalance(balance))
                     .catch(error => {
                         console.error('Error fetching destination wallet BZZ balance:', error)
@@ -144,7 +138,8 @@ export function Tab2({ theme, hooks, setTab, swapData }: Props) {
             return
         }
         return System.runAndSetInterval(() => {
-            getTokenPrice(sourceToken as `0x${string}`, sourceChain)
+            library
+                .getTokenPrice(sourceToken as `0x${string}`, sourceChain)
                 .then(price => setSelectedTokenUsdPrice(price))
                 .catch(error => {
                     console.error('Error fetching selected token price:', error)
@@ -211,7 +206,7 @@ export function Tab2({ theme, hooks, setTab, swapData }: Props) {
             }
             try {
                 setStepStatuses(x => ({ ...x, 'relay-sync': 'in-progress' }))
-                await waitForGnosisNativeBalanceToIncrease(swapData.temporaryAddress, daiBefore)
+                await library.waitForGnosisNativeBalanceToIncrease(swapData.temporaryAddress, daiBefore)
                 setStepStatuses(x => ({ ...x, 'relay-sync': 'done' }))
             } catch (error) {
                 setStatus('failed')
@@ -224,11 +219,11 @@ export function Tab2({ theme, hooks, setTab, swapData }: Props) {
         // sushi step
         if (stepsToRun.includes('sushi')) {
             const bzzBefore = destinationWalletBzzBalance.value
-            const daiBefore = (await getGnosisNativeBalance(swapData.temporaryAddress)).value
+            const daiBefore = (await library.getGnosisNativeBalance(swapData.temporaryAddress)).value
             try {
                 setStepStatuses(x => ({ ...x, sushi: 'in-progress' }))
                 const amount = FixedPointNumber.fromDecimalString(remainingBzzUsdValue.toString(), 18)
-                await swapOnGnosisAuto({
+                await library.swapOnGnosisAuto({
                     amount: amount.toString(),
                     originPrivateKey: swapData.sessionKey,
                     originAddress: swapData.temporaryAddress,
@@ -243,8 +238,8 @@ export function Tab2({ theme, hooks, setTab, swapData }: Props) {
             }
             try {
                 setStepStatuses(x => ({ ...x, 'sushi-sync': 'in-progress' }))
-                await waitForGnosisBzzBalanceToIncrease(swapData.targetAddress, bzzBefore)
-                await waitForGnosisNativeBalanceToDecrease(swapData.temporaryAddress, daiBefore)
+                await library.waitForGnosisBzzBalanceToIncrease(swapData.targetAddress, bzzBefore)
+                await library.waitForGnosisNativeBalanceToDecrease(swapData.temporaryAddress, daiBefore)
                 setStepStatuses(x => ({ ...x, 'sushi-sync': 'done' }))
             } catch (error) {
                 setStatus('failed')
@@ -256,14 +251,14 @@ export function Tab2({ theme, hooks, setTab, swapData }: Props) {
 
         // transfer step
         if (stepsToRun.includes('transfer')) {
-            const daiBefore = await getGnosisNativeBalance(swapData.temporaryAddress)
+            const daiBefore = await library.getGnosisNativeBalance(swapData.temporaryAddress)
             try {
                 setStepStatuses(x => ({ ...x, transfer: 'in-progress' }))
-                await transferGnosisNative({
+                await library.transferGnosisNative({
                     originPrivateKey: swapData.sessionKey,
                     originAddress: swapData.temporaryAddress,
                     to: Types.asHexString(swapData.targetAddress),
-                    amount: daiBefore.subtract(Constants.daiDustAmount).toString()
+                    amount: daiBefore.subtract(library.constants.daiDustAmount).toString()
                 })
                 setStepStatuses(x => ({ ...x, transfer: 'done' }))
             } catch (error) {
@@ -274,7 +269,7 @@ export function Tab2({ theme, hooks, setTab, swapData }: Props) {
             }
             try {
                 setStepStatuses(x => ({ ...x, 'transfer-sync': 'in-progress' }))
-                await waitForGnosisNativeBalanceToDecrease(swapData.temporaryAddress, daiBefore.value)
+                await library.waitForGnosisNativeBalanceToDecrease(swapData.temporaryAddress, daiBefore.value)
                 setStepStatuses(x => ({ ...x, 'transfer-sync': 'done', done: 'done' }))
             } catch (error) {
                 setStatus('failed')

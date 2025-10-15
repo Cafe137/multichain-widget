@@ -2,6 +2,7 @@ import { darkTheme, getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rai
 import '@rainbow-me/rainbowkit/styles.css'
 import { convertViemChainToRelayChain, createClient, MAINNET_RELAY_API } from '@relayprotocol/relay-sdk'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { MultichainLibrary, MultichainLibrarySettings } from '@upcoming/multichain-library'
 import { Objects } from 'cafe-utility'
 import { arbitrum, base, gnosis, mainnet, optimism, polygon } from 'viem/chains'
 import { WagmiProvider } from 'wagmi'
@@ -22,6 +23,7 @@ const queryClient = new QueryClient()
 interface Props {
     theme?: Partial<MultichainTheme>
     hooks?: Partial<MultichainHooks>
+    settings?: Partial<MultichainLibrarySettings>
 }
 
 createClient({
@@ -29,15 +31,16 @@ createClient({
     chains: [convertViemChainToRelayChain(mainnet)]
 })
 
-export function App({ theme, hooks }: Props) {
+export function App({ theme, hooks, settings }: Props) {
     const mergedTheme = Objects.deepMerge2(getDefaultMultichainTheme(), theme || {})
     const mergedHooks = Objects.deepMerge2(getDefaultHooks(), hooks || {})
+    const library = new MultichainLibrary(settings)
 
     return (
         <WagmiProvider config={config}>
             <QueryClientProvider client={queryClient}>
                 <RainbowKitProvider theme={darkTheme()}>
-                    <Router theme={mergedTheme} hooks={mergedHooks} />
+                    <Router theme={mergedTheme} hooks={mergedHooks} library={library} />
                 </RainbowKitProvider>
             </QueryClientProvider>
         </WagmiProvider>

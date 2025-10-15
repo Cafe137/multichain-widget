@@ -1,3 +1,4 @@
+import { MultichainLibrary } from '@upcoming/multichain-library'
 import { Binary, Elliptic, Strings, Types } from 'cafe-utility'
 import { useState } from 'react'
 import { MultichainHooks } from './MultichainHooks'
@@ -11,9 +12,10 @@ const LOCAL_STORAGE_KEY = 'multichain-session-key'
 interface Props {
     theme: MultichainTheme
     hooks: MultichainHooks
+    library: MultichainLibrary
 }
 
-export function Router({ theme, hooks }: Props) {
+export function Router({ theme, hooks, library }: Props) {
     const url = new URL(window.location.href)
     const destination = url.searchParams.get('destination')
     const sessionKey = Types.asHexString(localStorage.getItem(LOCAL_STORAGE_KEY) || Strings.randomHex(64))
@@ -42,5 +44,5 @@ export function Router({ theme, hooks }: Props) {
         return <Tab1 setTab={setTab} theme={theme} swapData={swapData} setSwapData={setSwapData} />
     }
 
-    return <Tab2 setTab={setTab} theme={theme} hooks={hooks} swapData={swapData} />
+    return <Tab2 setTab={setTab} theme={theme} hooks={hooks} swapData={swapData} library={library} />
 }
