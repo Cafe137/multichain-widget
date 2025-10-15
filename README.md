@@ -36,7 +36,7 @@ Hooks can be set by passing `hooks` prop to the `MultichainWidget` component. Cu
 -   `onFatalError`
 -   `onCompletion`
 
-# Known issues
+# Known issues / Remaining tasks
 
 ## Absolute amounts
 
@@ -49,8 +49,6 @@ This can happen when the amount is too low or too high. May happen more frequent
 ## SushiSwap transaction failure
 
 This can happen when Gnosis experiences a sudden spike in gas prices.
-
-# Remaining tasks
 
 ## xDAI source support
 
@@ -75,3 +73,7 @@ Some requests can fail due to temporary JSON-RPC issues. These should be retried
 ## Gas spike handling
 
 There is an error which is easy to detect: `Details: FeeTooLow, EffectivePriorityFeePerGas too low 0 < 1, BaseFee: 2783571`. This should be handled by retrying the transaction with a higher gas price.
+
+## React version dependency
+
+It seems that the app only works with React 18+. This may not be compatible with Bee Dashboard using React 17 (due to Material UI 4 dependency). It would be best to upgrade Bee Dashboard to React 18 and Material UI 5. React 18 is already 4 years old.
