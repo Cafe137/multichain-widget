@@ -1,34 +1,35 @@
+import { ReactNode } from 'react'
 import { MultichainStepStatus } from './MultichainStep'
 import { MultichainTheme } from './MultichainTheme'
+import { Spinner } from './Spinner'
+import { StatusIndicator } from './StatusIndicator'
 import { Typography } from './Typography'
 
 interface Props {
     theme: MultichainTheme
-    children: string
+    children: ReactNode
     status: MultichainStepStatus
 }
 
 export function ProgressStatus({ theme, children, status }: Props) {
-    let symbol = '...'
+    let symbol: ReactNode = <StatusIndicator color="#AAAAAA" />
     if (status === 'skipped') {
-        symbol = '⏭️'
+        symbol = <StatusIndicator color="#FFDC00" />
     }
     if (status === 'done') {
-        symbol = '✅'
+        symbol = <StatusIndicator color="#2ECC40" />
     }
     if (status === 'in-progress') {
-        symbol = '🔄'
+        symbol = <Spinner />
     }
     if (status === 'error') {
-        symbol = '❌'
-    }
-    if (status === 'pending') {
-        symbol = '...'
+        symbol = <StatusIndicator color="#FF4136" />
     }
 
     return (
-        <Typography theme={theme} small>
-            {symbol} {children}
-        </Typography>
+        <div className="multichain__row">
+            {symbol}
+            <Typography theme={theme}>{children}</Typography>
+        </div>
     )
 }
