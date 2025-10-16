@@ -1,3 +1,29 @@
+# Getting started
+
+## Installation
+
+```
+npm install @upcoming/multichain-widget
+```
+
+## Usage
+
+Import the component and accompanying styles:
+
+```ts
+import '@rainbow-me/rainbowkit/styles.css'
+import { MultichainWidget } from '@upcoming/multichain-widget'
+import '@upcoming/multichain-widget/styles.css'
+```
+
+Then simply place the component in your app:
+
+```tsx
+<MultichainWidget />
+```
+
+The props `theme`, `hooks`, `settings` can be passed to customize the widget. To be documented.
+
 # Flow
 
 1. Cross-swap a token to xDAI using Relay, goes to a temporary wallet.
