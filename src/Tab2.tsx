@@ -64,7 +64,7 @@ export function Tab2({ theme, hooks, setTab, swapData, library }: Props) {
         remainingBzzAmount = wantedBzz.subtract(destinationWalletBzzBalance)
         remainingBzzUsdValue = parseFloat(remainingBzzAmount.toDecimalString()) * bzzPrice
         const totalRemainingUsdValue = remainingBzzUsdValue + swapData.nativeAmount
-        const amountNeeded = totalRemainingUsdValue / selectedTokenUsdPrice
+        const amountNeeded = (totalRemainingUsdValue / selectedTokenUsdPrice) * 1.08 // +8% slippage
         selectedTokenAmountNeeded = FixedPointNumber.fromDecimalString(
             amountNeeded.toString(),
             sourceTokenObject.decimals

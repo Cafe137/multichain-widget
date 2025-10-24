@@ -72,33 +72,13 @@ The specified xBZZ amount is absolute, not relative. For example, if the user al
 
 This can happen when the amount is too low or too high. May happen more frequently with unpopular tokens.
 
-## SushiSwap transaction failure
-
-This can happen when Gnosis experiences a sudden spike in gas prices.
-
 ## xDAI source support
 
 The end user will not receive any quotes if they attempt to use xDAI as the source token. This is because in this case, we attempt to get a quote from xDAI to xDAI.
 
-## Add slippage and fee considerations
-
-The resulting xBZZ and xDAI and currently lower than expected due to fees and slippage. This can never be fully eliminated, and for the MVP a fixed 5% buffer is recommended.
-
 ## Network check
 
 The app currently does not check if the user is on the correct network. This leads to failed transactions.
-
-## JSON-RPC provider array
-
-Allow passing an array of JSON-RPC providers to increase reliability.
-
-## Retriable requests
-
-Some requests can fail due to temporary JSON-RPC issues. These should be retried a few times before giving up.
-
-## Gas spike handling
-
-There is an error which is easy to detect: `Details: FeeTooLow, EffectivePriorityFeePerGas too low 0 < 1, BaseFee: 2783571`. This should be handled by retrying the transaction with a higher gas price.
 
 ## React version dependency
 
