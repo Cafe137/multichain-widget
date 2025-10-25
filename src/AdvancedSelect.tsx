@@ -7,10 +7,11 @@ interface Props {
     value: string
     label?: string
     onChange: (value: string) => void
+    onChangeGuard?: (value: string) => Promise<boolean>
     options: { image?: string | null; label: string; value: string }[]
 }
 
-export function AdvancedSelect({ theme, value, label, onChange, options }: Props) {
+export function AdvancedSelect({ theme, value, label, onChange, onChangeGuard, options }: Props) {
     const [open, setOpen] = useState(false)
 
     const current = options.find(o => o.value === value)
@@ -85,8 +86,16 @@ export function AdvancedSelect({ theme, value, label, onChange, options }: Props
                                 paddingTop: theme.inputVerticalPadding,
                                 paddingBottom: theme.inputVerticalPadding
                             }}
-                            onClick={() => {
-                                onChange(option.value)
+                            onClick={async () => {
+                                if (onChangeGuard) {
+                                    await onChangeGuard(option.value).then(allowed => {
+                                        if (allowed) {
+                                            onChange(option.value)
+                                        }
+                                    })
+                                } else {
+                                    onChange(option.value)
+                                }
                                 setOpen(false)
                             }}
                         >

@@ -1,7 +1,7 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { Types } from 'cafe-utility'
 import { Dispatch, SetStateAction } from 'react'
-import { useAccount } from 'wagmi'
+import { useAccount, useChainId } from 'wagmi'
 import { Button } from './Button'
 import { LabelSpacing } from './LabelSpacing'
 import { MultichainTheme } from './MultichainTheme'
@@ -15,14 +15,21 @@ interface Props {
     setTab: (tab: 1 | 2) => void
     swapData: SwapData
     setSwapData: Dispatch<SetStateAction<SwapData>>
+    setInitialChainId: Dispatch<SetStateAction<number | null>>
 }
 
-export function Tab1({ theme, setTab, swapData, setSwapData }: Props) {
+export function Tab1({ theme, setTab, swapData, setSwapData, setInitialChainId }: Props) {
     const { address } = useAccount()
+    const chainId = useChainId()
 
     function onConnect() {
         if (address && swapData.targetAddress) {
+            if (!chainId) {
+                alert('Cannot detect connected chain ID.')
+                return
+            }
             setSwapData(x => ({ ...x, sourceAddress: Types.asHexString(address) }))
+            setInitialChainId(chainId)
             setTab(2)
         }
     }

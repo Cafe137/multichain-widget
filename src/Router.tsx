@@ -39,10 +39,28 @@ export function Router({ theme, hooks, library }: Props) {
         )
     })
     const [tab, setTab] = useState<1 | 2>(1)
+    const [initialChainId, setInitialChainId] = useState<number | null>(null)
 
     if (tab === 1) {
-        return <Tab1 setTab={setTab} theme={theme} swapData={swapData} setSwapData={setSwapData} />
+        return (
+            <Tab1
+                setTab={setTab}
+                theme={theme}
+                swapData={swapData}
+                setSwapData={setSwapData}
+                setInitialChainId={setInitialChainId}
+            />
+        )
     }
 
-    return <Tab2 setTab={setTab} theme={theme} hooks={hooks} swapData={swapData} library={library} />
+    return (
+        <Tab2
+            setTab={setTab}
+            theme={theme}
+            hooks={hooks}
+            swapData={swapData}
+            initialChainId={initialChainId}
+            library={library}
+        />
+    )
 }

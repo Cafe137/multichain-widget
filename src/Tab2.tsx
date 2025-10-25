@@ -3,7 +3,7 @@ import { getClient } from '@relayprotocol/relay-sdk'
 import { MultichainLibrary } from '@upcoming/multichain-library'
 import { Arrays, Dates, FixedPointNumber, Numbers, System, Types } from 'cafe-utility'
 import { useEffect, useState } from 'react'
-import { useWalletClient } from 'wagmi'
+import { useBalance, useSwitchChain, useWalletClient } from 'wagmi'
 import { AdvancedSelect } from './AdvancedSelect'
 import { Button } from './Button'
 import { LabelSpacing } from './LabelSpacing'
@@ -23,12 +23,13 @@ interface Props {
     hooks: MultichainHooks
     setTab: (tab: 1 | 2) => void
     swapData: SwapData
+    initialChainId: number
     library: MultichainLibrary
 }
 
-export function Tab2({ theme, hooks, setTab, swapData, library }: Props) {
+export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }: Props) {
     // states for user input
-    const [sourceChain, setSourceChain] = useState<number>(library.constants.ethereumChainId)
+    const [sourceChain, setSourceChain] = useState<number>(initialChainId)
     const [sourceToken, setSourceToken] = useState<string>(library.constants.nullAddress)
 
     // states for network data
@@ -49,11 +50,17 @@ export function Tab2({ theme, hooks, setTab, swapData, library }: Props) {
         done: 'pending'
     })
 
-    // relay hooks
+    // relay and wagmi hooks
     const relayClient = getClient()
     const walletClient = useWalletClient()
     const { chains } = useRelayChains()
     const { data } = useTokenList('https://api.relay.link', { chainIds: [sourceChain] })
+    const { switchChainAsync } = useSwitchChain()
+    const selectedTokenBalance = useBalance({
+        address: swapData.sourceAddress as `0x${string}`,
+        token: sourceToken as `0x${string}`,
+        chainId: sourceChain
+    })
 
     // computed
     const sourceChainDisplayName = (chains || []).find(x => x.id === sourceChain)?.displayName || 'N/A'
@@ -140,15 +147,17 @@ export function Tab2({ theme, hooks, setTab, swapData, library }: Props) {
         if (!sourceToken) {
             return
         }
-        return System.runAndSetInterval(() => {
-            library
-                .getTokenPrice(sourceToken as `0x${string}`, sourceChain)
-                .then(price => setSelectedTokenUsdPrice(price))
-                .catch(error => {
-                    console.error('Error fetching selected token price:', error)
-                })
-        }, Dates.minutes(1))
-    }, [sourceToken])
+        return Arrays.multicall([
+            System.runAndSetInterval(() => {
+                library
+                    .getTokenPrice(sourceToken as `0x${string}`, sourceChain)
+                    .then(price => setSelectedTokenUsdPrice(price))
+                    .catch(error => {
+                        console.error('Error fetching selected token price:', error)
+                    })
+            }, Dates.minutes(1))
+        ])
+    }, [sourceChain, sourceToken])
 
     function onBack() {
         setTab(1)
@@ -319,6 +328,18 @@ export function Tab2({ theme, hooks, setTab, swapData, library }: Props) {
                                 setSourceChain(Number(e))
                                 setSourceToken('0x0000000000000000000000000000000000000000')
                             }}
+                            onChangeGuard={async chainId => {
+                                try {
+                                    await switchChainAsync({ chainId: Number(chainId) })
+                                    return true
+                                } catch (error) {
+                                    console.error(error)
+                                    alert(
+                                        'Failed to switch chain. Is the chain configured in your wallet? More details in console.'
+                                    )
+                                    return false
+                                }
+                            }}
                             value={sourceChain.toString()}
                             options={(chains || []).map(chain => ({
                                 value: chain.id.toString(),
@@ -346,12 +367,17 @@ export function Tab2({ theme, hooks, setTab, swapData, library }: Props) {
                                     image: x.metadata?.logoURI
                                 }))}
                             label={
-                                selectedTokenUsdPrice !== null
-                                    ? `1 ${sourceTokenDisplayName} = $${Numbers.toSignificantDigits(
-                                          selectedTokenUsdPrice.toString(),
-                                          2
-                                      )}`
-                                    : '...'
+                                selectedTokenBalance.data
+                                    ? Numbers.toSignificantDigits(
+                                          new FixedPointNumber(
+                                              selectedTokenBalance.data.value,
+                                              selectedTokenBalance.data.decimals
+                                          ).toDecimalString(),
+                                          3
+                                      ) +
+                                      ' ' +
+                                      selectedTokenBalance.data.symbol
+                                    : ''
                             }
                         />
                     </LabelSpacing>
