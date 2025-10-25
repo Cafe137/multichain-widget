@@ -5,13 +5,14 @@ interface Props {
     theme: MultichainTheme
     children: ReactNode
     small?: boolean
+    secondary?: boolean
 }
 
-export function Typography({ theme, children, small }: Props) {
+export function Typography({ theme, children, small, secondary }: Props) {
     return (
         <p
             style={{
-                color: theme.textColor,
+                color: secondary ? theme.secondaryTextColor : theme.textColor,
                 fontFamily: theme.fontFamily,
                 fontSize: small ? theme.smallFontSize : theme.fontSize,
                 fontWeight: small ? theme.smallFontWeight : theme.fontWeight

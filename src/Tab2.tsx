@@ -1,19 +1,22 @@
 import { useQuote, useRelayChains, useTokenList } from '@relayprotocol/relay-kit-hooks'
 import { getClient } from '@relayprotocol/relay-sdk'
 import { MultichainLibrary } from '@upcoming/multichain-library'
-import { Arrays, Dates, FixedPointNumber, System, Types } from 'cafe-utility'
+import { Arrays, Dates, FixedPointNumber, Numbers, System, Types } from 'cafe-utility'
 import { useEffect, useState } from 'react'
 import { useWalletClient } from 'wagmi'
+import { AdvancedSelect } from './AdvancedSelect'
 import { Button } from './Button'
 import { LabelSpacing } from './LabelSpacing'
 import { MultichainHooks } from './MultichainHooks'
 import { MultichainProgress, MultichainStep } from './MultichainStep'
 import { MultichainTheme } from './MultichainTheme'
 import { ProgressTracker } from './ProgressTracker'
-import { Select } from './Select'
+import { Span } from './Span'
 import { SwapData } from './SwapData'
 import { TextInput } from './TextInput'
+import { TokenDisplay } from './TokenDisplay'
 import { Typography } from './Typography'
+import { shortenHash } from './Utility'
 
 interface Props {
     theme: MultichainTheme
@@ -291,20 +294,26 @@ export function Tab2({ theme, hooks, setTab, swapData, library }: Props) {
             <Button secondary theme={theme} onClick={onBack} disabled={status !== 'pending' && status !== 'failed'}>
                 Cancel
             </Button>
-            <LabelSpacing theme={theme}>
-                <Typography theme={theme}>Source Address</Typography>
-                <TextInput theme={theme} readOnly value={swapData.sourceAddress} />
-            </LabelSpacing>
-            <LabelSpacing theme={theme}>
-                <Typography theme={theme}>Target Address</Typography>
-                <TextInput theme={theme} readOnly value={swapData.targetAddress} />
-            </LabelSpacing>
+            <div className="multichain__row">
+                <div className="multichain__column multichain__column--full">
+                    <TextInput theme={theme} readOnly value={shortenHash(swapData.sourceAddress)} />
+                </div>
+                <Typography theme={theme}>→</Typography>
+                <div className="multichain__column multichain__column--full">
+                    <TextInput theme={theme} readOnly value={shortenHash(swapData.targetAddress)} />
+                </div>
+            </div>
             {status !== 'pending' ? <ProgressTracker theme={theme} progress={stepStatuses} /> : null}
             {status === 'pending' && nextStep === 'relay' ? (
                 <>
                     <LabelSpacing theme={theme}>
-                        <Typography theme={theme}>Source Chain</Typography>
-                        <Select
+                        <Typography theme={theme}>
+                            Select the Source Chain
+                            <Span theme={theme} color={theme.buttonBackgroundColor}>
+                                *
+                            </Span>
+                        </Typography>
+                        <AdvancedSelect
                             theme={theme}
                             onChange={e => {
                                 setSourceChain(Number(e))
@@ -313,65 +322,71 @@ export function Tab2({ theme, hooks, setTab, swapData, library }: Props) {
                             value={sourceChain.toString()}
                             options={(chains || []).map(chain => ({
                                 value: chain.id.toString(),
-                                label: chain.displayName
+                                label: chain.displayName,
+                                image: chain.iconUrl
                             }))}
                         />
                     </LabelSpacing>
                     <LabelSpacing theme={theme}>
-                        <Typography theme={theme}>Source Token</Typography>
-                        <Select
+                        <Typography theme={theme}>
+                            Select the Source Token
+                            <Span theme={theme} color={theme.buttonBackgroundColor}>
+                                *
+                            </Span>
+                        </Typography>
+                        <AdvancedSelect
                             theme={theme}
                             onChange={e => setSourceToken(e)}
                             value={sourceToken}
                             options={(data || [])
                                 .filter(x => x.address)
-                                .map(x => ({ value: x.address!, label: `${x.symbol} (${x.name})` }))}
+                                .map(x => ({
+                                    value: x.address!,
+                                    label: `${x.symbol} (${x.name})`,
+                                    image: x.metadata?.logoURI
+                                }))}
+                            label={
+                                selectedTokenUsdPrice !== null
+                                    ? `1 ${sourceTokenDisplayName} = $${Numbers.toSignificantDigits(
+                                          selectedTokenUsdPrice.toString(),
+                                          2
+                                      )}`
+                                    : '...'
+                            }
                         />
-                        {selectedTokenUsdPrice !== null ? (
-                            <Typography theme={theme} small>
-                                1 {sourceTokenDisplayName} = ${selectedTokenUsdPrice}
-                            </Typography>
-                        ) : (
-                            <Typography theme={theme}>Loading {sourceTokenDisplayName} price...</Typography>
-                        )}
                     </LabelSpacing>
-                    <Typography theme={theme}>
-                        You will swap {selectedTokenAmountNeeded?.toDecimalString()} (~${totalUsdValue}){' '}
-                        {sourceTokenDisplayName} from {sourceChainDisplayName} to fund:
+                    <Typography theme={theme} small secondary>
+                        You will swap{' '}
+                        {Numbers.toSignificantDigits(selectedTokenAmountNeeded?.toDecimalString() || '0', 3)} (~$
+                        {Numbers.toSignificantDigits(totalUsdValue?.toString() || '0', 2)}) {sourceTokenDisplayName}{' '}
+                        from {sourceChainDisplayName} to fund:
                     </Typography>
                     <div className="multichain__row">
                         <div className="multichain__column multichain__column--full">
-                            <TextInput
+                            <TokenDisplay
                                 theme={theme}
-                                value={`${swapData.nativeAmount.toFixed(2)} xDAI (~$${swapData.nativeAmount.toFixed(
-                                    2
-                                )})`}
-                                readOnly
+                                leftLabel={`${swapData.nativeAmount.toFixed(2)} xDAI`}
+                                rightLabel={`$${swapData.nativeAmount.toFixed(2)}`}
                             />
                         </div>
                         <div className="multichain__column multichain__column--full">
-                            <TextInput
+                            <TokenDisplay
                                 theme={theme}
-                                value={`${remainingBzzAmount ? remainingBzzAmount.toDecimalString() : '...'} xBZZ (~$${(
-                                    remainingBzzUsdValue || 0
-                                ).toFixed(2)})`}
-                                readOnly
+                                leftLabel={`${
+                                    remainingBzzAmount
+                                        ? Numbers.toSignificantDigits(remainingBzzAmount.toDecimalString(), 3)
+                                        : '...'
+                                } xBZZ`}
+                                rightLabel={`$${(remainingBzzUsdValue || 0).toFixed(2)}`}
                             />
                         </div>
                     </div>
                 </>
             ) : null}
-
-            <Typography theme={theme} small>
-                Your temporary wallet has {temporaryWalletNativeBalance?.toDecimalString() || '...'} xDAI
-            </Typography>
-            <Typography theme={theme} small>
-                Your destination wallet has {destinationWalletBzzBalance?.toDecimalString() || '...'} xBZZ
-            </Typography>
             {status === 'pending' && nextStep === 'relay' ? (
                 <Typography theme={theme}>
                     {isLoading
-                        ? 'Quote loading...'
+                        ? 'Loading quote...'
                         : quote
                         ? 'Quote available'
                         : 'Quote NOT available, amount too small, too large, or insufficient liquidity'}

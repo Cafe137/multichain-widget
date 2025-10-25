@@ -8,6 +8,7 @@ export interface MultichainTheme {
     fontFamily: string
     smallFontSize: string
     smallFontWeight: number
+    secondaryTextColor: string
     // Input styles
     inputBackgroundColor: string
     inputBorderColor: string
@@ -37,6 +38,7 @@ export function getDefaultMultichainTheme(): MultichainTheme {
             "SFRounded, ui-rounded, 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
         smallFontSize: '14px',
         smallFontWeight: 500,
+        secondaryTextColor: '#AAAAAA',
 
         // Input styles
         inputBackgroundColor: 'rgb(26, 27, 31)',
