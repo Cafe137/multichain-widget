@@ -10,6 +10,7 @@ import { LabelSpacing } from './LabelSpacing'
 import { MultichainHooks } from './MultichainHooks'
 import { MultichainProgress, MultichainStep } from './MultichainStep'
 import { MultichainTheme } from './MultichainTheme'
+import { ProgressStatus } from './ProgressStatus'
 import { ProgressTracker } from './ProgressTracker'
 import { Span } from './Span'
 import { SwapData } from './SwapData'
@@ -58,7 +59,7 @@ export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }
     const { switchChainAsync } = useSwitchChain()
     const selectedTokenBalance = useBalance({
         address: swapData.sourceAddress as `0x${string}`,
-        token: sourceToken as `0x${string}`,
+        token: sourceToken === library.constants.nullAddress ? undefined : (sourceToken as `0x${string}`),
         chainId: sourceChain
     })
 
@@ -95,6 +96,10 @@ export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }
             : hasRemainingDai
             ? 'sushi'
             : 'relay'
+    const hasSufficientBalance =
+        selectedTokenAmountNeeded &&
+        selectedTokenBalance.data &&
+        selectedTokenAmountNeeded.value <= selectedTokenBalance.data.value
 
     // relay quote hook
     const {
@@ -410,16 +415,26 @@ export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }
                 </>
             ) : null}
             {status === 'pending' && nextStep === 'relay' ? (
-                <Typography theme={theme}>
-                    {isLoading
-                        ? 'Loading quote...'
-                        : quote
-                        ? 'Quote available'
-                        : 'Quote NOT available, amount too small, too large, or insufficient liquidity'}
-                </Typography>
+                isLoading ? (
+                    <ProgressStatus theme={theme} status="pending">
+                        Loading quote...
+                    </ProgressStatus>
+                ) : quote ? (
+                    <ProgressStatus theme={theme} status="done">
+                        Quote available
+                    </ProgressStatus>
+                ) : (
+                    <ProgressStatus theme={theme} status="error">
+                        Quote NOT available, amount too small, too large, or insufficient liquidity
+                    </ProgressStatus>
+                )
             ) : null}
-            <Button theme={theme} onClick={onSwap} disabled={status !== 'pending' || (nextStep === 'relay' && !quote)}>
-                Fund
+            <Button
+                theme={theme}
+                onClick={onSwap}
+                disabled={status !== 'pending' || (nextStep === 'relay' && !quote) || !hasSufficientBalance}
+            >
+                {hasSufficientBalance ? 'Fund' : 'Not enough balance'}
             </Button>
         </div>
     )
