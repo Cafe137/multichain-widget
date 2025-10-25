@@ -41,7 +41,7 @@ export function Router({ theme, hooks, library }: Props) {
     const [tab, setTab] = useState<1 | 2>(1)
     const [initialChainId, setInitialChainId] = useState<number | null>(null)
 
-    if (tab === 1) {
+    if (tab === 1 || initialChainId === null) {
         return (
             <Tab1
                 setTab={setTab}
