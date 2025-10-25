@@ -76,10 +76,6 @@ This can happen when the amount is too low or too high. May happen more frequent
 
 The end user will not receive any quotes if they attempt to use xDAI as the source token. This is because in this case, we attempt to get a quote from xDAI to xDAI.
 
-## Network check
-
-The app currently does not check if the user is on the correct network. This leads to failed transactions.
-
 ## React version dependency
 
 It seems that the app only works with React 18+. This may not be compatible with Bee Dashboard using React 17 (due to Material UI 4 dependency). It would be best to upgrade Bee Dashboard to React 18 and Material UI 5. React 18 is already 4 years old.
