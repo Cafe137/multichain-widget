@@ -3,7 +3,7 @@ import { getClient } from '@relayprotocol/relay-sdk'
 import { MultichainLibrary } from '@upcoming/multichain-library'
 import { Arrays, Dates, FixedPointNumber, Numbers, System, Types } from 'cafe-utility'
 import { useEffect, useState } from 'react'
-import { useBalance, useSwitchChain, useWalletClient } from 'wagmi'
+import { useBalance, useChains, useSwitchChain, useWalletClient } from 'wagmi'
 import { AdvancedSelect } from './AdvancedSelect'
 import { Button } from './Button'
 import { LabelSpacing } from './LabelSpacing'
@@ -54,7 +54,10 @@ export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }
     // relay and wagmi hooks
     const relayClient = getClient()
     const walletClient = useWalletClient()
-    const { chains } = useRelayChains()
+    const { chains: relayChains } = useRelayChains()
+    const configuredChains = useChains()
+    const chains =
+        relayChains && configuredChains ? relayChains.filter(x => configuredChains.some(y => x.id === y.id)) : []
     const { data } = useTokenList('https://api.relay.link', { chainIds: [sourceChain] })
     const { switchChainAsync } = useSwitchChain()
     const selectedTokenBalance = useBalance({
@@ -64,7 +67,7 @@ export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }
     })
 
     // computed
-    const sourceChainDisplayName = (chains || []).find(x => x.id === sourceChain)?.displayName || 'N/A'
+    const sourceChainDisplayName = chains.find(x => x.id === sourceChain)?.displayName || 'N/A'
     const sourceTokenObject = (data || []).find(x => x.address === sourceToken)
     const sourceTokenDisplayName = sourceTokenObject ? sourceTokenObject.symbol : 'N/A'
     const neededBzzAmount = FixedPointNumber.fromDecimalString(swapData.bzzAmount.toString(), 16)
