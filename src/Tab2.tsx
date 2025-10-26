@@ -4,8 +4,8 @@ import { MultichainLibrary } from '@upcoming/multichain-library'
 import { Arrays, Dates, FixedPointNumber, Numbers, System, Types } from 'cafe-utility'
 import { useEffect, useState } from 'react'
 import { useBalance, useChains, useSwitchChain, useWalletClient } from 'wagmi'
-import { ProgressStatus } from './components/ProgressStatus'
 import { ProgressTracker } from './components/ProgressTracker'
+import { QuoteIndicator } from './components/QuoteIndicator'
 import { TokenDisplay } from './components/TokenDisplay'
 import { MultichainHooks } from './MultichainHooks'
 import { MultichainProgress, MultichainStep } from './MultichainStep'
@@ -400,19 +400,7 @@ export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }
                 </>
             ) : null}
             {status === 'pending' && nextStep === 'relay' ? (
-                isLoading ? (
-                    <ProgressStatus theme={theme} status="pending">
-                        Loading quote...
-                    </ProgressStatus>
-                ) : quote ? (
-                    <ProgressStatus theme={theme} status="done">
-                        Quote available
-                    </ProgressStatus>
-                ) : (
-                    <ProgressStatus theme={theme} status="error">
-                        Quote unavailable - amount is either too small, large, or the token is illiquid
-                    </ProgressStatus>
-                )
+                <QuoteIndicator isLoading={isLoading} theme={theme} quote={quote} />
             ) : null}
             <Button
                 theme={theme}
