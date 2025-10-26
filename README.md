@@ -1,12 +1,10 @@
-# Getting started
-
-## Installation
+# Installation
 
 ```
 npm install @upcoming/multichain-widget
 ```
 
-## Usage
+# Usage
 
 Import the component and accompanying styles:
 
@@ -22,7 +20,53 @@ Then simply place the component in your app:
 <MultichainWidget />
 ```
 
-The props `theme`, `hooks`, `settings` can be passed to customize the widget. To be documented.
+## Props and Query params
+
+It is possible to specify query params or pass some props to `<MultichainWidget />` to customize its behavior:
+
+### `theme`
+
+Colors, fonts, sizes, etc. can be overwritten by using this prop.
+
+Does not support query params.
+
+### `hooks`
+
+Callbacks can be specified for various events in the flow. The most important hook is the `onCompletion` hook, which is called when the flow is completed successfully.
+
+Applications embedding the widget and conditionally rendering it can use this hook to unmount the widget when the flow is done.
+
+Does not support query params.
+
+### `settings`
+
+Mainly used to customize the `gnosisJsonRpcProviders` array.
+
+Does not support query params.
+
+### `intent`
+
+The intent modifies the information text displayed on the first screen. Possible values are `initial-funding`, `postage-batch` and `arbitrary`.
+
+Can be specified in the query params with the `intent` key.
+
+### `destination`
+
+The default target address where the xBZZ and xDAI tokens will be sent.
+
+Can be specified in the query params with the `destination` key.
+
+### `dai`
+
+The default amount of xDAI to receive at the end of the flow.
+
+Can be specified in the query params with the `dai` key.
+
+### `bzz`
+
+The default amount of xBZZ to receive at the end of the flow.
+
+Can be specified in the query params with the `bzz` key.
 
 # Flow
 
@@ -32,11 +76,11 @@ The props `theme`, `hooks`, `settings` can be passed to customize the widget. To
 
 # Dependencies
 
-## Relay
+### Relay
 
 We use the Relay API to cross-swap to xDAI.
 
-## SushiSwap
+### SushiSwap
 
 We use SushiSwap contracts and its API to swap xDAI to xBZZ.
 
@@ -52,7 +96,9 @@ A backup of every generated private key is stored in `localStorage` with a times
 
 ## Recoverability
 
-It is OK if the flow errors out or the user navigates away. The app can detect which steps have been completed and resume from there.
+~~It is OK if the flow errors out or the user navigates away. The app can detect which steps have been completed and resume from there.~~
+
+This one is still under investigation. By having absolute amounts for xDAI and xBZZ initially, this used to work, but for the ideal UX we switched to relative amounts. This makes it much harder to guess whether there was a flow interruption or not.
 
 ## Reactivity
 
