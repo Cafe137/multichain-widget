@@ -322,7 +322,14 @@ export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }
                     <TextInput theme={theme} readOnly value={shortenHash(swapData.targetAddress)} />
                 </div>
             </div>
-            {status !== 'pending' ? <ProgressTracker theme={theme} progress={stepStatuses} /> : null}
+            {status !== 'pending' ? (
+                <>
+                    <Typography theme={theme} small secondary>
+                        Please allow up to 5 minutes for the steps to complete.
+                    </Typography>
+                    <ProgressTracker theme={theme} progress={stepStatuses} />
+                </>
+            ) : null}
             {status === 'pending' && nextStep === 'relay' ? (
                 <>
                     <LabelSpacing theme={theme}>
