@@ -1,6 +1,6 @@
-import { LabelSpacing } from './LabelSpacing'
-import { MultichainProgress } from './MultichainStep'
-import { MultichainTheme } from './MultichainTheme'
+import { MultichainProgress } from '../MultichainStep'
+import { MultichainTheme } from '../MultichainTheme'
+import { LabelSpacing } from '../primitives/LabelSpacing'
 import { ProgressStatus } from './ProgressStatus'
 
 interface Props {

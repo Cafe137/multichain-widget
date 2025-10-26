@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { MultichainTheme } from './MultichainTheme'
+import { MultichainTheme } from '../MultichainTheme'
 import { Typography } from './Typography'
 
 interface Props {

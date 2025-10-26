@@ -1,4 +1,4 @@
-import { MultichainTheme } from './MultichainTheme'
+import { MultichainTheme } from '../MultichainTheme'
 
 interface Props {
     theme: MultichainTheme

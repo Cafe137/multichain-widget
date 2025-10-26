@@ -1,9 +1,9 @@
 import { ReactNode } from 'react'
-import { MultichainStepStatus } from './MultichainStep'
-import { MultichainTheme } from './MultichainTheme'
-import { Spinner } from './Spinner'
+import { MultichainStepStatus } from '../MultichainStep'
+import { MultichainTheme } from '../MultichainTheme'
+import { Spinner } from '../primitives/Spinner'
+import { Typography } from '../primitives/Typography'
 import { StatusIndicator } from './StatusIndicator'
-import { Typography } from './Typography'
 
 interface Props {
     theme: MultichainTheme

@@ -1,6 +1,6 @@
-import { Intent } from './Intent'
-import { MultichainTheme } from './MultichainTheme'
-import { Typography } from './Typography'
+import { Intent } from '../Intent'
+import { MultichainTheme } from '../MultichainTheme'
+import { Typography } from '../primitives/Typography'
 
 interface Props {
     theme: MultichainTheme

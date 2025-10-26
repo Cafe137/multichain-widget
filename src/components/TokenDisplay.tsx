@@ -1,29 +1,18 @@
-import { MultichainTheme } from './MultichainTheme'
+import { MultichainTheme } from '../MultichainTheme'
+import { Typography } from '../primitives/Typography'
 
 interface Props {
     theme: MultichainTheme
-    value: number
-    onChange?: (value: number) => void
-    min?: number
-    max?: number
-    step?: number
-    placeholder?: string
-    readOnly?: boolean
+    leftLabel: string
+    rightLabel: string
 }
 
-export function NumberInput({ theme, value, onChange, min, max, step, placeholder, readOnly }: Props) {
+export function TokenDisplay({ theme, leftLabel, rightLabel }: Props) {
     return (
-        <input
-            type="number"
-            min={min}
-            max={max}
-            step={step}
-            placeholder={placeholder}
-            value={value}
-            onChange={onChange ? e => onChange(Number(e.target.value)) : undefined}
-            readOnly={readOnly}
-            className="multichain__input"
+        <div
             style={{
+                display: 'flex',
+                justifyContent: 'space-between',
                 paddingTop: theme.inputVerticalPadding,
                 paddingBottom: theme.inputVerticalPadding,
                 paddingLeft: theme.inputHorizontalPadding,
@@ -36,6 +25,11 @@ export function NumberInput({ theme, value, onChange, min, max, step, placeholde
                 fontSize: theme.fontSize,
                 fontWeight: theme.fontWeight
             }}
-        />
+        >
+            <Typography theme={theme}>{leftLabel}</Typography>
+            <Typography theme={theme} small secondary>
+                {rightLabel}
+            </Typography>
+        </div>
     )
 }
