@@ -34,7 +34,7 @@ export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }
     const [sourceToken, setSourceToken] = useState<string>(library.constants.nullAddress)
 
     // states for network data
-    const [bzzPrice, setBzzPrice] = useState<number | null>(null)
+    const [bzzUsdPrice, setBzzUsdPrice] = useState<number | null>(null)
     const [temporaryWalletNativeBalance, setTemporaryWalletNativeBalance] = useState<FixedPointNumber | null>(null)
     const [destinationWalletBzzBalance, setDestinationWalletBzzBalance] = useState<FixedPointNumber | null>(null)
     const [selectedTokenUsdPrice, setSelectedTokenUsdPrice] = useState<number | null>(null)
@@ -65,37 +65,25 @@ export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }
 
     // computed
     const sourceChainDisplayName = (chains || []).find(x => x.id === sourceChain)?.displayName || 'N/A'
-    const sourceTokenDisplayName = (data || []).find(x => x.address === sourceToken)?.symbol || 'N/A'
     const sourceTokenObject = (data || []).find(x => x.address === sourceToken)
-    const wantedBzz = FixedPointNumber.fromDecimalString(swapData.bzzAmount.toString(), 16)
-    let remainingBzzAmount: FixedPointNumber | null = null
-    let remainingBzzUsdValue: number | null = null
+    const sourceTokenDisplayName = sourceTokenObject ? sourceTokenObject.symbol : 'N/A'
+    const neededBzzAmount = FixedPointNumber.fromDecimalString(swapData.bzzAmount.toString(), 16)
+    let neededBzzUsdValue: number | null = null
     let selectedTokenAmountNeeded: FixedPointNumber | null = null
-    if (destinationWalletBzzBalance && bzzPrice && selectedTokenUsdPrice && sourceTokenObject?.decimals) {
-        remainingBzzAmount = wantedBzz.subtract(destinationWalletBzzBalance)
-        remainingBzzUsdValue = parseFloat(remainingBzzAmount.toDecimalString()) * bzzPrice
-        const totalRemainingUsdValue = remainingBzzUsdValue + swapData.nativeAmount
-        const amountNeeded = (totalRemainingUsdValue / selectedTokenUsdPrice) * 1.08 // +8% slippage
+    if (bzzUsdPrice && selectedTokenUsdPrice && sourceTokenObject?.decimals) {
+        neededBzzUsdValue = parseFloat(neededBzzAmount.toDecimalString()) * bzzUsdPrice
+        const totalNeededUsdValue = neededBzzUsdValue + swapData.nativeAmount
         selectedTokenAmountNeeded = FixedPointNumber.fromDecimalString(
-            amountNeeded.toString(),
+            ((totalNeededUsdValue / selectedTokenUsdPrice) * 1.08).toString(), // +8% slippage
             sourceTokenObject.decimals
         )
     }
-    const totalUsdValue: number | null = remainingBzzUsdValue && swapData.nativeAmount + remainingBzzUsdValue
-    const hasEnoughBzz: boolean | null =
-        destinationWalletBzzBalance && destinationWalletBzzBalance.compare(wantedBzz) > -1
-    const hasRemainingDai: boolean | null =
-        temporaryWalletNativeBalance && temporaryWalletNativeBalance.compare(library.constants.daiDustAmount) > -1
-    const nextStep: MultichainStep | null =
-        hasEnoughBzz === null || hasRemainingDai === null
-            ? null
-            : hasEnoughBzz
-            ? hasRemainingDai
-                ? 'transfer'
-                : 'done'
-            : hasRemainingDai
-            ? 'sushi'
-            : 'relay'
+    const totalUsdValue: number | null = neededBzzUsdValue && swapData.nativeAmount + neededBzzUsdValue
+    const hasEnoughDai: boolean | null =
+        totalUsdValue && temporaryWalletNativeBalance !== null
+            ? parseFloat(temporaryWalletNativeBalance?.toDecimalString()) >= totalUsdValue
+            : null
+    const nextStep: 'sushi' | 'relay' | null = hasEnoughDai ? 'sushi' : 'relay'
     const hasSufficientBalance =
         selectedTokenAmountNeeded &&
         selectedTokenBalance.data &&
@@ -123,7 +111,7 @@ export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }
             System.runAndSetInterval(() => {
                 library
                     .getGnosisBzzTokenPrice()
-                    .then(price => setBzzPrice(price))
+                    .then(price => setBzzUsdPrice(price))
                     .catch(error => {
                         console.error('Error fetching BZZ price:', error)
                     })
@@ -170,7 +158,7 @@ export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }
 
     // main action
     async function onSwap() {
-        if (!remainingBzzUsdValue) {
+        if (!neededBzzUsdValue) {
             console.error('BZZ price not loaded yet')
             return
         }
@@ -183,13 +171,7 @@ export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }
             return
         }
         const stepsToRun: MultichainStep[] =
-            nextStep === 'relay'
-                ? ['relay', 'sushi', 'transfer']
-                : nextStep === 'sushi'
-                ? ['sushi', 'transfer']
-                : nextStep === 'transfer'
-                ? ['transfer']
-                : []
+            nextStep === 'relay' ? ['relay', 'sushi', 'transfer'] : nextStep === 'sushi' ? ['sushi', 'transfer'] : []
 
         setStepStatuses({
             relay: stepsToRun.includes('relay') ? 'pending' : 'skipped',
@@ -239,7 +221,7 @@ export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }
             const daiBefore = (await library.getGnosisNativeBalance(swapData.temporaryAddress)).value
             try {
                 setStepStatuses(x => ({ ...x, sushi: 'in-progress' }))
-                const amount = FixedPointNumber.fromDecimalString(remainingBzzUsdValue.toString(), 18)
+                const amount = FixedPointNumber.fromDecimalString(neededBzzUsdValue.toString(), 18)
                 await library.swapOnGnosisAuto({
                     amount: amount.toString(),
                     originPrivateKey: swapData.sessionKey,
@@ -382,7 +364,7 @@ export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }
                                       ) +
                                       ' ' +
                                       selectedTokenBalance.data.symbol
-                                    : ''
+                                    : 'Loading...'
                             }
                         />
                     </LabelSpacing>
@@ -404,11 +386,11 @@ export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }
                             <TokenDisplay
                                 theme={theme}
                                 leftLabel={`${
-                                    remainingBzzAmount
-                                        ? Numbers.toSignificantDigits(remainingBzzAmount.toDecimalString(), 3)
+                                    neededBzzAmount
+                                        ? Numbers.toSignificantDigits(neededBzzAmount.toDecimalString(), 3)
                                         : '...'
                                 } xBZZ`}
-                                rightLabel={`$${(remainingBzzUsdValue || 0).toFixed(2)}`}
+                                rightLabel={`$${(neededBzzUsdValue || 0).toFixed(2)}`}
                             />
                         </div>
                     </div>
