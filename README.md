@@ -64,10 +64,6 @@ Hooks can be set by passing `hooks` prop to the `MultichainWidget` component. Cu
 
 # Known issues / Remaining tasks
 
-## Absolute amounts
-
-The specified xBZZ amount is absolute, not relative. For example, if the user already has 90 xBZZ, they would have to specify 100 xBZZ to receive 10 more.
-
 ## No quote available on Relay
 
 This can happen when the amount is too low or too high. May happen more frequently with unpopular tokens.
@@ -79,7 +75,3 @@ The end user will not receive any quotes if they attempt to use xDAI as the sour
 ## React version dependency
 
 It seems that the app only works with React 18+. This may not be compatible with Bee Dashboard using React 17 (due to Material UI 4 dependency). It would be best to upgrade Bee Dashboard to React 18 and Material UI 5. React 18 is already 4 years old.
-
-## Implement other intents
-
-Only the "initial funding" intent is implemented. Other intents should be implemented as well, e.g. "get funds for postage batch", "free funding", etc.

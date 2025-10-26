@@ -69,19 +69,19 @@ export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }
     const sourceTokenDisplayName = sourceTokenObject ? sourceTokenObject.symbol : 'N/A'
     const neededBzzAmount = FixedPointNumber.fromDecimalString(swapData.bzzAmount.toString(), 16)
     let neededBzzUsdValue: number | null = null
+    let totalNeededUsdValue: number | null = null
     let selectedTokenAmountNeeded: FixedPointNumber | null = null
     if (bzzUsdPrice && selectedTokenUsdPrice && sourceTokenObject?.decimals) {
         neededBzzUsdValue = parseFloat(neededBzzAmount.toDecimalString()) * bzzUsdPrice
-        const totalNeededUsdValue = neededBzzUsdValue + swapData.nativeAmount
+        totalNeededUsdValue = (neededBzzUsdValue + swapData.nativeAmount) * 1.1 // +10% slippage
         selectedTokenAmountNeeded = FixedPointNumber.fromDecimalString(
-            ((totalNeededUsdValue / selectedTokenUsdPrice) * 1.08).toString(), // +8% slippage
+            (totalNeededUsdValue / selectedTokenUsdPrice).toString(),
             sourceTokenObject.decimals
         )
     }
-    const totalUsdValue: number | null = neededBzzUsdValue && swapData.nativeAmount + neededBzzUsdValue
     const hasEnoughDai: boolean | null =
-        totalUsdValue && temporaryWalletNativeBalance !== null
-            ? parseFloat(temporaryWalletNativeBalance?.toDecimalString()) >= totalUsdValue
+        totalNeededUsdValue && temporaryWalletNativeBalance !== null
+            ? parseFloat(temporaryWalletNativeBalance?.toDecimalString()) >= totalNeededUsdValue
             : null
     const nextStep: 'sushi' | 'relay' | null = hasEnoughDai ? 'sushi' : 'relay'
     const hasSufficientBalance =
@@ -371,8 +371,8 @@ export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }
                     <Typography theme={theme} small secondary>
                         You will swap{' '}
                         {Numbers.toSignificantDigits(selectedTokenAmountNeeded?.toDecimalString() || '0', 3)} (~$
-                        {Numbers.toSignificantDigits(totalUsdValue?.toString() || '0', 2)}) {sourceTokenDisplayName}{' '}
-                        from {sourceChainDisplayName} to fund:
+                        {Numbers.toSignificantDigits(totalNeededUsdValue?.toString() || '0', 2)}){' '}
+                        {sourceTokenDisplayName} from {sourceChainDisplayName} to fund:
                     </Typography>
                     <div className="multichain__row">
                         <div className="multichain__column multichain__column--full">
@@ -388,7 +388,7 @@ export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }
                                 leftLabel={`${
                                     neededBzzAmount
                                         ? Numbers.toSignificantDigits(neededBzzAmount.toDecimalString(), 3)
-                                        : '...'
+                                        : 'Loading...'
                                 } xBZZ`}
                                 rightLabel={`$${(neededBzzUsdValue || 0).toFixed(2)}`}
                             />
@@ -407,7 +407,7 @@ export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }
                     </ProgressStatus>
                 ) : (
                     <ProgressStatus theme={theme} status="error">
-                        Quote NOT available, amount too small, too large, or insufficient liquidity
+                        Quote unavailable - amount is either too small, large, or the token is illiquid
                     </ProgressStatus>
                 )
             ) : null}
@@ -416,7 +416,7 @@ export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }
                 onClick={onSwap}
                 disabled={status !== 'pending' || (nextStep === 'relay' && !quote) || !hasSufficientBalance}
             >
-                {hasSufficientBalance ? 'Fund' : 'Not enough balance'}
+                {hasSufficientBalance ? 'Fund' : 'Insufficient balance'}
             </Button>
         </div>
     )

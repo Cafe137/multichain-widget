@@ -3,22 +3,26 @@ import { Types } from 'cafe-utility'
 import { Dispatch, SetStateAction } from 'react'
 import { useAccount, useChainId } from 'wagmi'
 import { Button } from './Button'
+import { Intent } from './Intent'
+import { IntentInfo } from './IntentInfo'
 import { LabelSpacing } from './LabelSpacing'
 import { MultichainTheme } from './MultichainTheme'
 import { NumberInput } from './NumberInput'
+import { Span } from './Span'
 import { SwapData } from './SwapData'
 import { TextInput } from './TextInput'
 import { Typography } from './Typography'
 
 interface Props {
     theme: MultichainTheme
+    intent: Intent
     setTab: (tab: 1 | 2) => void
     swapData: SwapData
     setSwapData: Dispatch<SetStateAction<SwapData>>
     setInitialChainId: Dispatch<SetStateAction<number | null>>
 }
 
-export function Tab1({ theme, setTab, swapData, setSwapData, setInitialChainId }: Props) {
+export function Tab1({ theme, intent, setTab, swapData, setSwapData, setInitialChainId }: Props) {
     const { address } = useAccount()
     const chainId = useChainId()
 
@@ -39,42 +43,14 @@ export function Tab1({ theme, setTab, swapData, setSwapData, setInitialChainId }
             className="multichain__wrapper"
             style={{ borderRadius: theme.borderRadius, backgroundColor: theme.backgroundColor }}
         >
-            <div className="multichain__row">
-                <svg width="80" height="80" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="256" cy="256" r="200" fill="#0074D9" stroke="#0074D9" strokeWidth="20" />
-                    <circle cx="256" cy="160" r="20" fill="white" stroke="white" strokeWidth="20" />
-                    <path
-                        d="M 221 226 l 30 0 l 0 30 l -30 0 z"
-                        stroke="white"
-                        strokeWidth="20"
-                        fill="white"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    />
-                    <path
-                        d="M 241 226 l 30 0 l 0 130 l -30 0 z"
-                        stroke="white"
-                        strokeWidth="20"
-                        fill="white"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    />
-                    <path
-                        d="M 271 326 l 30 0 l 0 30 l -30 0 z"
-                        stroke="white"
-                        strokeWidth="20"
-                        fill="white"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    />
-                </svg>
-                <Typography theme={theme}>
-                    Your Bee node needs an initial funding on the Gnosis chain to start. You'll receive xDAI for
-                    transaction gas fees and xBZZ tokens for the storage and bandwidth costs.
-                </Typography>
-            </div>
+            <IntentInfo theme={theme} intent={intent} />
             <LabelSpacing theme={theme}>
-                <Typography theme={theme}>Target Address</Typography>
+                <Typography theme={theme}>
+                    Target Address
+                    <Span theme={theme} color={theme.buttonBackgroundColor}>
+                        *
+                    </Span>
+                </Typography>
                 <TextInput
                     theme={theme}
                     placeholder="0x..."
@@ -85,7 +61,12 @@ export function Tab1({ theme, setTab, swapData, setSwapData, setInitialChainId }
             <div className="multichain__row">
                 <div className="multichain__column multichain__column--full">
                     <LabelSpacing theme={theme}>
-                        <Typography theme={theme}>xDAI</Typography>
+                        <Typography theme={theme}>
+                            xDAI
+                            <Span theme={theme} color={theme.buttonBackgroundColor}>
+                                *
+                            </Span>
+                        </Typography>
                         <NumberInput
                             theme={theme}
                             placeholder="0.0"
@@ -99,7 +80,12 @@ export function Tab1({ theme, setTab, swapData, setSwapData, setInitialChainId }
                 </div>
                 <div className="multichain__column multichain__column--full">
                     <LabelSpacing theme={theme}>
-                        <Typography theme={theme}>xBZZ</Typography>
+                        <Typography theme={theme}>
+                            xBZZ
+                            <Span theme={theme} color={theme.buttonBackgroundColor}>
+                                *
+                            </Span>
+                        </Typography>
                         <NumberInput
                             theme={theme}
                             step={0.1}

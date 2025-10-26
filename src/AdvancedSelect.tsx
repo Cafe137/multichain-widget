@@ -40,7 +40,7 @@ export function AdvancedSelect({ theme, value, label, onChange, onChangeGuard, o
                     {current && current.image ? (
                         <img src={current.image} alt={current.label} className="select-img" />
                     ) : undefined}
-                    <Typography theme={theme}>{current ? current.label : '...'}</Typography>
+                    <Typography theme={theme}>{current ? current.label : 'Loading...'}</Typography>
                 </div>
                 <div className="multichain__row">
                     {label !== undefined ? (

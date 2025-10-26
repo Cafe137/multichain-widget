@@ -1,6 +1,7 @@
 import { MultichainLibrary } from '@upcoming/multichain-library'
 import { Binary, Elliptic, Strings, Types } from 'cafe-utility'
 import { useState } from 'react'
+import { getAmountsForIntent, Intent } from './Intent'
 import { MultichainHooks } from './MultichainHooks'
 import { MultichainTheme } from './MultichainTheme'
 import { SwapData } from './SwapData'
@@ -13,11 +14,21 @@ interface Props {
     theme: MultichainTheme
     hooks: MultichainHooks
     library: MultichainLibrary
+    intent?: Intent
 }
 
-export function Router({ theme, hooks, library }: Props) {
+export function Router({ theme, hooks, library, intent }: Props) {
     const url = new URL(window.location.href)
     const destination = url.searchParams.get('destination')
+    const queryParamIntent = url.searchParams.get('intent')
+    const resolvedIntent: Intent = intent
+        ? intent
+        : queryParamIntent === 'initial-funding'
+        ? 'initial-funding'
+        : queryParamIntent === 'postage-batch'
+        ? 'postage-batch'
+        : 'arbitrary'
+
     const sessionKey = Types.asHexString(localStorage.getItem(LOCAL_STORAGE_KEY) || Strings.randomHex(64))
     if (localStorage.getItem(LOCAL_STORAGE_KEY) !== sessionKey) {
         localStorage.setItem(LOCAL_STORAGE_KEY, sessionKey)
@@ -25,8 +36,7 @@ export function Router({ theme, hooks, library }: Props) {
     }
 
     const [swapData, setSwapData] = useState<SwapData>({
-        bzzAmount: 3,
-        nativeAmount: 0.2,
+        ...getAmountsForIntent(resolvedIntent),
         sourceAddress: '',
         targetAddress: destination ? Types.asHexString(destination) : '',
         sessionKey,
@@ -46,6 +56,7 @@ export function Router({ theme, hooks, library }: Props) {
             <Tab1
                 setTab={setTab}
                 theme={theme}
+                intent={resolvedIntent}
                 swapData={swapData}
                 setSwapData={setSwapData}
                 setInitialChainId={setInitialChainId}
