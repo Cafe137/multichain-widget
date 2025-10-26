@@ -13,6 +13,8 @@ import { TextInput } from './primitives/TextInput'
 import { Typography } from './primitives/Typography'
 import { SwapData } from './SwapData'
 
+const LOCAL_STORAGE_KEY = 'multichain-session-key'
+
 interface Props {
     theme: MultichainTheme
     intent: Intent
@@ -36,6 +38,29 @@ export function Tab1({ theme, intent, setTab, swapData, setSwapData, setInitialC
             setInitialChainId(chainId)
             setTab(2)
         }
+    }
+
+    function onExport() {
+        const keys: { privateKey: string; date: string }[] = []
+        for (const key in localStorage) {
+            if (key.startsWith(`${LOCAL_STORAGE_KEY}_`)) {
+                const [_, millis] = key.split('_')
+                const privateKey = localStorage.getItem(key)
+                if (privateKey) {
+                    keys.push({ privateKey, date: new Date(Number(millis)).toLocaleString() })
+                }
+            }
+        }
+        if (!keys.length) {
+            alert('No session keys found in local storage.')
+            return
+        }
+        const blob = new Blob([JSON.stringify(keys, null, 2)], { type: 'application/json' })
+        const url = URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = 'multichain-private-keys.json'
+        a.click()
     }
 
     return (
@@ -100,6 +125,9 @@ export function Tab1({ theme, intent, setTab, swapData, setSwapData, setInitialC
             <ConnectButton />
             <Button theme={theme} onClick={onConnect} disabled={!address || !swapData.targetAddress}>
                 Continue
+            </Button>
+            <Button theme={theme} secondary onClick={onExport}>
+                Export session keys
             </Button>
         </div>
     )
