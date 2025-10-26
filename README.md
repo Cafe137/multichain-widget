@@ -64,14 +64,6 @@ Hooks can be set by passing `hooks` prop to the `MultichainWidget` component. Cu
 
 # Known issues / Remaining tasks
 
-## No quote available on Relay
-
-This can happen when the amount is too low or too high. May happen more frequently with unpopular tokens.
-
-## xDAI source support
-
-The end user will not receive any quotes if they attempt to use xDAI as the source token. This is because in this case, we attempt to get a quote from xDAI to xDAI.
-
 ## React version dependency
 
 It seems that the app only works with React 18+. This may not be compatible with Bee Dashboard using React 17 (due to Material UI 4 dependency). It would be best to upgrade Bee Dashboard to React 18 and Material UI 5. React 18 is already 4 years old.
