@@ -3,7 +3,7 @@ import { getClient } from '@relayprotocol/relay-sdk'
 import { MultichainLibrary } from '@upcoming/multichain-library'
 import { Arrays, Dates, FixedPointNumber, Numbers, System, Types } from 'cafe-utility'
 import { useEffect, useState } from 'react'
-import { useBalance, useChains, useSwitchChain, useWalletClient } from 'wagmi'
+import { useBalance, useChains, useSendTransaction, useSwitchChain, useWalletClient } from 'wagmi'
 import { ProgressTracker } from './components/ProgressTracker'
 import { QuoteIndicator } from './components/QuoteIndicator'
 import { TokenDisplay } from './components/TokenDisplay'
@@ -107,6 +107,8 @@ export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }
         tradeType: 'EXACT_INPUT',
         amount: selectedTokenAmountNeeded?.toString() || '0'
     })
+    // send transaction hook in case of xdai source token
+    const { sendTransactionAsync } = useSendTransaction()
 
     // watch bzz price, temp. dai balance and dest. bzz balance
     useEffect(() => {
@@ -190,10 +192,14 @@ export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }
         // relay step
         if (stepsToRun.includes('relay')) {
             const daiBefore = temporaryWalletNativeBalance.value
-            if (quote && executeQuote) {
+            if (sourceToken === library.constants.nullAddress && sourceChain === library.constants.gnosisChainId) {
+                // xdai on gnosis chain
                 try {
                     setStepStatuses(x => ({ ...x, relay: 'in-progress' }))
-                    await executeQuote(console.log)
+                    await sendTransactionAsync({
+                        to: swapData.temporaryAddress as `0x${string}`,
+                        value: selectedTokenAmountNeeded?.value
+                    })
                     setStepStatuses(x => ({ ...x, relay: 'done' }))
                 } catch (error) {
                     setStatus('failed')
@@ -202,9 +208,23 @@ export function Tab2({ theme, hooks, setTab, swapData, initialChainId, library }
                     throw error
                 }
             } else {
-                alert('Quote not available, cannot continue.')
-                setStatus('failed')
-                return
+                // any other source token/chain
+                if (quote && executeQuote) {
+                    try {
+                        setStepStatuses(x => ({ ...x, relay: 'in-progress' }))
+                        await executeQuote(console.log)
+                        setStepStatuses(x => ({ ...x, relay: 'done' }))
+                    } catch (error) {
+                        setStatus('failed')
+                        setStepStatuses(x => ({ ...x, relay: 'error' }))
+                        hooks.onFatalError({ step: 'relay', error })
+                        throw error
+                    }
+                } else {
+                    alert('Quote not available, cannot continue.')
+                    setStatus('failed')
+                    return
+                }
             }
             try {
                 setStepStatuses(x => ({ ...x, 'relay-sync': 'in-progress' }))
