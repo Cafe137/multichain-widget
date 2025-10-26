@@ -17,9 +17,9 @@ export function AdvancedSelect({ theme, value, label, onChange, onChangeGuard, o
     const current = options.find(o => o.value === value)
 
     return (
-        <div className="select-container">
+        <div className="multichain__select-container">
             <button
-                className="select-trigger"
+                className="multichain__select-trigger"
                 onClick={() => setOpen(x => !x)}
                 style={{
                     paddingTop: theme.inputVerticalPadding,
@@ -36,9 +36,9 @@ export function AdvancedSelect({ theme, value, label, onChange, onChangeGuard, o
                     border: 'none'
                 }}
             >
-                <div className="select-left">
+                <div className="multichain__select-left">
                     {current && current.image ? (
-                        <img src={current.image} alt={current.label} className="select-img" />
+                        <img src={current.image} alt={current.label} className="multichain__select-img" />
                     ) : undefined}
                     <Typography theme={theme}>{current ? current.label : 'Loading...'}</Typography>
                 </div>
@@ -49,7 +49,7 @@ export function AdvancedSelect({ theme, value, label, onChange, onChangeGuard, o
                         </Typography>
                     ) : null}
                     <svg
-                        className={`select-arrow ${open ? 'open' : ''}`}
+                        className={`multichain__select-arrow ${open ? 'multichain__open' : ''}`}
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="none"
@@ -63,7 +63,7 @@ export function AdvancedSelect({ theme, value, label, onChange, onChangeGuard, o
 
             {open && (
                 <ul
-                    className="select-menu"
+                    className="multichain__select-menu"
                     style={{
                         paddingTop: theme.inputVerticalPadding,
                         paddingBottom: theme.inputVerticalPadding,
@@ -81,7 +81,7 @@ export function AdvancedSelect({ theme, value, label, onChange, onChangeGuard, o
                     {options.map(option => (
                         <li
                             key={option.value}
-                            className="select-option"
+                            className="multichain__select-option"
                             style={{
                                 paddingTop: theme.inputVerticalPadding,
                                 paddingBottom: theme.inputVerticalPadding
@@ -100,7 +100,7 @@ export function AdvancedSelect({ theme, value, label, onChange, onChangeGuard, o
                             }}
                         >
                             {option.image ? (
-                                <img src={option.image} alt={option.label} className="select-img" />
+                                <img src={option.image} alt={option.label} className="multichain__select-img" />
                             ) : undefined}
                             <Typography theme={theme}>{option.label}</Typography>
                         </li>
